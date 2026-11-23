@@ -53,7 +53,21 @@ La API pública produjo 685 candidatos al 2026-11-23. La preselección auditó l
 
 ### Pasos 21–34 — prototipo y salidas
 
-`python -m pytest -q` aislado a `tests/`: 7 passed. `ruff check src tests scripts`: limpio después de los ajustes. `pip check`: sin dependencias rotas. Los CSV de resultados tienen encabezados; `findings.csv`, `metricas.csv` y `scan_summary.csv` no contienen filas analíticas porque no existe clon aceptado.
+`python -m pytest -q` aislado a `tests/`: 14 passed. `ruff check src tests scripts`: limpio después de los ajustes. `pip check`: sin dependencias rotas. Los CSV de resultados tienen encabezados; `findings.csv`, `metricas.csv` y `scan_summary.csv` no contienen filas analíticas porque no existe clon aceptado.
+
+## Commit registrado
+
+- `44bc55d feat: prototipo AST y corrida reproducible` — código, pruebas, documentación, scripts y CSV auditables de la corrida pública.
+- No se incluyeron `data/clones/`, `.venv/`, `.env`, el PDF del usuario, los planes adjuntos ni `Referencias/` en el commit.
+
+## Control de calidad más reciente
+
+- `python -m pytest -q`: 14 passed.
+- `ruff check src tests scripts`: limpio.
+- `python -m pip check`: `No broken requirements found`.
+- `ragsmell version`: `0.1.0`.
+- CLI `scan` y `metrics`: ejecutadas sobre el workspace; la métrica de fixture produjo 13 módulos del paquete.
+- Compilación LaTeX: BLOQUEADA; no se encontró fuente editable.
 
 ## Convenciones de actualización
 

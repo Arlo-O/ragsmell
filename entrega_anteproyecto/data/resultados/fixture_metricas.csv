@@ -1,0 +1,14 @@
+file,sloc,cc_media,cc_max,mi,cbo_mod
+__init__.py,1,0.0,0,100.0,0
+astutils.py,29,5.666666666666667,9,52.220981652080575,0
+cli.py,53,5.333333333333333,11,48.10590083277921,2
+detectors/__init__.py,12,2,2,100.0,1
+detectors/ap01_prompt_infiltration.py,26,13.333333333333334,18,49.44088018396778,1
+detectors/ap03_provider_lockin.py,22,13.5,14,54.24786989270285,1
+detectors/ap04_monolithic_rag.py,26,8,11,52.63837685320229,1
+detectors/ap05_exception_suppression.py,30,7,12,48.7116530206921,1
+detectors/base.py,12,1.5,2,100.0,1
+knowledge.py,18,3.5,4,59.59658939686305,0
+metrics.py,26,8,15,77.01863608997368,1
+models.py,17,1,1,100.0,0
+scanner.py,33,6.5,9,49.90876021387799,1
