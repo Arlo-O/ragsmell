@@ -43,7 +43,7 @@
 - `git status --short --branch`, `git log --oneline -5`, `git remote -v`.
 - Inventarios de `docs/`, `data/`, `scripts/`, `src/` y `tests/`.
 - Python global: `3.14.6`; Python del entorno `.venv` disponible.
-- `\.venv\Scripts\python.exe -m pytest -q tests`: **4 passed, 1 skipped** (suite reducida por eliminaciones locales).
+- `\.venv\Scripts\python.exe -m pytest -q tests`: primera ejecución **4 passed, 1 skipped**; después de reponer fixtures nuevos, suite actual **13 passed**.
 - `\.venv\Scripts\ruff.exe check src tests scripts`: **All checks passed**.
 - `python -m pytest -q` sin restricción: no válido antes del ajuste porque recolectó pruebas de `data/clones/`.
 
