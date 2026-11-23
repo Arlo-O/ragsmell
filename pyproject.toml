@@ -22,6 +22,8 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+norecursedirs = ["data", ".venv", "build", "dist"]
+addopts = "-ra"
 
-[tool.ruff]
-exclude = ["tests/fixtures"]
+[tool.ruff.lint.per-file-ignores]
+"tests/fixtures/*.py" = ["B", "BLE001", "F821", "F841"]

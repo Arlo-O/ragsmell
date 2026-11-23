@@ -16,6 +16,7 @@
 | `src/ragsmell/detectors/` | Detectores AP1/AP3/AP4/AP5 y extensiones evaluadas | `Finding` |
 | `src/ragsmell/metrics.py` | SLOC, complejidad, MI y `cbo_mod` | Métricas por módulo |
 | `scripts/01–06` | Recolección, clonación, corridas, estadística y validación | CSV reproducibles |
+| `scripts/02b_filtrar_seleccionar.py` | Preselección auditable y verificación de manifiestos | CSV de preselección, exclusiones y decisión |
 | `data/` | Candidatos, clones ignorados y resultados | Datos del piloto |
 | `docs/` | Decisiones, taxonomía, arquitectura, amenazas y bitácora | Evidencia metodológica |
 | `tests/` | Unitarias, fixtures y pruebas de integración | Verificación automatizada |

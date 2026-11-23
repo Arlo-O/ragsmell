@@ -59,7 +59,7 @@ def metrics(path: Path, out: Annotated[Path, typer.Option("--out", "-o")] = Path
     with out.open("w", newline="", encoding="utf-8") as handle:
         fields = ["file", "sloc", "cc_media", "cc_max", "mi", "cbo_mod"]
         writer = csv.DictWriter(handle, fieldnames=fields); writer.writeheader(); writer.writerows(rows)
-    typer.echo(f"módulos={len(rows)}")
+    typer.echo(f"modules={len(rows)}")
 
 
 if __name__ == "__main__":
