@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ragsmell"
+version = "0.1.0"
+description = "Detector estático de antipatrones arquitectónicos en aplicaciones GenAI/RAG"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["radon", "pandas", "scipy", "statsmodels", "matplotlib", "typer", "PyGithub"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff"]
+
+[project.scripts]
+ragsmell = "ragsmell.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+exclude = ["tests/fixtures"]

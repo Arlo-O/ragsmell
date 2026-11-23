@@ -221,3 +221,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+.env
+data/clones/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/

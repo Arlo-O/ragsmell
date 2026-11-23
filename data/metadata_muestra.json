@@ -1,0 +1,81 @@
+{
+  "fecha_extraccion": "2026-11-23T15:43:54+00:00",
+  "fecha_corte": "2025-11-23T15:43:54+00:00",
+  "queries": [
+    {
+      "query": "topic:rag language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+      "count": 977
+    },
+    {
+      "query": "topic:rag language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+      "count": 334
+    },
+    {
+      "query": "topic:rag language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+      "count": 124
+    },
+    {
+      "query": "topic:retrieval-augmented-generation language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+      "count": 183
+    },
+    {
+      "query": "topic:retrieval-augmented-generation language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+      "count": 74
+    },
+    {
+      "query": "topic:retrieval-augmented-generation language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+      "count": 30
+    },
+    {
+      "query": "topic:langchain language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+      "count": 424
+    },
+    {
+      "query": "topic:langchain language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+      "count": 142
+    },
+    {
+      "query": "topic:langchain language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+      "count": 48
+    },
+    {
+      "query": "topic:llamaindex language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+      "count": 34
+    },
+    {
+      "query": "topic:llamaindex language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "query": "topic:llamaindex language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "query": "topic:chatbot language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "query": "topic:chatbot language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+    },
+    {
+      "query": "topic:chatbot language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+    }
+  ],
+  "autenticado": false,
+  "topics_iniciales": [
+    "rag",
+    "retrieval-augmented-generation",
+    "langchain",
+    "llamaindex",
+    "chatbot"
+  ],
+  "topics_ampliacion": [
+    "llm",
+    "vector-database",
+    "chromadb",
+    "qdrant"
+  ],
+  "nota": "La elegibilidad RAG se verifica posteriormente; una búsqueda por topic no es prueba definitiva."
+}

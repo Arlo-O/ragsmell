@@ -1,0 +1,116 @@
+full_name,reason,evidence,checked_at
+Shubhamsaboo/awesome-llm-apps,blocked_word:awesome,"shubhamsaboo/awesome-llm-apps 100+ ai agents, agent skills and rag apps - free and open source.",2026-11-23T15:45:06.870449+00:00
+MODSetter/SurfSense,blocked_word:notebook,"modsetter/surfsense air-gapped, privacy-focused, open-source notebooklm alternative. ai agent that researches, transforms, and edits your documents. join our discord: https://discord.gg/ejrnvftdp9",2026-11-23T15:45:06.895623+00:00
+EmbraceAGI/awesome-chatgpt-zh,blocked_word:awesome,embraceagi/awesome-chatgpt-zh chatgpt 中文指南🔥，chatgpt 中文调教指南，指令指南，应用开发指南，精选资源清单，更好的使用 chatgpt 让你的生产力 up up up! 🚀,2026-11-23T15:45:06.895787+00:00
+WenyuChiou/awesome-agentic-ai-zh,blocked_word:example,"wenyuchiou/awesome-agentic-ai-zh a trilingual (繁中 / english / 简中) learning roadmap for agentic ai: from llm basics to multi-agent systems, with 240+ curated resources and hands-on examples. 中文 ai agent 學習地圖。",2026-11-23T15:45:06.903371+00:00
+alvinreal/awesome-opensource-ai,blocked_word:awesome,"alvinreal/awesome-opensource-ai curated list of the best truly open-source ai projects, models, tools, and infrastructure. daily updated.",2026-11-23T15:45:06.903552+00:00
+itsdecodingai/llm-twin-course,blocked_word:course,itsdecodingai/llm-twin-course 🤖 𝗟𝗲𝗮𝗿𝗻 for 𝗳𝗿𝗲𝗲 how to 𝗯𝘂𝗶𝗹𝗱 an end-to-end 𝗽𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻-𝗿𝗲𝗮𝗱𝘆 𝗟𝗟𝗠 & 𝗥𝗔𝗚 𝘀𝘆𝘀𝘁𝗲𝗺 using 𝗟𝗟𝗠𝗢𝗽𝘀 best practices: ~ 𝘴𝘰𝘶𝘳𝘤𝘦 𝘤𝘰𝘥𝘦 + 12 𝘩𝘢𝘯𝘥𝘴-𝘰𝘯 𝘭𝘦𝘴𝘴𝘰𝘯𝘴,2026-11-23T15:45:06.903589+00:00
+TarrySingh/Artificial-Intelligence-Deep-Learning-Machine-Learning-Tutorials,blocked_word:tutorial,"tarrysingh/artificial-intelligence-deep-learning-machine-learning-tutorials synapsa commons: free, hands-on ai courses that run anywhere (colab, kaggle, binder, codespaces, jupyter). eu ai act conformity evidence, model validation, predictive maintenance, document extraction, retrieval and rag, ai agents and mcp, a simulated humanoid. every lesson autograded. from the team building synapsa.",2026-11-23T15:45:06.903913+00:00
+FireRedTeam/FireRed-OpenStoryline,size_lt_500_kb,282,2026-11-23T15:45:06.903938+00:00
+SamurAIGPT/llm-wiki-agent,size_lt_500_kb,422,2026-11-23T15:45:06.903948+00:00
+wassim249/fastapi-langgraph-agent-production-ready-template,blocked_word:template,"wassim249/fastapi-langgraph-agent-production-ready-template a production-ready fastapi template for building ai agent applications with langgraph integration. this template provides a robust foundation for building scalable, secure, and maintainable ai agent services.",2026-11-23T15:45:06.904046+00:00
+vstorm-co/full-stack-ai-agent-template,blocked_word:template,"vstorm-co/full-stack-ai-agent-template full-stack ai app generator — fastapi + next.js with ai agents, rag, streaming, auth, and 20+ integrations out of the box.",2026-11-23T15:45:06.904096+00:00
+melih-unsal/DemoGPT,blocked_word:demo,"melih-unsal/demogpt 🤖 create agentic apps in a second with your prompts. everything you need to create an llm agent - tools, prompts, frameworks, and models - all in one place.",2026-11-23T15:45:06.904110+00:00
+NotJoeMartinez/yt-fts,size_lt_500_kb,413,2026-11-23T15:45:06.904132+00:00
+kaushikb11/awesome-llm-agents,blocked_word:awesome,kaushikb11/awesome-llm-agents a curated list of awesome llm agents frameworks.,2026-11-23T15:45:06.904167+00:00
+import-ai/omnibox,size_lt_500_kb,204,2026-11-23T15:45:06.904206+00:00
+fetchai/innovation-lab-examples,blocked_word:example,"fetchai/innovation-lab-examples 80+ production-ready ai agent examples in python — build autonomous agents, multi-agent systems and agentic ai with uagents, asi:one, mcp, a2a, langchain, crewai, gemini, claude and openai.",2026-11-23T15:45:06.904210+00:00
+tylerprogramming/ai,blocked_word:tutorial,tylerprogramming/ai this repository will have different projects using autogen and tutorials,2026-11-23T15:45:06.904272+00:00
+FareedKhan-dev/production-grade-agentic-system,size_lt_500_kb,422,2026-11-23T15:45:06.904294+00:00
+TeleAI-UAGI/Awesome-Agent-Memory,blocked_word:awesome,"teleai-uagi/awesome-agent-memory curated systems, benchmarks, and papers etc. on memory for llms/mllms --- long-term context, retrieval, and reasoning.",2026-11-23T15:45:06.904473+00:00
+adhikasp/mcp-client-cli,size_lt_500_kb,287,2026-11-23T15:45:06.904539+00:00
+win4r/GraphRAG4OpenWebUI,size_lt_500_kb,70,2026-11-23T15:45:06.904602+00:00
+Azure-Samples/aisearch-openai-rag-audio,blocked_word:example,azure-samples/aisearch-openai-rag-audio a simple example implementation of the voicerag pattern to power interactive voice generative ai experiences using rag with azure ai search and azure openai's gpt-4o-realtime-preview model. ,2026-11-23T15:45:06.904650+00:00
+oxbshw/LLM-Agents-Ecosystem-Handbook,blocked_word:tutorial,"oxbshw/llm-agents-ecosystem-handbook one-stop handbook for building, deploying, and understanding llm agents with 60+ skeletons, tutorials, ecosystem guides, and evaluation tools.",2026-11-23T15:45:06.904655+00:00
+alphasecio/langchain-examples,blocked_word:example,"alphasecio/langchain-examples a streamlit app with four langchain tools: web research agent, summaries, news digest and chat with docs. uses openai, pgvector and your choice of search api.",2026-11-23T15:45:06.904677+00:00
+RMA-MUN/RAGNotebook,blocked_word:notebook,rma-mun/ragnotebook 基于langchain、langgraph、fastapi和react的rag项目，主分支为基于知识图谱的知识管理平台，base-rag分支为完整的向量rag项目供学习使用,2026-11-23T15:45:06.904784+00:00
+Leon1207/Video-RAG-master,size_lt_500_kb,428,2026-11-23T15:45:06.904828+00:00
+AnkitNayak-dev/EpsteinFiles-RAG,size_lt_500_kb,17,2026-11-23T15:45:06.904954+00:00
+mine-ai-xyz/mine-ai,size_lt_500_kb,199,2026-11-23T15:45:06.904981+00:00
+aa0101181514/tw-legal-rag,size_lt_500_kb,358,2026-11-23T15:45:06.905048+00:00
+AleksNeStu/ai-real-estate-assistant,blocked_word:demo,"aleksnestu/ai-real-estate-assistant open-source ai real estate assistant: rag + vector search over your own listings, 17 llm providers, fastapi + next.js. run it on your own server with docker, or try the live demo.",2026-11-23T15:45:06.905084+00:00
+GautamVhavle/CatGPT-Gateway,size_lt_500_kb,299,2026-11-23T15:45:06.905110+00:00
+rokbenko/ai-playground,blocked_word:tutorial,"rokbenko/ai-playground 📽️ code from tutorials presented on the ""code ai with rok"" youtube channel",2026-11-23T15:45:06.905115+00:00
+Yigtwxx/awesome-rag-production,blocked_word:awesome,"yigtwxx/awesome-rag-production a curated list of battle-tested tools, frameworks, and best practices for building scalable, production-grade retrieval-augmented generation (rag) systems.",2026-11-23T15:45:06.905160+00:00
+fzliu/radient,size_lt_500_kb,183,2026-11-23T15:45:06.905186+00:00
+Lyra-stellAI/BYO-LLM-WIKI,blocked_word:demo,"lyra-stellai/byo-llm-wiki build your own llm-native wiki (knowledge library). search, extract, summarize, q&a with contextual rag, layered knowledge graph, and reinforced memory. importantly use selected context to automatically generate skills, empowered by claude subagents + codeact pipeline and gated by human review. **try live demo**:  https://byo-wiki-demo.vercel.app",2026-11-23T15:45:06.905197+00:00
+kaifcoder/gemini_multipdf_chat,size_lt_500_kb,44,2026-11-23T15:45:06.905325+00:00
+jkmaina/LangGraphProjects,blocked_word:example,"jkmaina/langgraphprojects this is the official companion repository for the book the complete langgraph blueprint: build 50+ ai agents for business success. the repository provides source code, practical examples, and resources to help you build dynamic ai agents using langgraph, a cutting-edge graph-based framework for artificial intelligence workflows.",2026-11-23T15:45:06.905346+00:00
+iamarunbrahma/pdf-to-markdown,size_lt_500_kb,288,2026-11-23T15:45:06.905357+00:00
+OpenDemon/Pilipili-AutoVideo,blocked_word:demo,opendemon/pilipili-autovideo 🎬 全自动 ai 视频代理 · 一句话生成带字幕成片 · fully automated ai video agent · local deployment,2026-11-23T15:45:06.905377+00:00
+tpoisonooo/ROGRAG,blocked_word:demo,tpoisonooo/rograg [acl2025 demo track] rograg: a robustly optimized graphrag framework,2026-11-23T15:45:06.905443+00:00
+HKUST-KnowComp/AtlasKV,size_lt_500_kb,242,2026-11-23T15:45:06.905528+00:00
+tom1030507/OpenNotebookLM,blocked_word:notebook,"tom1030507/opennotebooklm self-hosted alternative to google's notebooklm: import pdfs, web pages and youtube transcripts, then get answers with citations back to the source. hybrid dense + bm25 retrieval over a local sqlite database, with claude, any openai-compatible provider, or a model on your own machine.",2026-11-23T15:45:06.905542+00:00
+messkan/rag-chunk,size_lt_500_kb,149,2026-11-23T15:45:06.905565+00:00
+blackhaiyu-sudo/specrag,size_lt_500_kb,486,2026-11-23T15:45:06.905618+00:00
+z15114664687-dot/hr-onboarding-agent,blocked_word:demo,"z15114664687-dot/hr-onboarding-agent open-source ai-assisted hr onboarding for feishu/lark: configurable workflows, document ocr and review, bitable sync, reminders, and a zero-credential demo.",2026-11-23T15:45:06.905628+00:00
+IceSugar93/DeepReason,size_lt_500_kb,230,2026-11-23T15:45:06.905642+00:00
+libnyx/LT2MD,size_lt_500_kb,261,2026-11-23T15:45:06.905646+00:00
+malevrigns/atlas-agent-control-plane,blocked_word:tutorial,"malevrigns/atlas-agent-control-plane atlasagent - an auditable ai agent control plane: evidence-backed memory, governed tool runtime, checkpoint dag recovery, and a 55-chapter engineering tutorial. fastapi / next.js pwa / textual tui",2026-11-23T15:45:06.905652+00:00
+dukesun99/Corpus2Skill,size_lt_500_kb,79,2026-11-23T15:45:06.905685+00:00
+vixhal-baraiya/pageindex-rag,size_lt_500_kb,33,2026-11-23T15:45:06.905695+00:00
+yagyeshVyas/personalforge,size_lt_500_kb,79,2026-11-23T15:45:06.905700+00:00
+2182977liu-bit/awesome-ai-agent-learning,blocked_word:awesome,2182977liu-bit/awesome-ai-agent-learning ai agent 从入门到实战 - 原创保姆级中文教学，不依赖框架从零构建agent | 作者：青松与桑叶,2026-11-23T15:45:06.905704+00:00
+ahmedEid1/lumen,blocked_word:course,ahmedeid1/lumen learning platform where a multi-agent builder turns a one-sentence goal into a private course and a course-scoped rag tutor teaches it with lesson citations. public evals.,2026-11-23T15:45:06.905729+00:00
+benitomartin/substack-newsletters-search-course,blocked_word:course,benitomartin/substack-newsletters-search-course production rag system course,2026-11-23T15:45:06.905733+00:00
+aw3703/batchin-public,size_lt_500_kb,207,2026-11-23T15:45:06.905824+00:00
+brcrusoe72/agent-search,size_lt_500_kb,365,2026-11-23T15:45:06.905831+00:00
+Sega757/Adaptive-AtomRAG,size_lt_500_kb,17,2026-11-23T15:45:06.905891+00:00
+stackitcloud/rag-template,blocked_word:template,stackitcloud/rag-template template for ai chatbots & document management using retrieval-augmented generation with vector search and fastapi.,2026-11-23T15:45:06.905897+00:00
+Sega757/Fast-AtomRAG-Core,size_lt_500_kb,96,2026-11-23T15:45:06.905902+00:00
+The-Swarm-Corporation/swarms-examples,blocked_word:example,the-swarm-corporation/swarms-examples a vast array of examples for the enterprise-grade and production-ready swarms framework.,2026-11-23T15:45:06.905931+00:00
+jordan-jakisa/blogger,size_lt_500_kb,154,2026-11-23T15:45:06.905942+00:00
+yankeexe/llm-rag-with-reranker-demo,blocked_word:demo,yankeexe/llm-rag-with-reranker-demo llm rag application with cross-encoders re-ranking for youtube video 🎥,2026-11-23T15:45:06.905951+00:00
+NJUxlj/Travel-Agent-based-on-Qwen2-RLHF,blocked_word:template,"njuxlj/travel-agent-based-on-qwen2-rlhf a travel agent based on qwen2.5, fine-tuned by sft + dpo/ppo/grpo using traveling question-answer dataset, a mindmap can be output using the response. a rag system is build upon the tuned qwen2, using prompt-template + tool-use + chroma embedding database  + langchain ",2026-11-23T15:45:06.905966+00:00
+olioDuan/Domain-Specific-RAG-Chat-Course-Helper,blocked_word:course,olioduan/domain-specific-rag-chat-course-helper this project is a local rag system built for the nyu machine learning course.,2026-11-23T15:45:06.905983+00:00
+cefege/seo-chat-bot,size_lt_500_kb,48,2026-11-23T15:45:06.906045+00:00
+ADITYA-KUMAR-2358/Ask-Mirage-2.0,size_lt_500_kb,13,2026-11-23T15:45:06.906056+00:00
+FarhanAliRaza/django-hawkeye,size_lt_500_kb,259,2026-11-23T15:45:06.906062+00:00
+langhost/langhost,size_lt_500_kb,389,2026-11-23T15:45:06.906138+00:00
+lpaiu-cs/osk-system,blocked_word:template,lpaiu-cs/osk-system source-grounded mcp memory runtime and obsidian-compatible vault template for llm agents.,2026-11-23T15:45:06.906161+00:00
+mongodb-developer/event-venue-operator,blocked_word:demo,"mongodb-developer/event-venue-operator agentic event-venue operator demo built on mongodb atlas. showcases three-layer memory (long-term, short-term, shared), hybrid retrieval with voyage ai multimodal embeddings, optional langfuse traces, and persona-segmented agent decisions during a rain delay scenario at a.",2026-11-23T15:45:06.906165+00:00
+oracle/vecdb-python-sdk,size_lt_500_kb,254,2026-11-23T15:45:06.906220+00:00
+h4444433333/net-deep-research,size_lt_500_kb,187,2026-11-23T15:45:06.906242+00:00
+WenyuChiou/research-hub,blocked_word:notebook,"wenyuchiou/research-hub ai-operable research workspace for zotero, obsidian, and notebooklm. use any two, or all three, through cli, mcp, rest, and dashboard.",2026-11-23T15:45:06.906262+00:00
+FaustoS88/Pydantic-AI-Pinescript-Expert,blocked_word:example,"faustos88/pydantic-ai-pinescript-expert pinescript expert: a retrieval-augmented generation (rag) agent using pydantic ai that provides accurate pine script v6 guidance. it answers questions, offers code examples, and generates custom indicators/strategies for tradingview. combines vector search with llm capabilities for precise pine script programming assistance.",2026-11-23T15:45:06.906278+00:00
+SantanderAI/ralph-vault-skill,size_lt_500_kb,144,2026-11-23T15:45:06.906304+00:00
+lalligagger/satgpt-app,blocked_word:demo,"lalligagger/satgpt-app satgpt: natural-language satellite imagery search and viewing (langchain + panel, 2023). live recorded demo at kevinlalli.me/satgpt-app",2026-11-23T15:45:06.906308+00:00
+Enigma-Vault/NoPII,blocked_word:example,"enigma-vault/nopii ready-to-run examples showing nopii pii protection with openai, anthropic, langchain, llamaindex, and more",2026-11-23T15:45:06.906328+00:00
+FullStackWithLawrence/aws-openai,blocked_word:example,fullstackwithlawrence/aws-openai example chatgpt chatbots using langchain and openai,2026-11-23T15:45:06.906332+00:00
+pinecone-io/pinecone-claude-code-plugin,size_lt_500_kb,351,2026-11-23T15:45:06.906343+00:00
+weir36/deep-research-langgraph,size_lt_500_kb,82,2026-11-23T15:45:06.906352+00:00
+johnxie/awesome-code-docs,blocked_word:tutorial,"johnxie/awesome-code-docs 203 deep-dive tutorials for open-source ai agents, vibe coding tools, llm frameworks, mcp, and production systems.",2026-11-23T15:45:06.906386+00:00
+leockl/sklearn-diagnose,size_lt_500_kb,235,2026-11-23T15:45:06.906431+00:00
+llm-use/llm-use,size_lt_500_kb,158,2026-11-23T15:45:06.906459+00:00
+hereandnowai/master-langgraph-workflows-in-python-20-real-world-agent-projects-by-hereandnow-ai,blocked_word:tutorial,"hereandnowai/master-langgraph-workflows-in-python-20-real-world-agent-projects-by-hereandnow-ai unlock the power of langgraph v0.5.3 with 20 bite‑sized, beginner‑friendly agent projects—from chatbots and finance bots to multi-agent orchestrations. developed by here and now ai, this hands‑on tutorial delivers up‑to‑date python code, practical business value, and scalable workflows built for today and beyond.",2026-11-23T15:45:06.906505+00:00
+xiaotonng/lc2mcp,size_lt_500_kb,409,2026-11-23T15:45:06.906521+00:00
+Emmimal/temporal-rag,size_lt_500_kb,96,2026-11-23T15:45:06.906539+00:00
+dkondo/agent-tackle-box,size_lt_500_kb,499,2026-11-23T15:45:06.906546+00:00
+IBM/watsonx-developer-hub,blocked_word:example,ibm/watsonx-developer-hub examples and guides for building gen ai applications on the watsonx platform.,2026-11-23T15:45:06.906588+00:00
+phonny40rowle/rag-search,size_lt_500_kb,388,2026-11-23T15:45:06.906601+00:00
+emanueleielo/compact-middleware,size_lt_500_kb,80,2026-11-23T15:45:06.906632+00:00
+ayushi-agarwall/graphagent,size_lt_500_kb,308,2026-11-23T15:45:06.906679+00:00
+kalashjain23/ControllerGPT,size_lt_500_kb,31,2026-11-23T15:45:06.906688+00:00
+MaxMLang/pytector,size_lt_500_kb,229,2026-11-23T15:45:06.906697+00:00
+Vanszs/tiktok-viral-factory,size_lt_500_kb,28,2026-11-23T15:45:06.906715+00:00
+emanueleielo/advisor-middleware,size_lt_500_kb,195,2026-11-23T15:45:06.906743+00:00
+mkassaf/langgraph-complete-guide,blocked_word:example,"mkassaf/langgraph-complete-guide a complete langgraph guide for phd students and researchers. from zero to multi-agent systems with python examples (chatbots, react agents, supervisor patterns, research pipelines).",2026-11-23T15:45:06.906757+00:00
+mominalix/ESG-Analysis-Using-Retrieval-Augmented-Generation-Engine,size_lt_500_kb,156,2026-11-23T15:45:06.906761+00:00
+CogitoNTNU/TutorAI,blocked_word:course,cogitontnu/tutorai tutorai is a rag system capable of assisting with learning academic subjects and using the curriculum and citing it. the project revolves around building an application that ingests a textbook in most formats and facilitates efficient learning of the course material.,2026-11-23T15:45:06.906777+00:00
+praj2408/Smart-Marketing-Assistant-Crew-AI,size_lt_500_kb,175,2026-11-23T15:45:06.906809+00:00
+towardsai/ai-tutor-app,blocked_word:course,"towardsai/ai-tutor-app agentic rag tutor for applied ai, llms, rag, and python: a langgraph agent (fastapi + next.js) grounded in a curated course and library corpus.",2026-11-23T15:45:06.906833+00:00
+neuml/ragdata,size_lt_500_kb,21,2026-11-23T15:45:06.906866+00:00
+Emmimal/context-graph-benchmark,size_lt_500_kb,49,2026-11-23T15:45:06.906871+00:00
+fau-masters-collected-works-cgarbin/gpt-all-local,blocked_word:example,"fau-masters-collected-works-cgarbin/gpt-all-local a ""chat with your data"" example: using a large language models (llm) to interact with our own (local) data. everything is local: the embedding model, the llm, the vector database. this is an example of retrieval-augmented generation (rag): we find relevant sections from our documents and pass it to the llm as part of the prompt (see pics).",2026-11-23T15:45:06.906879+00:00
+Shaivpidadi/refrag,size_lt_500_kb,63,2026-11-23T15:45:06.906913+00:00
+AmirhosseinHonardoust/Graph-RAG-Engine,size_lt_500_kb,341,2026-11-23T15:45:06.906944+00:00
+KDEGroup/CodeRAG,size_lt_500_kb,392,2026-11-23T15:45:06.906978+00:00
+The-FinAI/FinSeer,size_lt_500_kb,35,2026-11-23T15:45:06.906983+00:00
+Caellwyn/long-memory-character-chat,size_lt_500_kb,166,2026-11-23T15:45:06.906990+00:00
+AryabhattaLabs/openai-elasticsearch-rag,size_lt_500_kb,23,2026-11-23T15:45:06.907022+00:00
+pinecone-io/gemini-cli-extension,size_lt_500_kb,187,2026-11-23T15:45:06.907037+00:00
+biloskurskyi/rag-retrieval-lab,size_lt_500_kb,101,2026-11-23T15:45:06.907140+00:00
+datarobot-community/datarobot-agent-templates,blocked_word:template,datarobot-community/datarobot-agent-templates datarobot agentic workflow templates,2026-11-23T15:45:06.907180+00:00
+UkisAI/vibe-ukis,size_lt_500_kb,131,2026-11-23T15:45:06.907202+00:00
+0xzall/multimodal-doc-qa,size_lt_500_kb,10,2026-11-23T15:45:06.907212+00:00
+kakunin-ai/kakunin-samples,blocked_word:example,"kakunin-ai/kakunin-samples runnable examples for ai agent identity & compliance — certificate issuance, scope enforcement, and integrations for langchain, crewai, next.js & more.",2026-11-23T15:45:06.907226+00:00
