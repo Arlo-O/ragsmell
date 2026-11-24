@@ -1,0 +1,15 @@
+key,value
+modules,15768
+repositories_selected,23
+repositories_with_modules,23
+repositories_without_modules,0
+findings,445
+findings_without_metric_module,0
+duplicate_metric_keys_removed,0
+sloc_tercile_groups,3
+sloc_tercile_notes,sin observaciones
+missing_cc_max,0
+missing_mi,0
+missing_cbo_mod,0
+missing_cc_media,0
+missing_sloc,0

@@ -6,11 +6,15 @@ import random
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
+csv.field_size_limit(10_000_000)
 
 def main() -> None:
     source=ROOT/"data/resultados/findings.csv"; rows=list(csv.DictReader(source.open(encoding="utf-8"))) if source.exists() else []
     random.Random(42).shuffle(rows); chosen=[]
-    for ap in sorted({row["ap_id"] for row in rows}): chosen.extend(row for row in rows if row["ap_id"]==ap)[:20]
+    for ap in sorted({row["ap_id"] for row in rows}):
+        candidates = [row for row in rows if row["ap_id"] == ap]
+        random.Random(42).shuffle(candidates)
+        chosen.extend(candidates[:20])
     fields=["repo","ap_id","file","line","col","message","snippet","veredicto_sugerido_agente","nota_sugerida_agente","veredicto_confirmado","nota_confirmada","revisor","fecha_revision"]
     for row in chosen: row.update({"veredicto_sugerido_agente":"","nota_sugerida_agente":"pendiente de revisión asistida por IA","veredicto_confirmado":"","nota_confirmada":"","revisor":"","fecha_revision":""})
     target=ROOT/"data/resultados/validacion_manual.csv"; target.parent.mkdir(parents=True,exist_ok=True)

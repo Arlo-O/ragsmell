@@ -225,6 +225,8 @@ __marimo__/
 
 .env
 data/clones/
+data/.github_verification_cache.json
+data/github_verification_errors.csv
 .pytest_cache/
 .ruff_cache/
 *.egg-info/

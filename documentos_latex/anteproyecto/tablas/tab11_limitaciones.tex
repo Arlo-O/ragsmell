@@ -1,0 +1,27 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\caption{Síntesis de limitaciones metodológicas y su efecto sobre la interpretación}
+\label{tab:limitaciones}
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{3.6cm} >{\raggedright\arraybackslash}p{2.3cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.8cm} @{}}
+\toprule
+\textbf{Limitación} & \textbf{Dimensión} & \textbf{Efecto sobre la interpretación} & \textbf{Registro o mitigación} \\
+\midrule
+1. Ausencia de validación humana independiente & Validez de constructo & Las etiquetas de los 60 casos son propuestas de IA; no existe estándar de referencia humano. & Se declara la procedencia en cada registro. \\
+2. Adjudicación asistida por IA con 10 casos inciertos & Validez de constructo & La proporción de aciertos no puede interpretarse como precisión confirmada. & Los casos inciertos se conservan como tales. \\
+3. Riesgo de falsos positivos & Validez interna & La prevalencia observada puede estar sobreestimada si los detectores aceptan construcciones legítimas. & Reglas conservadoras y revisión de 60 casos. \\
+4. Diseño observacional transversal & Validez interna & No permite establecer relaciones causales ni evolución temporal. & Se reportan asociaciones, no efectos. \\
+5. Confusión por tamaño del código & Validez interna & Parte de la asociación puede explicarse por el mayor tamaño de los módulos con hallazgos. & Terciles de SLOC como control parcial. \\
+6. Dependencia por anidamiento en repositorios & Validez externa & Los módulos de un mismo repositorio no son observaciones independientes. & Sensibilidad agregada por repositorio, no concluyente. \\
+7. Concentración en dos repositorios & Validez externa & 280 de 445 hallazgos (62,9~\%) provienen de dos repositorios. & Se describe la concentración de forma explícita. \\
+8. Sensibilidad por repositorio no concluyente & Validez interna & Solo dos repositorios carecen de hallazgos; el grupo de comparación es insuficiente. & Se reporta como limitación de robustez. \\
+9. Comparaciones múltiples exploratorias sin Holm & Validez estadística & Los nueve contrastes por tercil no están corregidos por multiplicidad. & Se etiquetan como exploratorios. \\
+10. Ausencia de intervalos de confianza y potencia & Validez estadística & No se cuantifica la incertidumbre de los tamaños de efecto ni la potencia. & Se informan tamaños de efecto y n. \\
+11. AP2 y AP6 no implementados & Cobertura de la taxonomía & La ausencia de estos antipatrones no es evidencia de ausencia empírica. & Se excluyen de toda inferencia de prevalencia. \\
+12. Conclusiones específicas por detector limitadas & Validez de constructo & Solo AP1 y AP5 cuentan con 20 casos revisados; AP3 y AP4 tienen 17 y 3. & No se comparan precisiones entre detectores. \\
+13. Sin estimación de exhaustividad (recall) & Validez de constructo & No se conoce qué proporción de antipatrones reales detecta el instrumento. & Se evita toda afirmación de sensibilidad. \\
+14. Acoplamiento aproximado a nivel de módulo & Validez de constructo & \texttt{cbo\_mod} no es el CBO de Chidamber--Kemerer a nivel de clase. & Se explicita la definición operacional. \\
+\bottomrule
+\end{tabularx}
+\end{table*}

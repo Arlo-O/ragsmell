@@ -1,0 +1,16 @@
+\section{Justificación de la Investigación}
+ 
+\subsection{Justificación Teórica}
+ Esta investigación extiende teóricamente los marcos consolidados de los "architectural smells" propuestos por García  \cite{garcia_identifying_2009} y la deuda técnica oculta en sistemas de Machine Learning descrita por Sculley \cite{sculley_hidden_2015} adaptándolos al nuevo dominio de las aplicaciones basadas en IA generativa y RAG. Con el propósito de llenar el vacío evidenciado en la literatura como lo señala Shao \cite{shao_are_2024} aunque existen fallos documentados, se han abordado de manera reactiva sin profundizar en la causa estructural o arquitectónica subyacente.
+
+De esta manera, el aporte teórico consiste en proponer y estudiar un marco conceptual para caracterizar antipatrones arquitectónicos específicos del desarrollo de aplicaciones GenAI/RAG y relacionarlos con métricas tradicionales de calidad arquitectural.
+ 
+\subsection{Justificación Metodológica}
+ 
+La investigación propone una metodología basada en Mining Software Repositories (MSR) y análisis estático mediante Árboles de Sintaxis Abstracta (AST) para estudiar repositorios open source de aplicaciones GenAI/RAG. Esta combinación permite utilizar información disponible directamente en los repositorios para identificar patrones estructurales, obtener métricas de software y analizar empíricamente su relación con los antipatrones estudiados.
+
+Como resultado metodológico se plantea desarrollar una herramienta de análisis estático reutilizable que automatice la detección de la taxonomía propuesta. Asimismo, la investigación podrá producir un catálogo de antipatrones y sus correspondientes criterios de detección, constituyendo una base para posteriores estudios sobre calidad de software en sistemas que integren componentes de Inteligencia Artificial. 
+
+\subsection{Justificación Práctica}
+ 
+En el ámbito práctico, los resultados permitirán a los equipos de desarrollo utilizar un marco de auditoria proactivo para prevenir la deuda técnica desde las primeras fases de integración de LLMs, evitando que la degradación degenere en fallos críticos en producción. Este enfoque está respaldado por evidencia cuantitativa directa (el 77\% reportado por Shao \cite{shao_are_2024}), lo cual demuestra que esta problemática es generalizada y costosa en la industria. Además, de forma complementaria la investigación podrá establecer recomendaciones de refactorización asociadas con los antipatrones identificados, cuando exista evidencia suficiente para formularlas.

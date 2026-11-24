@@ -1,6 +1,6 @@
 {
-  "fecha_extraccion": "2026-11-23T15:43:54+00:00",
-  "fecha_corte": "2025-11-23T15:43:54+00:00",
+  "fecha_extraccion": "2026-11-23T20:13:30+00:00",
+  "fecha_corte": "2025-11-23T20:13:30+00:00",
   "queries": [
     {
       "query": "topic:rag language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
@@ -8,11 +8,11 @@
     },
     {
       "query": "topic:rag language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
-      "count": 334
+      "count": 333
     },
     {
       "query": "topic:rag language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
-      "count": 124
+      "count": 125
     },
     {
       "query": "topic:retrieval-augmented-generation language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
@@ -44,23 +44,23 @@
     },
     {
       "query": "topic:llamaindex language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "count": 13
     },
     {
       "query": "topic:llamaindex language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "count": 4
     },
     {
       "query": "topic:chatbot language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "count": 314
     },
     {
       "query": "topic:chatbot language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "count": 121
     },
     {
       "query": "topic:chatbot language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
-      "error": "HTTPError: HTTP Error 403: rate limit exceeded"
+      "count": 64
     }
   ],
   "autenticado": false,
@@ -77,5 +77,161 @@
     "chromadb",
     "qdrant"
   ],
-  "nota": "La elegibilidad RAG se verifica posteriormente; una búsqueda por topic no es prueba definitiva."
+  "nota": "La elegibilidad RAG se verifica posteriormente; una b├║squeda por topic no es prueba definitiva.",
+  "verificacion_autenticada": true,
+  "fecha_verificacion": "2026-11-23T21:10:48+00:00",
+  "fecha_corte_verificacion": "2025-11-23T20:13:30+00:00",
+  "api_limits_before": {
+    "consulted_at": "2026-11-23T21:07:16+00:00",
+    "core": {
+      "limit": 5000,
+      "remaining": 3132,
+      "reset_at": "2026-11-23T21:07:43+00:00"
+    },
+    "search": {
+      "limit": 30,
+      "remaining": 30,
+      "reset_at": "2026-11-23T21:08:17+00:00"
+    }
+  },
+  "api_limits_after": {
+    "consulted_at": "2026-11-23T21:10:48+00:00",
+    "core": {
+      "limit": 5000,
+      "remaining": 4729,
+      "reset_at": "2026-11-23T22:07:44+00:00"
+    },
+    "search": {
+      "limit": 30,
+      "remaining": 30,
+      "reset_at": "2026-11-23T21:11:49+00:00"
+    }
+  },
+  "verificacion_modo": "all",
+  "verificacion_count": 120,
+  "clonacion_fecha": "2026-11-23T20:30:53+00:00",
+  "repositorios_verificados": 40,
+  "repositorios_cumplen_criterios": 13,
+  "repositorios_clonados": 11,
+  "errores_clonacion": 2,
+  "criterios_no_relajados": true,
+  "api_limits_history": [
+    {
+      "fase": "controlled_3",
+      "core_before_remaining": 4990,
+      "core_after_remaining": 4980,
+      "search_before_remaining": 30,
+      "search_after_remaining": 30,
+      "nota": "capturado en la prueba controlada autenticada"
+    },
+    {
+      "fase": "full_40",
+      "core_after_verification_snapshot": 4823,
+      "search_after_verification_snapshot": 30,
+      "nota": "snapshot conservado en la ejecución posterior con caché; no se atribuye como contador diferencial de solicitudes"
+    }
+  ],
+  "ampliacion": {
+    "fecha_extraccion": "2026-11-23T21:01:14+00:00",
+    "fecha_corte": "2025-11-23T21:01:14+00:00",
+    "tecnologias": [
+      "(topic:langchain OR topic:llamaindex OR topic:chromadb OR topic:qdrant)",
+      "(topic:weaviate OR topic:pinecone OR topic:haystack OR topic:vector-database)",
+      "(topic:retrieval-augmented-generation OR topic:rag-application OR topic:llm-application)"
+    ],
+    "franjas": [
+      "11..100",
+      "101..1000",
+      ">1000"
+    ],
+    "consultas": [
+      {
+        "query": "topic:(topic:langchain OR topic:llamaindex OR topic:chromadb OR topic:qdrant) language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:langchain OR topic:llamaindex OR topic:chromadb OR topic:qdrant) language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:langchain OR topic:llamaindex OR topic:chromadb OR topic:qdrant) language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:weaviate OR topic:pinecone OR topic:haystack OR topic:vector-database) language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:weaviate OR topic:pinecone OR topic:haystack OR topic:vector-database) language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:weaviate OR topic:pinecone OR topic:haystack OR topic:vector-database) language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:retrieval-augmented-generation OR topic:rag-application OR topic:llm-application) language:python fork:false archived:false pushed:>2025-11-23 stars:11..100",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:retrieval-augmented-generation OR topic:rag-application OR topic:llm-application) language:python fork:false archived:false pushed:>2025-11-23 stars:101..1000",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      },
+      {
+        "query": "topic:(topic:retrieval-augmented-generation OR topic:rag-application OR topic:llm-application) language:python fork:false archived:false pushed:>2025-11-23 stars:>1000",
+        "count": 0,
+        "status": "PENDIENTE_DE_VERIFICACIÓN",
+        "error": "GithubException"
+      }
+    ],
+    "candidatos_originales": 915,
+    "candidatos_ampliados": 915,
+    "deduplicacion": "full_name",
+    "autenticado": true,
+    "preseleccionados_ampliados": 120,
+    "repositorios_verificados_ampliados": 120,
+    "repositorios_cumplen_automatizado": 24,
+    "repositorios_cumplen_relevancia_local": 23,
+    "repositorios_nuevos_validos": 10,
+    "repositorios_seleccionados_finales": 23,
+    "repositorios_clonados_finales": 23,
+    "distribucion_final": {
+      ">1000": 13,
+      "11..100": 7,
+      "101..1000": 3
+    },
+    "clones_fallidos_actuales": 0,
+    "fallos_historicos_recuperados": 3,
+    "tecnologias_consideradas": [
+      "langchain",
+      "llamaindex",
+      "chromadb",
+      "qdrant",
+      "weaviate",
+      "pinecone",
+      "haystack",
+      "retrieval-augmented-generation",
+      "rag-application",
+      "llm-application",
+      "vector-database"
+    ],
+    "busqueda_adicional_estado": "SIN_NUEVOS_CANDIDATOS_VERIFICABLES",
+    "busqueda_adicional_nota": "Las consultas agrupadas no produjeron resultados utilizables antes del l?mite de search; se conserv? el universo hist?rico de 915 y se ampli? el cribado a 120 filas estratificadas."
+  }
 }

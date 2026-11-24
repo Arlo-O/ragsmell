@@ -1,0 +1,61 @@
+\section{Estado del Arte y Trabajos Relacionados}
+
+\subsection{Dominios de Deuda Técnica: Tradicional, ML y RAG}
+Al realizar la búsqueda de literatura relacionada con el tema de investigación se puede encontrar que la mayoría de los documentos consultados permiten organizarse en torno al problema del proyecto según 3 ejes principales o centrales: (i) antipatrones y smells a nivel arquitectónico en ingeniería de software tradicional, (ii) deuda técnica y antipatrones específicos de sistemas de aprendizaje automático, y (iii) estudios recientes sobre calidad e integración de software en aplicaciones basadas en modelos de lenguaje (LLM) y arquitecturas de \textit{Retrieval-Augmented Generation} (RAG).
+ 
+En el primer eje, Garcia \textit{et al.} \cite{garcia_identifying_2009} define de manera formal el concepto \textit{architectural bad smell}, extendiendo al nivel de diseño arquitectónico el concepto de \textit{code smell} propuesto previamente por Fowler \cite{fowler_1999}. Con estas definiciones como base se han desarrollado herramientas de detección automatizada como Arcan \cite{fontana_arcan_2017}, catálogos que vinculan cada smell con las herramientas capaces de detectarlo \cite{azadi_architectural_2019}, estudios de caso en la industria sobre priorización de deuda arquitectónica \cite{martini_identifying_2018}, y un estudio de mapeo sistemático que consolida 108 smells arquitectónicos reportados en la literatura \cite{mumtaz_systematic_2021}. 
+
+En el segundo eje, el artículo fundacional por Sculley \textit{et al.} \cite{sculley_hidden_2015} dio origen a una línea de investigación específica al rededor de la deuda técnica oculta en los sistemas ML, que incluye un estudio de mapeo sobre antipatrones en sistemas basados en IA \cite{bogner_characterizing_2021}, catálogos empíricos de \textit{code smells} de aprendizaje profundo \cite{gesi_code_2022,zhang_code_2022}, estudios de prevalencia mediante minería de repositorios \cite{oort_prevalence_2021,jebnoun_scent_2020}, y catálogos de antipatrones observados en \textit{pipelines} de MLOps industriales \cite{muralidhar_using_2021}. 
+
+En el tercer eje, se ubican el artículo original de la arquitectura RAG \cite{lewis_retrieval-augmented_2021}, la revisión sistemática de aplicaciones de LLM a tareas de ingeniería de software \cite{hou_large_2024}, el estudio  de defectos de integración de LLMs de Shao \textit{et al.} \cite{shao_are_2024}, una línea de trabajo posterior de otros autores, orientada a la localización automatizada de defectos \cite{tan_lidl_2026}, y el estudio de deuda de seguridad en aplicaciones basadas en agentes LLM \cite{shen_security_2025}. 
+
+Como dominio metodológicamente análogo —una arquitectura relativamente nueva en la que ya se ha estudiado la aparición de deuda técnica— se incluyeron además estudios sobre antipatrones en microservicios \cite{de_toledo_identifying_2021,verdecchia_architectural_2018,pigazzini_towards_2020}.
+
+\subsection{Categorización Metodológica de la Literatura}
+En las referencias se identifican diferentes enfoques metodológicos empleados, esto permite posicionar la metodología del presente trabajo. 
+
+Un primer grupo de estudios emplea un enfoque \textbf{conceptual-definicional}: Garcia \textit{et al.} \cite{garcia_identifying_2009} y Sculley \textit{et al.} \cite{sculley_hidden_2015} no parten  de hipótesis que surjan de datos estadísticos sino que proponen y argumentan un marco teórico nuevo (la existencia de smells arquitectónicos y de deuda técnica oculta en ML, respectivamente) apoyado en observación cualitativa. 
+
+Un segundo grupo emplea \textbf{minería de repositorios (MSR)} de forma cuantitativa: Tufano \textit{et al.} \cite{tufano_when_2015} extraen y analizan historiales de commits para detectar la introducción y evolución de smells de código, metodología que Van Oort \textit{et al.} \cite{oort_prevalence_2021} y Jebnoun \textit{et al.} \cite{jebnoun_scent_2020} replican sobre proyectos de aprendizaje automático, apoyándose en herramientas de extracción como PyDriller \cite{spadini_pydriller_2018}. 
+
+Un tercer grupo corresponde a \textbf{estudios de mapeo sistemático} (\textit{systematic mapping studies}), como los de Mumtaz \textit{et al.} \cite{mumtaz_systematic_2021} y Bogner \textit{et al.} \cite{bogner_characterizing_2021}, cuya metodología no genera datos nuevos sino que sintetiza y clasifica la literatura existente siguiendo protocolos de revisión sistemática. 
+
+Un cuarto grupo, corresponde a \textbf{análisis cualitativo manual de artefactos de software en producción}: Shao \textit{et al.} \cite{shao_are_2024} codificaron manualmente reportes de incidencias siguiendo un protocolo de codificación abierta con múltiples anotadores, con el percance de que no escala sin intervención humana directa. 
+
+Finalmente, Tan \textit{et al.} \cite{tan_lidl_2026} representan un quinto enfoque, computacionalmente intensivo, que delega la tarea de localizar defectos a un sistema multiagente basado en modelos de lenguaje y grafos de conocimiento. Ninguno de los estudios revisados combina el análisis estático automatizado basado en árboles de sintaxis abstracta (AST) con el dominio específico de las aplicaciones RAG, que es el enfoque metodológico propuesto inicialmente para este trabajo.
+
+\subsection{Hallazgos y Consenso en la Literatura}
+La literatura coincide en que los antipatrones arquitectónicos son muy comunes y afectan directamente la mantenibilidad del software. Por ejemplo, Fontana \textit{et al.} \cite{arcelli_fontana_are_2019} demostraron que los \textit{architectural smells} son un problema estadísticamente independiente de los \textit{code smells} tradicionales. Este dato es clave, ya que nos confirma que no podemos simplemente reciclar los detectores de código que ya existen para evaluar aplicaciones RAG; necesitamos analizarlos como un fenómeno arquitectónico distinto.
+
+Al observar el campo del aprendizaje automático (ML), Van Oort \textit{et al.} \cite{oort_prevalence_2021} y Gesi \textit{et al.} \cite{gesi_code_2022} notaron que las malas prácticas de diseño son la norma, incluso en proyectos maduros de código abierto. Esto refleja cómo la prisa por llevar modelos de ML a producción suele sacrificar la arquitectura del sistema.
+
+Para el presente proyecto, el dato más revelador proviene de Shao \textit{et al.} \cite{shao_are_2024}: el 77\% de las 100 aplicaciones LLM/RAG que analizaron presentaban al menos tres defectos de integración de forma simultánea. Varios de los 18 errores que identificaron coinciden exactamente con los antipatrones que buscamos mitigar (como el mal manejo de excepciones al llamar a la API del modelo). Lo más interesante es que los propios autores aclaran que su estudio no analizó las causas estructurales detrás de estos fallos, dejándonos el punto de partida ideal para nuestra investigación.
+
+Finalmente, Mumtaz \textit{et al.} \cite{mumtaz_systematic_2021} concluyen que, aunque existen catálogos enormes de \textit{smells} arquitectónicos, la gran mayoría carece de herramientas automáticas para detectarlos. Esto nos reafirma que desarrollar un analizador estático no solo aporta en lo teórico, sino que resuelve una necesidad técnica real en la industria.
+
+\subsection{Comparación y Articulación de la Brecha de Investigación}
+
+Para visualizar con claridad dónde se ubica esta investigación frente a los antecedentes, la Tabla \ref{tab:related_work} contrasta los trabajos más relevantes de la literatura según su dominio, unidad de análisis, enfoque metodológico y momento de detección.
+ 
+\begin{table*}[t]
+\centering
+\caption{Comparación de trabajos relacionados según dominio, unidad de análisis, método y momento de detección}
+\label{tab:related_work}
+\begin{tabular}{@{}p{2.4cm}p{2.3cm}p{2.9cm}p{3.0cm}p{3.4cm}@{}}
+\toprule
+\textbf{Trabajo} & \textbf{Dominio} & \textbf{Unidad de análisis} & \textbf{Método} & \textbf{Momento de detección} \\
+\midrule
+Garcia \textit{et al.} \cite{garcia_identifying_2009} & Software tradicional & Smells arquitectónicos & Análisis cualitativo / catalogación & Proactivo \\
+de Toledo \textit{et al.} \cite{de_toledo_identifying_2021} & Microservicios & Deuda arquitectónica & Estudio de casos múltiples & Proactivo \\
+Sculley \textit{et al.} \cite{sculley_hidden_2015} & Sistemas de ML & Deuda técnica conceptual & Análisis conceptual & Proactivo \\
+Van Oort \textit{et al.} \cite{oort_prevalence_2021} & Proyectos ML open-source & Antipatrones en pipelines & Minería de repositorios (MSR) & Proactivo \\
+Shao \textit{et al.} \cite{shao_are_2024} & Aplicaciones LLM/RAG & Defectos funcionales reportados & Codificación manual de issues & \textbf{Reactivo} \\
+Tan \textit{et al.} (LIDL) \cite{tan_lidl_2026} & Aplicaciones LLM/RAG & Localización de defectos conocidos & Multiagente LLM + grafos de conocimiento & \textbf{Reactivo}, con costo de cómputo \\
+\textbf{Este estudio} & \textbf{Aplicaciones LLM/RAG} & \textbf{Antipatrones arquitectónicos} & \textbf{Análisis estático automatizado (AST)} & \textbf{Proactivo, costo nulo} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+ 
+A partir de este contraste, es evidente que existen dos vacíos importantes en la literatura actual. Por un lado, nos enfrentamos a un vacío de \textbf{dominio}: las metodologías maduras de detección proactiva de antipatrones —ampliamente probadas en el desarrollo de software tradicional \cite{garcia_identifying_2009,fontana_arcan_2017} y en arquitecturas de microservicios \cite{de_toledo_identifying_2021,pigazzini_towards_2020}— todavía no se han trasladado al ecosistema de las aplicaciones basadas en RAG. Por otro lado, hay un vacío de \textbf{método}: aunque existen esfuerzos recientes en este dominio, como el de Shao \textit{et al.} \cite{shao_are_2024}, estos operan de manera manual y reactiva, mientras que alternativas más recientes como la de Tan \textit{et al.} \cite{tan_lidl_2026} mantienen ese enfoque reactivo pero sumando un alto costo computacional. 
+
+En conclusión, este trabajo ocupa exactamente la intersección que no evidenciamos que se haya explorado hasta ahora: aplicar un método proactivo, automatizado y de costo nulo —heredado de la tradición de los \textit{architectural smells}— para resolver un problema real en el dominio emergente de las aplicaciones RAG.

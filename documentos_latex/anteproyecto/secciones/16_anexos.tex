@@ -1,0 +1,43 @@
+\appendix
+
+\section{Inventario de artefactos y reproducibilidad}
+
+La Tabla~\ref{tab:artefactos} enumera los artefactos principales del proyecto y su función en la cadena de evidencia. Todos los archivos de datos se conservan sin modificaciones respecto de la ejecución original; las tablas y figuras del informe se generan a partir de ellos mediante scripts reproducibles.
+
+\input{tablas/tab12_artefactos}
+
+\subsection{Secuencia de reproducción}
+
+La secuencia completa se ejecuta desde la raíz del proyecto. Los scripts de recolección requieren credenciales de GitHub y no se ejecutaron de nuevo para este informe; los scripts de análisis, figuras y tablas pueden ejecutarse sobre los datos ya conservados. La secuencia es la siguiente:
+
+\begin{verbatim}
+# Detección y metricas (requiere los clones locales)
+python scripts/03_ejecutar_detectores.py
+python scripts/04_calcular_metricas.py
+
+# Analisis estadistico
+python scripts/05_analisis_estadistico.py
+
+# Muestreo y adjudicacion asistida por IA
+python scripts/06_muestra_validacion.py
+python scripts/07_adjudicar_validacion_asistida.py
+
+# Figuras y tablas del informe
+python scripts/08_generar_figuras_informe.py
+python scripts/09_generar_tablas_latex.py
+\end{verbatim}
+
+La compilación del documento se realizó con MiKTeX, mediante la secuencia clásica de cuatro pasos:
+
+\begin{verbatim}
+pdflatex main.tex
+bibtex main
+pdflatex main.tex
+pdflatex main.tex
+\end{verbatim}
+
+\subsection{Nota sobre la procedencia de los datos}
+
+Los archivos \texttt{findings.csv}, \texttt{metricas.csv}, \texttt{estadisticas.csv}, \texttt{spearman.csv}, \texttt{resumen\_descriptivo.csv}, \texttt{resumen\_repositorio.csv}, \texttt{decisiones\_hipotesis.csv} y \texttt{validacion\_investigador.csv} son las fuentes primarias de las cifras reportadas. Las tablas y figuras no introducen valores nuevos: agregan, ordenan o representan esos datos. Cualquier discrepancia entre una tabla y un archivo CSV debe resolverse a favor del CSV, y este informe no modificó los CSV para ajustarlos a la narrativa.
+
+La revisión asistida por IA se conserva en \texttt{revision\_ia\_preliminar.csv} y en \texttt{validacion\_investigador.csv}. Esta última incluye las columnas \texttt{adjudication\_method} e \texttt{independent\_human\_verification}, que documentan que la clasificación fue adoptada como evaluación asistida por IA y que no hubo verificación humana independiente. Esa procedencia es parte integral de los datos y no debe eliminarse en futuras reutilizaciones.

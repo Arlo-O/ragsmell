@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Contraste primario de Mann--Whitney U entre módulos con y sin antipatrones detectados}
+\label{tab:mann-whitney}
+\begin{tabularx}{\textwidth}{@{}X r r r r r l l r l@{}}
+\toprule
+\textbf{Métrica} & \textbf{n con} & \textbf{n sin} & \textbf{Med.\ con} & \textbf{Med.\ sin} & \textbf{U} & \textbf{p} & \textbf{p Holm} & \textbf{$\delta$} & \textbf{Magnitud} \\
+\midrule
+\texttt{cc\_max} & 201 & 15\,567 & 14,00 & 5,00 & 2\,517\,200,5 & $2{,}42 \times 10^{-50}$ & $4{,}85 \times 10^{-50}$ & $+0{,}609$ & Grande \\
+\texttt{mi} & 201 & 15\,567 & 39,74 & 68,04 & 586\,956,5 & $6{,}68 \times 10^{-54}$ & $2{,}00 \times 10^{-53}$ & $-0{,}625$ & Grande \\
+\texttt{cbo\_mod} & 201 & 15\,567 & 3,00 & 2,00 & 2\,194\,635,0 & $7{,}41 \times 10^{-24}$ & $7{,}41 \times 10^{-24}$ & $+0{,}403$ & Mediano \\
+\bottomrule
+\end{tabularx}
+\end{table*}

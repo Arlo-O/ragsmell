@@ -1,0 +1,29 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\caption{Inventario de artefactos y trazabilidad de la reproducibilidad}
+\label{tab:artefactos}
+\begin{tabularx}{\textwidth}{@{} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{5.5cm} @{}}
+\toprule
+\textbf{Artefacto} & \textbf{Ruta} & \textbf{Contenido} \\
+\midrule
+Selección ampliada & \texttt{data/repos\_candidatos\_ampliados.csv} & 915 candidatos deduplicados. \\
+Preselección & \texttt{data/repos\_preseleccion\_ampliada.csv} & 120 repositorios, 40 por banda. \\
+Exclusiones & \texttt{data/repos\_excluidos\_ampliada.csv} & 124 registros con motivo de exclusión. \\
+Elegibilidad & \texttt{data/decision\_muestra\_ampliada.csv} & 24 incluidos y 96 excluidos. \\
+Relevancia local & \texttt{data/evidencia\_relevancia.csv} & 23 CUMPLE y 1 NO CUMPLE. \\
+Muestra final & \texttt{data/repos\_seleccionados.csv} & 23 repositorios con SHA fijado. \\
+Hallazgos & \texttt{data/resultados/findings.csv} & 445 hallazgos con archivo y línea. \\
+Métricas & \texttt{data/resultados/metricas.csv} & 15\,768 módulos y cinco métricas. \\
+Errores de métricas & \texttt{data/resultados/metricas\_errors.csv} & 1 error de sintaxis documentado. \\
+Resumen de escaneo & \texttt{data/resultados/scan\_summary.csv} & 15\,769 archivos, 0 errores de análisis. \\
+Contrastes & \texttt{data/resultados/estadisticas.csv} & 3 primarios, 9 por tercil y 3 de sensibilidad. \\
+Correlaciones & \texttt{data/resultados/spearman.csv} & 3 correlaciones de Spearman. \\
+Decisiones & \texttt{data/resultados/decisiones\_hipotesis.csv} & D9 y D10 apoyadas en el piloto. \\
+Adjudicación IA & \texttt{data/resultados/validacion\_investigador.csv} & 60 casos con procedencia asistida por IA. \\
+Figuras & \texttt{scripts/08\_generar\_figuras\_informe.py} & 8 figuras reproducibles en PNG. \\
+Tablas & \texttt{scripts/09\_generar\_tablas\_latex.py} & Tablas LaTeX generadas desde los CSV. \\
+\bottomrule
+\end{tabularx}
+\end{table*}

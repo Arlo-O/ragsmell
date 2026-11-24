@@ -9,7 +9,7 @@ description = "Detector estático de antipatrones arquitectónicos en aplicacion
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-dependencies = ["radon", "pandas", "scipy", "statsmodels", "matplotlib", "typer", "PyGithub"]
+dependencies = ["radon", "pandas", "scipy", "statsmodels", "matplotlib", "typer", "PyGithub", "python-dotenv"]
 
 [project.optional-dependencies]
 dev = ["pytest", "ruff"]

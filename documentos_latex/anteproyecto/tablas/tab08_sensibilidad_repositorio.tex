@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Análisis de sensibilidad agregado por repositorio (medianas por repositorio)}
+\label{tab:sensibilidad}
+\begin{tabularx}{\textwidth}{@{}l r r r r r >{\raggedright\arraybackslash}X c l@{}}
+\toprule
+\textbf{Métrica} & \textbf{n con} & \textbf{n sin} & \textbf{Med.\ con} & \textbf{Med.\ sin} & \textbf{$\delta$} & \textbf{Dirección esperada} & \textbf{¿Coincide?} & \textbf{Estado} \\
+\midrule
+\texttt{cc\_max} & 21 & 2 & 5,00 & 3,25 & $+0{,}548$ & Mayor en con AP & Sí & \textit{n insuficiente} \\
+\texttt{mi} & 21 & 2 & 64,39 & 62,02 & $+0{,}095$ & Menor en con AP & No & \textit{n insuficiente} \\
+\texttt{cbo\_mod} & 21 & 2 & 2,00 & 2,25 & $-0{,}452$ & Mayor en con AP & No & \textit{n insuficiente} \\
+\bottomrule
+\end{tabularx}
+\end{table*}

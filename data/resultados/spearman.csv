@@ -1,4 +1,4 @@
-metric,rho,p,n,status
-cc_max,,,,no_calculable
-mi,,,,no_calculable
-cbo_mod,,,,no_calculable
+metric,rho,p,p_holm,n,status,note
+cc_max,0.11887044034791613,1.0133928795966231e-50,2.0267857591932462e-50,15768,calculado_significativo,
+mi,-0.12319408749733604,2.259548268153525e-54,6.778644804460575e-54,15768,calculado_significativo,
+cbo_mod,0.08023738315897495,6.058804709036557e-24,6.058804709036557e-24,15768,calculado_significativo,

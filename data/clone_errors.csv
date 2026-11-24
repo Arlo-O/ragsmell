@@ -1,2 +1,53 @@
-full_name,error
-run-llama/llama_index,"Command '['git', 'clone', '--depth', '1', 'https://github.com/run-llama/llama_index', 'C:\\Users\\arlon\\Desktop\\Arlo\\UD\\Modelamiento en Ingeniería de Sistemas\\ragsmell\\data\\clones\\run-llama__llama_index']' returned non-zero exit status 128."
+full_name,error,attempted_at,method,status
+BerriAI/litellm,"Command '['git', 'clone', '--depth', '1', 'https://github.com/BerriAI/litellm', 'C:\\Users\\arlon\\Desktop\\Arlo\\UD\\Modelamiento en Ingeniería de Sistemas\\ragsmell\\data\\clones\\BerriAI__litellm']' returned non-zero exit status 128.",,previous,failure
+bojieli/ai-agent-book,"Command '['git', 'clone', '--depth', '1', 'https://github.com/bojieli/ai-agent-book', 'C:\\Users\\arlon\\Desktop\\Arlo\\UD\\Modelamiento en Ingeniería de Sistemas\\ragsmell\\data\\clones\\bojieli__ai-agent-book']' returned non-zero exit status 128.",,previous,failure
+headroomlabs-ai/headroom,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+mem0ai/mem0,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+BerriAI/litellm,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+bojieli/ai-agent-book,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+run-llama/llama_index,checkout incompleto o con archivos rastreados ausentes,2026-11-23T20:43:24+00:00,git_clone_or_repair,failure
+HKUDS/LightRAG,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+khoj-ai/khoj,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+agentscope-ai/agentscope,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+onyx-dot-app/onyx,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+getzep/graphiti,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+ScrapeGraphAI/Scrapegraph-ai,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+mlflow/mlflow,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+1Panel-dev/MaxKB,,2026-11-23T20:43:24+00:00,git_clone_or_repair,success
+headroomlabs-ai/headroom,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+mem0ai/mem0,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+BerriAI/litellm,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+bojieli/ai-agent-book,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+run-llama/llama_index,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+HKUDS/LightRAG,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+khoj-ai/khoj,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+agentscope-ai/agentscope,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+onyx-dot-app/onyx,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+getzep/graphiti,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+ScrapeGraphAI/Scrapegraph-ai,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+mlflow/mlflow,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+1Panel-dev/MaxKB,,2026-11-23T20:44:44+00:00,git_clone_or_repair,success
+headroomlabs-ai/headroom,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+mem0ai/mem0,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+BerriAI/litellm,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+bojieli/ai-agent-book,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+run-llama/llama_index,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+HKUDS/LightRAG,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+khoj-ai/khoj,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+agentscope-ai/agentscope,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+onyx-dot-app/onyx,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+getzep/graphiti,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+ScrapeGraphAI/Scrapegraph-ai,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+mlflow/mlflow,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+1Panel-dev/MaxKB,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+multimindlab/multimind-sdk,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+ZhishaBai-web/help-you-find-job,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+Mattral/filing-qa,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+ai-bot-pro/achatbot,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+NJUxlj/Chinese-MedQA-Qwen2,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+arthurpanhku/DocSentinel,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+hoangsonww/Agentic-AI-Pipeline,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+LibreChat-AI/rag-api,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+Tejas-TA/predikit,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+Cygnux-Labs/Tracekit,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success
+verygoodplugins/automem,,2026-11-23T21:10:54+00:00,git_clone_or_repair,success

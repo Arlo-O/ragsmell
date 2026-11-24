@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Análisis exploratorio por terciles de líneas de código (SLOC)}
+\label{tab:terciles}
+\begin{tabularx}{\textwidth}{@{}l l l r r r r l r l >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Tercil} & \textbf{SLOC} & \textbf{Métrica} & \textbf{n con} & \textbf{n sin} & \textbf{Med.\ con} & \textbf{Med.\ sin} & \textbf{p} & \textbf{$\delta$} & \textbf{Magnitud} & \textbf{Estado} \\
+\midrule
+Inferior & $\leq 43$ & \texttt{cc\_max} & 1 & 5\,313 & 1,00 & 1,00 & --- & $+0{,}184$ & Pequeño & \textit{n insuficiente} \\
+ &  & \texttt{mi} & 1 & 5\,313 & 83,47 & 100,00 & --- & $-0{,}686$ & Grande & \textit{n insuficiente} \\
+ &  & \texttt{cbo\_mod} & 1 & 5\,313 & 1,00 & 1,00 & --- & $+0{,}016$ & Despreciable & \textit{n insuficiente} \\
+\midrule
+Medio & 43--164 & \texttt{cc\_max} & 40 & 5\,175 & 8,50 & 5,00 & $1{,}87 \times 10^{-5}$ & $+0{,}391$ & Mediano & Significativo \\
+ &  & \texttt{mi} & 40 & 5\,175 & 62,18 & 68,12 & 0,00257 & $-0{,}276$ & Pequeño & Significativo \\
+ &  & \texttt{cbo\_mod} & 40 & 5\,175 & 2,00 & 2,00 & 0,00967 & $+0{,}230$ & Pequeño & Significativo \\
+\midrule
+Superior & $>164$ & \texttt{cc\_max} & 160 & 5\,079 & 15,50 & 12,00 & $5{,}46 \times 10^{-9}$ & $+0{,}270$ & Pequeño & Significativo \\
+ &  & \texttt{mi} & 160 & 5\,079 & 35,09 & 43,69 & $4{,}17 \times 10^{-11}$ & $-0{,}306$ & Pequeño & Significativo \\
+ &  & \texttt{cbo\_mod} & 160 & 5\,079 & 3,00 & 3,00 & 0,00186 & $+0{,}142$ & Despreciable & Significativo \\
+\bottomrule
+\end{tabularx}
+\end{table*}

@@ -31,7 +31,9 @@ def main() -> None:
     write("findings.csv", ["repo", "ap_id", "file", "line", "col", "message", "snippet"], findings)
     write("parse_errors.csv", ["repo", "file", "error"], errors)
     write("scan_summary.csv", ["repo", "commit_sha", "n_files", "n_parse_errors", "n_findings", "fecha_ejecucion"], summary)
-    ap_ids = ["AP1", "AP3", "AP4", "AP5"]
+    # AP2/AP6 remain extensions, but explicit zero columns preserve the full
+    # taxonomy in the repository-level matrix without claiming implementation.
+    ap_ids = ["AP1", "AP2", "AP3", "AP4", "AP5", "AP6"]
     pivot = []
     for repo in [row["full_name"] for row in rows]:
         pivot.append({"repo": repo, **{ap: sum(item["repo"] == repo and item["ap_id"] == ap for item in findings) for ap in ap_ids}, "tiene_ap": any(item["repo"] == repo for item in findings)})

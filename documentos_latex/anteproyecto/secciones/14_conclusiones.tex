@@ -1,0 +1,55 @@
+\section{Conclusiones}
+
+\subsection{Respuesta a la pregunta de investigación}
+
+La pregunta que orientó el estudio indaga de qué manera la presencia de antipatrones arquitectónicos en aplicaciones basadas en IA generativa y RAG afecta su mantenibilidad. La respuesta que los datos permiten sostener es de carácter asociativo y no causal. En la muestra de 23 repositorios y 15\,768 módulos, los módulos con al menos un antipatrón detectado presentaron, en mediana, mayor complejidad ciclomática máxima (14 frente a 5), menor índice de mantenibilidad (39,74 frente a 68,04) y mayor acoplamiento aproximado (3 frente a 2) que los módulos sin antipatrones. Las diferencias fueron estadísticamente significativas después de la corrección de Holm, con tamaños de efecto grandes para la complejidad y la mantenibilidad ($\delta=+0{,}609$ y $\delta=-0{,}625$) y medianos para el acoplamiento ($\delta=+0{,}403$).
+
+La asociación es consistente en dirección y magnitud en el contraste de grupos, pero débil cuando se mide como correlación entre el número de hallazgos y las métricas ($\rho=+0{,}119$, $\rho=-0{,}123$ y $\rho=+0{,}080$). Esta diferencia no es una contradicción: indica que la separación entre tener y no tener antipatrones es más clara que la relación dosis-respuesta entre el número de hallazgos y la magnitud de las métricas. El estudio no puede afirmar que los antipatrones causen el deterioro, ni que el deterioro observado sea atribuible exclusivamente a ellos, porque el diseño es observacional y transversal y porque no se controlaron todas las variables confusoras.
+
+\subsection{Lo que el estudio mostró descriptivamente}
+
+El estudio mostró que los antipatrones implementados están presentes en la mayoría de los repositorios analizados: 21 de 23 (91,3\,\%) registran al menos un hallazgo. Se detectaron 445 hallazgos en 201 módulos, lo que equivale al 1,27\,\% de los módulos analizados. La distribución es desigual: AP1 concentra 273 hallazgos (61,35\,\%) en 20 repositorios, AP5 concentra 152 (34,16\,\%) en 14 repositorios, AP3 registra 17 (3,82\,\%) en 6 repositorios y AP4 registra 3 (0,67\,\%) en 3 repositorios. AP2 y AP6 no fueron implementados y no se evaluaron; su ausencia en los resultados no es evidencia de ausencia empírica.
+
+El estudio también mostró una fuerte concentración por repositorio. \texttt{multimindlab/multimind-sdk} aporta 194 hallazgos (43,6\,\%) y \texttt{bojieli/ai-agent-book} aporta 86 (19,3\,\%); juntos suman 280 de 445 hallazgos (62,9\,\%). Dos repositorios no registran hallazgos: \texttt{ZhishaBai-web/help-you-find-job} y \texttt{LibreChat-AI/rag-api}. La densidad de hallazgos no sigue simplemente el tamaño del repositorio: el repositorio con más hallazgos tiene 392 módulos y una tasa de 10,71\,\% de módulos afectados, mientras que repositorios mucho más grandes presentan tasas inferiores al 1\,\%.
+
+\subsection{Lo que los contrastes estadísticos apoyan}
+
+Los contrastes de Mann--Whitney apoyan la existencia de una diferencia de grupo en las tres métricas primarias. En \texttt{cc\_max}, la diferencia es grande y en la dirección esperada; en \texttt{mi}, la diferencia es grande y en la dirección esperada; en \texttt{cbo\_mod}, la diferencia es mediana y en la dirección esperada. Las tres cumplen el criterio D10, que exigía al menos dos de tres métricas con $p_{Holm}<0{,}05$, dirección esperada y $|\delta|\geq0{,}147$. Por ello, la hipótesis de segundo grado se registra como apoyada en el piloto.
+
+Los contrastes por terciles de tamaño aportan evidencia parcial de que la asociación no se explica únicamente por el tamaño del código. En el tercil medio y en el superior, \texttt{cc\_max} y \texttt{mi} mantienen diferencias significativas en la dirección esperada. Sin embargo, el tercil inferior contiene un solo módulo con antipatrón y no permite comparación; los nueve contrastes son exploratorios y no fueron corregidos por multiplicidad; y la estratificación por \texttt{sloc} no controla otras características del repositorio. La evidencia es, por tanto, parcial y no concluyente.
+
+La hipótesis de primer grado también se registra como apoyada en el piloto, porque cada antipatrón implementado aparece en al menos dos repositorios y el 91,3\,\% de los repositorios tiene al menos un hallazgo. La decisión D9 no cubre AP2 ni AP6 y no confirma definitivamente la hipótesis. La hipótesis de tercer grado no se planteó y el estudio no la introduce.
+
+\subsection{Lo que permanece incierto}
+
+Cuatro incertidumbres son centrales. La primera es la validez de los hallazgos: la revisión asistida por IA de 60 casos propuso 21 verdaderos positivos, 29 falsos positivos y 10 indeterminados, sin verificación humana independiente. Esa distribución sugiere un riesgo considerable de falsos positivos, pero no permite estimar la precisión del detector. El cociente 21/50 no es una precisión confirmada, y los 10 casos indeterminados no pueden tratarse como aciertos ni como errores.
+
+La segunda es la exhaustividad. No se midió \emph{recall} porque no se dispone de un conjunto de referencia de antipatrones reales. No se sabe qué proporción de los antipatrones presentes en el código fue detectada, ni si los detectores son más sensibles a unos antipatrones que a otros. La distribución observada, con AP1 y AP5 muy por encima de AP3 y AP4, puede reflejar tanto la prevalencia real como la sensibilidad de las reglas.
+
+La tercera es la independencia de las observaciones. Los módulos están anidados en repositorios y comparten decisiones de diseño, dependencias y convenciones. El contraste de Mann--Whitney los trata como independientes, lo que puede subestimar la incertidumbre. La sensibilidad agregada por repositorio quedó inconclusa porque solo dos repositorios no tienen hallazgos, y sus resultados descriptivos fueron mixtos: \texttt{cc\_max} coincidió con la dirección esperada, pero \texttt{mi} y \texttt{cbo\_mod} no.
+
+La cuarta es la generalización. La muestra es no probabilística, está compuesta por 23 repositorios open source en Python y está concentrada en dos proyectos. No representa aplicaciones propietarias, otros lenguajes ni el universo completo de aplicaciones GenAI/RAG. Los resultados describen la muestra y sugieren hipótesis para poblaciones más amplias, pero no las confirman.
+
+\subsection{Lo que no puede concluirse}
+
+El estudio no permite concluir que los antipatrones causen deterioro de la mantenibilidad. Tampoco permite concluir que los módulos sin antipatrones estén sanos, ni que los módulos con antipatrones sean necesariamente problemáticos: las distribuciones se superponen y la revisión asistida por IA sugiere que una parte de los hallazgos podría ser falsa. No permite concluir que AP2 y AP6 estén ausentes del dominio, porque no se implementaron. No permite comparar la gravedad relativa de los antipatrones, porque sus reglas tienen sensibilidades distintas y solo cuatro de los seis fueron evaluados. No permite extrapolar a aplicaciones propietarias ni a otros ecosistemas tecnológicos.
+
+Tampoco puede concluirse que el acoplamiento medido sea el CBO de Chidamber y Kemerer. \texttt{cbo\_mod} es una aproximación a nivel de módulo basada en importaciones no estándar; no captura herencia, composición ni dependencias dinámicas. Las afirmaciones sobre acoplamiento deben leerse con esa definición restringida.
+
+\subsection{Cumplimiento de los objetivos}
+
+El objetivo general de caracterizar los antipatrones arquitectónicos en aplicaciones GenAI/RAG mediante análisis estático y evaluar su asociación con la mantenibilidad se cumplió en el alcance de un piloto. Se formuló una taxonomía operacional de seis antipatrones, se implementaron cuatro detectores, se ejecutó el análisis sobre 23 repositorios y 15\,769 archivos, se midieron cinco métricas y se realizaron contrastes estadísticos con tamaños de efecto y análisis de sensibilidad.
+
+El primer objetivo específico se cumplió parcialmente: la taxonomía se formuló y se documentó, pero su correspondencia con la literatura quedó pendiente de verificación en varios casos y solo cuatro de los seis antipatrones se operationalizaron. El segundo objetivo específico se cumplió en términos de implementación y ejecución: la herramienta existe, es reproducible y produjo resultados sobre datos reales, aunque no fue validada contra un estándar humano. El tercer objetivo específico se cumplió en términos de evaluación estadística: se reportaron frecuencias, contrastes, correlaciones, terciles y sensibilidad, con las limitaciones de confusión y dependencia ya discutidas.
+
+\subsection{Contribuciones}
+
+El estudio aporta una taxonomía operacional para antipatrones en aplicaciones GenAI/RAG, un instrumento de análisis estático reproducible, una caracterización empírica de 445 hallazgos en 201 módulos y un conjunto de resultados estadísticos con tamaños de efecto y análisis de sensibilidad. También aporta evidencia negativa o matizada: la sensibilidad por repositorio no confirma los resultados primarios, el efecto de \texttt{cbo\_mod} en el tercil superior es despreciable pese a ser significativo, y la revisión asistida por IA sugiere un riesgo sustancial de falsos positivos.
+
+Estas contribuciones son modestas pero útiles. No cierran la pregunta de investigación; la reformulan con mayor precisión. Muestran que el fenómeno es observable, que las asociaciones merecen estudio y que la validación humana y el diseño multinivel son condiciones necesarias para avanzar hacia conclusiones más firmes.
+
+\subsection{Recomendaciones}
+
+Para la práctica, se recomienda usar el instrumento como tamiz de revisión y no como certificación de calidad. Los hallazgos de AP1 y AP5 pueden orientar una revisión de prompts y de manejo de errores; los de AP3 pueden motivar la externalización de proveedores y modelos; los de AP4 pueden motivar la separación de recuperación y generación. La decisión final debe considerar el contexto del proyecto y el juicio de los desarrolladores.
+
+Para la investigación futura, se recomienda realizar una validación humana independiente con al menos dos revisores, calcular acuerdo entre evaluadores, estimar precisión y exhaustividad con un conjunto de referencia, implementar AP2 y AP6, ajustar modelos multinivel con efectos aleatorios por repositorio, reportar intervalos de confianza y ampliar la muestra con estratificación explícita. Estas recomendaciones se desarrollan en el capítulo siguiente.

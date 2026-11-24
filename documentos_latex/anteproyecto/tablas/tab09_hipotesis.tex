@@ -1,0 +1,15 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\caption{Correspondencia entre las hipótesis de trabajo y las decisiones estadísticas del piloto}
+\label{tab:hipotesis}
+\begin{tabularx}{\textwidth}{@{}c >{\raggedright\arraybackslash}p{3.4cm} c >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}p{2.6cm}@{}}
+\toprule
+\textbf{Hip.} & \textbf{Enunciado abreviado} & \textbf{Regla} & \textbf{Evidencia principal} & \textbf{Decisión} & \textbf{Alcance} \\
+\midrule
+H1 & Los antipatrones de la taxonomía están presentes en aplicaciones open source GenAI/RAG. & D9 & 21 de 23 repositorios (91,3~\%) con al menos un hallazgo; AP1 en 20, AP5 en 14, AP3 en 6 y AP4 en 3 repositorios. & Apoyada en el piloto & Descriptiva; no cubre AP2 ni AP6. \\
+H2 & La presencia de antipatrones se asocia con mayor deterioro de mantenibilidad y calidad estructural. & D10 & 3 de 3 métricas primarias con $p_{Holm}<0{,}001$ y magnitud $\geq$ 0,403 en la dirección esperada (\texttt{cc\_max}, \texttt{mi}, \texttt{cbo\_mod}). & Apoyada en el piloto & Asociación correlacional; no causalidad. \\
+\bottomrule
+\end{tabularx}
+\end{table*}

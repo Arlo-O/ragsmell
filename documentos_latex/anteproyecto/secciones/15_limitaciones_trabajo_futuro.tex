@@ -1,0 +1,67 @@
+\section{Limitaciones y Trabajo Futuro}\label{sec:limitaciones}
+
+\subsection{Síntesis de limitaciones}
+
+La Tabla~\ref{tab:limitaciones} sintetiza las catorce limitaciones identificadas, la dimensión de validez afectada, su efecto sobre la interpretación y el registro o la mitigación disponible. Las subsecciones siguientes agrupan esas limitaciones por tipo de validez y explican por qué condicionan las conclusiones.
+
+\input{tablas/tab11_limitaciones}
+
+\subsection{Validez de constructo}
+
+La validez de constructo se refiere a si el instrumento mide realmente el fenómeno que afirma medir. Aquí confluyen cuatro problemas. El primero es la ausencia de validación humana independiente: los 60 casos revisados conservan su procedencia asistida por IA y no existe un estándar de referencia humano. El segundo es la presencia de 10 casos indeterminados, que no pueden clasificarse como aciertos ni como errores y que, sin embargo, afectan cualquier lectura de la precisión. El tercero es el riesgo de falsos positivos: las propuestas de adjudicación sugieren que una parte importante de los hallazgos podría corresponder a construcciones legítimas, especialmente en AP3. El cuarto es la definición de \texttt{cbo\_mod} como aproximación a nivel de módulo, que no equivale al CBO original de Chidamber y Kemerer.
+
+La consecuencia es que el estudio mide \emph{hallazgos de los detectores}, no antipatrones confirmados. Esta distinción debe mantenerse en toda lectura de los resultados. Cuando el informe dice que un módulo “tiene un antipatrón”, debe entenderse que el detector emitió un hallazgo, no que un revisor humano haya confirmado el fenómeno. La taxonomía y las reglas son operacionalizaciones plausibles, pero su validez de constructo no está establecida.
+
+\subsection{Validez interna}
+
+La validez interna se refiere a la posibilidad de atribuir la asociación observada a la variable independiente y no a factores alternativos. El diseño es observacional y transversal, de modo que no permite establecer precedencia temporal ni descartar causas comunes. La confusión por tamaño del código es la alternativa más evidente: los módulos con antipatrones son, en mediana, casi cinco veces más grandes que los módulos sin antipatrones (399 frente a 87 líneas), y el tamaño puede aumentar tanto la complejidad como la probabilidad de que una regla se active. El análisis por terciles reduce parcialmente esta explicación, pero no la elimina.
+
+El anidamiento de módulos en repositorios es una segunda amenaza. Los módulos de un mismo proyecto comparten decisiones de diseño, dependencias y convenciones, y sus métricas no son independientes. El contraste de Mann--Whitney trata cada módulo como una observación independiente, lo que puede subestimar la incertidumbre. La concentración de hallazgos en dos repositorios agrava el problema, porque los resultados globales pueden reflejar las prácticas de esos proyectos más que una propiedad general del dominio. La sensibilidad por repositorio intentó abordar esta amenaza, pero quedó inconclusa por el reducido número de repositorios sin hallazgos.
+
+Una tercera amenaza es la selección de la muestra. La muestra es no probabilística y está estratificada por popularidad, pero no por otras características relevantes, como el framework, la antigüedad, el tamaño del equipo o el dominio de aplicación. Esas variables no se midieron ni se controlaron. Por tanto, la asociación observada puede estar confundida por características del proyecto que no forman parte del modelo.
+
+\subsection{Validez externa}
+
+La validez externa se refiere a la posibilidad de generalizar los resultados a otras poblaciones, contextos y momentos. La muestra de 23 repositorios open source en Python no representa al conjunto de aplicaciones GenAI/RAG. Está sesgada hacia proyectos populares (13 de 23 tienen más de 1000 estrellas) y hacia proyectos activos en el período de corte. No incluye aplicaciones propietarias, sistemas internos, otros lenguajes ni proyectos que integran modelos mediante servicios externos sin código disponible. La fecha de corte y la fijación por SHA hacen que los resultados correspondan a un momento específico y no a una tendencia.
+
+La concentración de hallazgos en dos repositorios limita aún más la generalización. Si esos dos proyectos tienen prácticas atípicas, los promedios globales pueden no reflejar el comportamiento típico del dominio. La distribución por bandas también es desigual: la banda de más de 1000 estrellas aporta 13 repositorios, mientras que la banda 101--1000 aporta solo 3. Esa desproporción no se corrigió mediante ponderación.
+
+\subsection{Validez estadística}
+
+La validez estadística se refiere a la adecuación de los procedimientos de inferencia. El estudio aplicó pruebas no paramétricas y corrección de Holm en la familia primaria, lo que es adecuado para las distribuciones observadas. Sin embargo, presenta cuatro deficiencias. Primera, no calculó intervalos de confianza para los tamaños de efecto, de modo que no cuantifica la incertidumbre de los $\delta$. Segunda, no realizó un análisis de potencia \emph{a priori}, por lo que no puede afirmar que el tamaño muestral fuera suficiente para detectar efectos pequeños en todos los subgrupos. Tercera, los nueve contrastes por tercil son exploratorios y no fueron corregidos por multiplicidad; el valor $p=0{,}00186$ de \texttt{cbo\_mod} en el tercil superior es un ejemplo de resultado que debe leerse con cautela. Cuarta, la dependencia entre módulos viola el supuesto de independencia de las pruebas, lo que puede producir valores $p$ demasiado pequeños.
+
+La significancia estadística no equivale a importancia práctica. Con 15\,768 observaciones, diferencias pequeñas pueden alcanzar valores $p$ extremadamente bajos. El informe prioriza los tamaños de efecto y las direcciones, pero no puede eliminar la inflación de significancia asociada al tamaño muestral y a la dependencia.
+
+\subsection{Limitaciones administrativas}
+
+El cronograma y el presupuesto no pudieron reconstruirse con el detalle que exige un informe final. No hay fechas por actividad ni registros contables. El informe documenta las marcas temporales de la ejecución técnica y describe los recursos utilizados, pero no presenta un diagrama de Gantt ni una tabla de costos. Esta omisión es deliberada y se declara como una limitación administrativa, no como un resultado de la investigación.
+
+\subsection{Trabajo futuro}
+
+\paragraph{Validación humana independiente.} La prioridad inmediata es realizar una validación humana de los hallazgos con al menos dos revisores independientes, ciegos a la propuesta automática. El protocolo debería incluir un manual de adjudicación, una muestra estratificada por detector, un cálculo de acuerdo entre evaluadores (por ejemplo, kappa de Cohen o alfa de Krippendorff) y un procedimiento de resolución de desacuerdos. Con ese diseño sería posible estimar la precisión con intervalos de confianza y distinguir entre hallazgos confirmados, refutados e indeterminados.
+
+\paragraph{Estimación de exhaustividad.} La segunda prioridad es medir la exhaustividad. Una opción es construir un conjunto de referencia mediante inyección controlada de antipatrones en proyectos reales o sintéticos; otra es realizar una revisión manual intensiva de una submuestra de módulos y comparar los hallazgos del detector con los del revisor. Sin una estimación de \emph{recall}, no es posible interpretar la prevalencia observada ni comparar la sensibilidad de los detectores.
+
+\paragraph{Implementación de AP2 y AP6.} La taxonomía quedó incompleta. AP2, \emph{Vector Store Leakage}, y AP6, \emph{Unvalidated Generation Output}, requieren reglas que combinen análisis de AST con información de configuración y flujo de datos. Su implementación permitiría evaluar los seis antipatrones y evitar la interpretación errónea de que los no implementados están ausentes.
+
+\paragraph{Refinamiento de las reglas.} Los resultados sugieren que AP3 necesita una regla más fina, capaz de distinguir la fijación literal en un adaptador legítimo de la fijación en la lógica de negocio. AP1 podría beneficiarse de un análisis de extracción de prompts y de una distinción entre prompts de sistema, mensajes de usuario y documentación. AP4 requiere un análisis de sensibilidad al umbral de sesenta líneas y a la definición de llamada de recuperación y generación. AP5 podría incorporar el contexto del manejador para distinguir un fallback deliberado de un silenciamiento problemático.
+
+\paragraph{Modelos multinivel y dependencia.} El análisis estadístico debería incorporar modelos multinivel con interceptos aleatorios por repositorio, o modelos con errores estándar agrupados, para reflejar la estructura jerárquica de los datos. También sería recomendable reportar el coeficiente de correlación intraclase y realizar análisis de sensibilidad excluyendo los repositorios con mayor concentración de hallazgos.
+
+\paragraph{Control de confusión por tamaño.} Además de los terciles, podrían aplicarse técnicas de emparejamiento por \texttt{sloc}, regresión ajustada por tamaño y análisis de sensibilidad con distintas definiciones de tamaño. Un diseño cuasiexperimental, con módulos emparejados por tamaño y características del repositorio, reduciría la plausibilidad de explicaciones alternativas.
+
+\paragraph{Medición de acoplamiento a nivel de clase.} El siguiente paso metodológico es calcular un CBO más cercano al original, considerando clases, herencia, composición y dependencias entre archivos. Herramientas como \texttt{ast} o analizadores de código más finos permitirían construir una métrica comparable con la literatura de Chidamber y Kemerer y evaluar si los resultados se mantienen.
+
+\paragraph{Diseño longitudinal.} Un estudio longitudinal con PyDriller o una herramienta equivalente permitiría examinar la evolución de los antipatrones y de las métricas a lo largo del tiempo, identificar si el antipatrón precede al deterioro y estimar su efecto con técnicas de datos panel. Ese diseño requeriría un historial de commits y una definición estable de las reglas a lo largo del tiempo.
+
+\paragraph{Ampliación y estratificación de la muestra.} La muestra debería ampliarse con un marco probabilístico o cuasi-probabilístico, estratificado por banda de popularidad, framework, antigüedad y dominio de aplicación. También sería valioso replicar el estudio en otros lenguajes y en aplicaciones propietarias, aunque el acceso al código sea más difícil.
+
+\paragraph{Preregistro y transparencia.} Un preregistro de las hipótesis, las reglas, los umbrales y los análisis planificados reduciría el riesgo de sesgo de confirmación y de comparaciones múltiples no declaradas. La publicación de los scripts, los datos y las decisiones metodológicas, como se hizo en este proyecto, facilita la replicación y la crítica.
+
+\paragraph{Ingeniería de la herramienta.} Desde el punto de vista práctico, la herramienta podría evolucionar hacia una interfaz de línea de comandos estable, integración con flujos de integración continua, salida en formatos estándar como SARIF, umbrales configurables y mecanismos de supresión justificada. Esa evolución facilitaría su uso por equipos de desarrollo y su evaluación en contextos industriales.
+
+\paragraph{Estudio cualitativo.} Finalmente, un estudio cualitativo con entrevistas a desarrolladores permitiría entender por qué se introducen AP1 y AP5, qué costos perciben y qué condiciones favorecen su corrección. La combinación de evidencia cuantitativa y cualitativa enriquecería la interpretación y ayudaría a diseñar recomendaciones más realistas.
+
+\subsection{Cierre}
+
+El estudio deja un panorama ambivalente pero honesto. Por un lado, muestra que los antipatrones son observables, que se concentran en módulos con peores métricas estructurales y que el instrumento funciona sobre datos reales. Por otro, muestra que la validación humana, la exhaustividad, el control de confusión y la dependencia jerárquica siguen siendo problemas abiertos. La contribución del trabajo no es haber resuelto esos problemas, sino haber construido una base reproducible para abordarlos y haber delimitado con precisión qué puede y qué no puede afirmarse con la evidencia disponible.

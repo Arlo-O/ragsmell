@@ -1,0 +1,56 @@
+\section{Marco de Referencia}
+ 
+\subsection{Marco Teórico}
+ 
+El marco teórico de esta investigación se estructura a partir de tres líneas de conocimiento identificadas en la revisión de literatura. En primer lugar, Garcia et al. \cite{garcia_identifying_2009}  introdujeron el concepto de antipatrón arquitectónico, extendiendo al nivel de diseño arquitectónico la noción de code smell propuesta por Fowler \cite{fowler_1999}, dando origen a herramientas de detección automatizada y catálogos consolidados en la literatura.
+
+En segundo lugar, el estudio fundacional de Sculley \cite{sculley_hidden_2015} evidenció que los sistemas de aprendizaje automático acumulan formas de deuda técnica oculta distintas a las del software tradicional, línea que ha sido ampliada mediante estudios posteriores sobre antipatrones específicos de sistemas basados en IA.
+
+En tercer lugar, y de manera más reciente, el trabajo de Shao et al. \cite{shao_are_2024} analizó manualmente miles de reportes de incidencias en 100 aplicaciones LLM/RAG de código abierto, encontrando que el 77 \% de estas presentaban al menos tres tipos de defectos de integración simultáneos, y catalogando 18 patrones de defectos funcionales. Los propios autores reconocen, sin embargo, que su estudio no profundizó en la causa estructural subyacente a estos defectos desde una perspectiva de arquitectura de software.
+
+A partir de esta revisión se identifican dos vacíos convergentes: por un lado, un vacío de dominio, dado que las metodologías maduras de detección proactiva de antipatrones arquitectónicos aún no se han trasladado al ecosistema de aplicaciones RAG; y por otro lado, un vacío de método, puesto que el único estudio que aborda defectos en este dominio \cite{shao_are_2024} lo hace de manera reactiva y manual. Esta investigación se ubica precisamente en la intersección de ambos vacíos, proponiendo un enfoque proactivo y automatizado basado en análisis estático.
+
+\subsection{Marco Conceptual}
+ Para efectos de esta investigación se establecen los siguientes conceptos fundamentales:
+
+\begin{description}
+    \item Antipatrón arquitectónico. Se refiere a un patrón recurrente de decisiones o estructuras arquitectónicas que puede afectar negativamente determinadas propiedades de calidad del software. El concepto se deriva de los architectural bad smells propuestos por Garcia et al. y se diferencia de los code smells debido a que su análisis se sitúa en un nivel estructural superior al de fragmentos individuales de código \cite{garcia_identifying_2009}.
+
+    \item Code smell. Es una característica observable del código fuente que constituye una señal de un posible problema de diseño y puede motivar una actividad de refactorización \cite{fowler_1999}. En este trabajo se utiliza como concepto relacionado, pero distinto del antipatrón arquitectónico.
+
+    \item Inteligencia Artificial Generativa (GenAI). Campo de la inteligencia artificial orientado a sistemas capaces de generar contenido a partir de modelos entrenados sobre grandes cantidades de datos. En esta investigación, el término se utiliza principalmente para referirse a aplicaciones que incorporan modelos generativos de lenguaje como componentes de una arquitectura de software.
+
+    \item Large Language Model (LLM). Modelo de aprendizaje automático entrenado sobre grandes volúmenes de información textual y utilizado para tareas de procesamiento y generación de lenguaje natural. En las aplicaciones estudiadas constituye uno de los componentes que debe integrarse con la infraestructura convencional del software.
+
+    \item Retrieval-Augmented Generation (RAG). Arquitectura que combina un modelo generativo con un mecanismo externo de recuperación de información, permitiendo proporcionar al modelo información recuperada desde una fuente externa durante la generación de la respuesta \cite{lewis_retrieval-augmented_2021}.
+
+    \item Deuda técnica. Representa los costos futuros de mantenimiento y evolución derivados de decisiones técnicas que pueden proporcionar beneficios inmediatos pero generan consecuencias posteriores. En sistemas de aprendizaje automático, Sculley et al. muestran que estos costos pueden surgir de interacciones y dependencias propias de estos sistemas \cite{sculley_hidden_2015}.
+
+    \item Árbol de Sintaxis Abstracta (AST). Representación estructurada de un programa en forma de árbol, cuyos nodos representan elementos sintácticos del código fuente. En esta investigación será utilizado para recorrer y analizar automáticamente programas Python con el propósito de identificar patrones asociados con los antipatrones de la taxonomía.
+
+    \item Mining Software Repositories (MSR). Conjunto de técnicas utilizadas para extraer, procesar y analizar información disponible en repositorios de software con el propósito de obtener conocimiento sobre los sistemas y su desarrollo. En esta investigación se empleará para obtener y analizar los proyectos open source que conforman la muestra.
+
+    \item Acoplamiento entre Objetos (CBO). Métrica de diseño orientado a objetos propuesta por Chidamber y Kemerer que permite cuantificar las relaciones de dependencia entre clases \cite{chidamber_metrics_1994}.
+
+    \item Complejidad Ciclomática. Métrica que cuantifica la complejidad de la estructura de control de un programa a partir de sus caminos independientes. En este estudio se utilizará como indicador de complejidad estructural.
+
+    \item Índice de Mantenibilidad (Maintainability Index). Métrica compuesta utilizada para aproximar la facilidad con la que un componente de software puede mantenerse y modificarse. En esta investigación se empleará como uno de los indicadores cuantitativos para estudiar la relación entre la presencia de antipatrones y la mantenibilidad.
+\end{description}
+ 
+\subsection{Marco Espacial}
+ 
+El estudio se desarrollará dentro del ecosistema de proyectos de software de código abierto disponibles en GitHub que implementan aplicaciones basadas en Inteligencia Artificial Generativa y arquitecturas RAG.
+
+La unidad de análisis estará constituida por repositorios de código fuente que cumplan los criterios de inclusión definidos para el estudio. La muestra prevista comprende aproximadamente 20 proyectos representativos del dominio, entre ellos Quivr, Dify, RAGFlow y PrivateGPT.
+
+Para garantizar la pertinencia de la muestra se considerarán criterios relacionados con el lenguaje de programación, popularidad, actividad y tecnologías empleadas. Entre los criterios establecidos se encuentran el uso de Python, la existencia de más de diez estrellas en GitHub, actividad reciente y utilización de tecnologías o librerías asociadas con aplicaciones RAG, como LangChain, LlamaIndex, ChromaDB o Qdrant.
+
+Se excluirán repositorios que correspondan a forks, tutoriales u otros proyectos que no constituyan implementaciones representativas de aplicaciones GenAI/RAG. De esta manera, el marco espacial se delimita al ecosistema de desarrollo open source en GitHub y no pretende representar aplicaciones propietarias o sistemas internos de organizaciones que no tengan su código disponible públicamente.
+ 
+\subsection{Marco Temporal}
+ 
+La investigación contempla dos dimensiones temporales: el período correspondiente a los datos analizados y el período de ejecución del proyecto.
+
+Para el análisis de los repositorios se considerará la actividad registrada durante el último año respecto al momento de extracción de los datos, de acuerdo con los criterios de selección establecidos. Este período permitirá priorizar proyectos con actividad reciente y evitar que la muestra esté dominada por repositorios abandonados o que ya no representen las prácticas actuales de desarrollo de aplicaciones GenAI/RAG.
+
+El período de ejecución de la investigación comprenderá aproximadamente diez semanas a partir de la aprobación del anteproyecto. Durante este período se desarrollarán las actividades de construcción y validación de la taxonomía, selección de repositorios, implementación del analizador estático basado en AST, extracción de métricas y análisis estadístico de los resultados.

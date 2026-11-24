@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Distribución de los hallazgos detectados por antipatrón}
+\label{tab:distribucion}
+\begin{tabularx}{\columnwidth}{@{}l >{\raggedright\arraybackslash}X r r r l@{}}
+\toprule
+\textbf{ID} & \textbf{Antipatrón} & \textbf{Hall.} & \textbf{\%} & \textbf{Rep.} & \textbf{Estado} \\
+\midrule
+\textbf{AP1} & Hardcoded Prompt Infiltration & 273 & 61,35 & 20 & Impl. \\
+\textbf{AP2} & Vector Store Leakage & --- & --- & --- & No eval. \\
+\textbf{AP3} & Hardcoded Provider Lock-in & 17 & 3,82 & 6 & Impl. \\
+\textbf{AP4} & Monolithic RAG Function & 3 & 0,67 & 3 & Impl. \\
+\textbf{AP5} & Non-Deterministic Exception Suppression & 152 & 34,16 & 14 & Impl. \\
+\textbf{AP6} & Unvalidated Generation Output & --- & --- & --- & No eval. \\
+\midrule
+\textbf{Total} & & 445 & 100,00 & 21 & 4 de 6 \\
+\bottomrule
+\end{tabularx}
+\end{table}

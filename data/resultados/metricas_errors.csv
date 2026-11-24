@@ -1,1 +1,2 @@
 repo,file,error
+BerriAI/litellm,litellm/secret_managers/base_secret_manager.py,SyntaxError: SyntaxError at line: 9

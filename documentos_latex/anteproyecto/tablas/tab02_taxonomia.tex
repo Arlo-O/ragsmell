@@ -1,0 +1,19 @@
+\begin{table*}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\caption{Taxonomía operacional de antipatrones y estado de implementación de los detectores}
+\label{tab:taxonomia}
+\begin{tabularx}{\textwidth}{@{}c >{\raggedright\arraybackslash}p{2.6cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{2.2cm} >{\raggedright\arraybackslash}X l@{}}
+\toprule
+\textbf{ID} & \textbf{Nombre} & \textbf{Definición operacional} & \textbf{Atributo afectado} & \textbf{Regla de detección (AST)} & \textbf{Estado} \\
+\midrule
+\textbf{AP1} & Hardcoded Prompt Infiltration & Prompt extenso incrustado en una función que concentra lógica de control. & Mantenibilidad, evolvabilidad & Cadena o f-string $\geq$ 80 caracteres en función con control, vinculada a pista de prompt o llamada a LLM. & Implementado \\
+\textbf{AP2} & Vector Store Leakage & Acceso vectorial desde la presentación o credencial literal. & Seguridad, separación de capas & Framework web con cliente vectorial, o credencial literal en el constructor. & No implementado \\
+\textbf{AP3} & Hardcoded Provider Lock-in & Proveedor o modelo rígido sin abstracción configurable. & Portabilidad, mantenibilidad & Valor literal de \texttt{model} o \texttt{model\_name} reconocible en constructor o SDK documentado. & Implementado \\
+\textbf{AP4} & Monolithic RAG Function & Una función concentra recuperación y generación. & Mantenibilidad, testabilidad & Función de más de 60 líneas con llamada de recuperación y llamada al LLM. & Implementado \\
+\textbf{AP5} & Non-Deterministic Exception Suppression & Error crítico silenciado o convertido en fallback constante. & Confiabilidad & \texttt{try} con llamada crítica y manejador amplio sin \texttt{raise}; solo \texttt{pass}, registro o fallback constante. & Implementado \\
+\textbf{AP6} & Unvalidated Generation Output & Salida generada llega a un sumidero sensible sin validación reconocible. & Confiabilidad, seguridad & Salida del LLM en \texttt{json.loads}, \texttt{eval}, \texttt{exec} o \texttt{.execute()} sin guardas. & No implementado \\
+\bottomrule
+\end{tabularx}
+\end{table*}

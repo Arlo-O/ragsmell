@@ -1,0 +1,17 @@
+file,ap_id,line,col,message,snippet
+spaces/rag-financial/app.py,AP1,76,8,Long hardcoded prompt is embedded in control logic,"""You are analyzing a page from a financial report. ""
+        ""Extract ALL numeric data: axis values, data points, table cells, ""
+        ""chart titles, legend entries, footnotes. Be exhaustive."""
+src/filing_qa/agentic/__init__.py,AP5,247,8,Broad critical exception is suppressed,"except Exception as exc:
+            logger.error(""agentic_graph_failed"", error=str(exc))
+            return await self._pipeline.query(query_text, tenant_id=tenant_id, **kwargs)"
+src/filing_qa/api/routers/query.py,AP5,93,4,Broad critical exception is suppressed,"except Exception as exc:
+        return error_response(request, ""retrieve_failed"", ""retrieve_endpoint_failed"", exc)"
+src/filing_qa/components/evaluator/__init__.py,AP1,267,16,Long f-string prompt is embedded in control logic,"f""Context:\n{context_block}\n\n""
+                f""Answer to evaluate:\n{answer}\n\n""
+                ""Rate from 0.0 to 1.0 how accurately the numeric values in the answer ""
+                ""match the context. 1.0 means all numbers are exactly correct and grounded. ""
+                ""Respond with ONLY a number, e.g. 0.85"""
+src/filing_qa/pipeline/__init__.py,AP5,514,8,Broad critical exception is suppressed,"except Exception as exc:
+            logger.warning(""pot_execution_error"", error=str(exc))
+            return None"

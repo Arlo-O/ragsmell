@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\caption{Correlaciones de Spearman entre el número de hallazgos por módulo y las métricas}
+\label{tab:spearman}
+\begin{tabularx}{\textwidth}{@{}l r l l r >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Métrica} & \textbf{$\rho$} & \textbf{p} & \textbf{p Holm} & \textbf{n} & \textbf{Lectura} \\
+\midrule
+\texttt{cc\_max} & $+0{,}119$ & $1{,}01 \times 10^{-50}$ & $2{,}03 \times 10^{-50}$ & 15\,768 & Asociación positiva débil \\
+\texttt{mi} & $-0{,}123$ & $2{,}26 \times 10^{-54}$ & $6{,}78 \times 10^{-54}$ & 15\,768 & Asociación negativa débil \\
+\texttt{cbo\_mod} & $+0{,}080$ & $6{,}06 \times 10^{-24}$ & $6{,}06 \times 10^{-24}$ & 15\,768 & Asociación positiva muy débil \\
+\bottomrule
+\end{tabularx}
+\end{table*}

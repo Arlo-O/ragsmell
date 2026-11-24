@@ -1,0 +1,4356 @@
+# Gu?a detallada de validaci?n manual
+
+Filas: 60; semilla de muestreo: 42. Esta gu?a no contiene veredictos humanos.
+
+## Instrucciones
+
+Para cada entrada, revise el checkout fijado por SHA, el archivo y la l?nea. Compare el contexto con la definici?n. Complete ?nicamente las columnas vac?as de `validacion_manual.csv` despu?s de revisar el c?digo. Use `TP` si la regla completa se cumple y `FP` si no se cumple; documente la raz?n y la ruta/l?nea.
+
+## 1. `bojieli/ai-agent-book | AP1 | chapter2/context-compression/compression_strategies.py | 383 | 21`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""Summarize the following combined webpage content comprehensively:
+
+{combined_content}
+
+Requirements:
+1. Create a comprehensive summary covering all pages
+2. Include key information from each source
+3. Maintain factual accuracy
+4. Maximum length: {Config.SUMMARY_MAX_TOKENS} tokens
+
+Provide a comprehensive summary:"""
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 2. `bojieli/ai-agent-book | AP1 | chapter9/prompt-auto-optimization/coding_agent.py | 97 | 8`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"你是一名资深的提示词工程 Coding Agent。你会收到一份航空客服 Agent 的"
+        "系统提示词文件，以及从失败轨迹生成的结构化诊断。请定位与'人工转接'相关的规则，"
+        "生成精确的搜索/替换编辑来改进它，然后调用 apply_edits 工具落地修改。\n"
+        "改动目标：\n"
+        "1) 把转接的边界收紧、明确为仅两种情况：乘客明确要求人工客服、以及紧急安全情况；\n"
+        "2) 删除或改写会诱发'过度转接'的模糊规则（如'不确定或乘客不满就转接'）；\n"
+        "3) 新增一条明确的负面规则：绝不因政策争议 / 乘客不满而转接，而应先查政策、"
+        "耐心解释并提供合规的替代方案。\n"
+        "只修改与转接策略相关的部分，尽量保留其余内容不动。"
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 3. `verygoodplugins/automem | AP1 | automem/api/recall.py | 2991 | 27`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"""
+                MATCH (m:Memory)
+                WHERE 'system' IN m.tags OR 'memory-recall' IN m.tags
+                RETURN m.id as id, m.content as content, m.tags as tags
+                LIMIT 5
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 4. `multimindlab/multimind-sdk | AP1 | multimind/memory/procedural.py | 168 | 21`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""
+            Extract a procedure and its steps from the following content:
+
+            Content: {content}
+
+            Determine:
+            1. Procedure content
+            2. Category
+            3. Prerequisites
+            4. Expected outcome
+            5. Step-by-step instructions
+            6. Confidence in extraction (0-1)
+
+            Return in format:
+            Procedure: <procedure content>
+            Category: <category>
+            Prerequisites: <comma-separated prerequisites>
+            Expected Outcome: <expected outcome>
+            Steps:
+            1. <step 1>
+            2. <step 2>
+            ...
+            Confidence: <confidence score>
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 5. `bojieli/ai-agent-book | AP1 | chapter3/user-memory/agent.py | 190 | 34`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"""## Memory Management:
+- All user memories are pre-loaded in the context below
+- Use `add_memory` to store new important information about the user
+- Use `update_memory` to modify existing memories
+- Use `delete_memory` to remove outdated or incorrect memories
+
+IMPORTANT: Each note should contain all important factual information and user preferences in a complete, contextual manner.
+Notes can be full paragraphs that capture the complete context, not just simple key-value pairs.
+
+Example of good enhanced notes:
+- "User works at TechCorp as a senior software engineer, specializing in machine learning. They've been there for 3 years and enjoy the collaborative culture."
+- "User's email is john.doe@techcorp.com for work and johndoe.personal@gmail.com for personal matters. They prefer work emails during business hours only."
+- "User has two children: Sarah (8 years old, loves soccer) and Michael (5 years old, interested in dinosaurs). Both attend Oakwood Elementary School."
+
+Extract all factual information from the conversation that may be useful for future interactions."""
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 6. `bojieli/ai-agent-book | AP1 | chapter4/execution-tools/llm_helper.py | 122 | 17`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""You are a safety reviewer for an AI agent execution system.
+Review the following operation and determine if it should be approved.
+
+Operation: {operation}
+Details: {json.dumps(details, indent=2)}
+
+Analyze the operation for:
+1. Potential data loss or destructive actions
+2. Security risks
+3. Resource consumption concerns
+4. Compliance with best practices
+
+Respond in JSON format:
+{{
+    "approved": true/false,
+    "reason": "Brief explanation of your decision",
+    "risk_level": "low/medium/high",
+    "recommendations": ["List of recommendations if any"]
+}}
+"""
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 7. `multimindlab/multimind-sdk | AP1 | multimind/patterns/advanced_patterns.py | 371 | 12`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"Extract the entities mentioned in the following query.\n"
+            f"Query: {query}\n\n"
+            "Respond with only a JSON array of the form:\n"
+            '[{"id": "<unique-id>", "name": "<name>", "type": "<type>"}]'
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 8. `multimindlab/multimind-sdk | AP1 | multimind/memory/episodic.py | 180 | 21`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""
+            Analyze the emotional profile of this episode and determine the intensity (0-1) of each emotion:
+
+            Episode: {episode["content"]}
+
+            Return in format:
+            Emotion: <emotion name>
+            Intensity: <intensity score>
+            ---
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 9. `khoj-ai/khoj | AP1 | src/khoj/processor/operator/grounding_agent_uitars.py | 247 | 39`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"""
+        You are a GUI agent. You are given a task and a screenshot of the web browser tab you operate. You need to perform the next action to complete the task.
+        You control a single tab in a Chromium browser. You cannot access the OS, filesystem, the application window or the addressbar.
+        """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 10. `BerriAI/litellm | AP1 | litellm/litellm_core_utils/prompt_templates/factory.py | 7096 | 28`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"{% if messages|length % 2 == 0 %}{% set role = 'Agent' %}{% else %}{% set role = 'User' %}{% endif %}{{ \"[INST] Task: Check if there is unsafe content in '\" + role + \"' messages in conversations according our safety policy with the below categories.\n\n<BEGIN UNSAFE CONTENT CATEGORIES>\nO1: Violence and Hate. \nShould not\n- Help people plan or engage in violence.\n- Encourage people to engage in violence.\n- Express hateful, derogatory, or demeaning sentiments against people based on sensitive personal characteristics like their race, color, religion, national origin, sexual orientation, gender, gender identity, or disability.\n- Encourage discrimination against people based on those characteristics and should not use slurs or create insults based on those characteristics.\nCan\n- Provide information on violence and discrimination.\n- Discuss the topics of hate and violence, and can discuss historical events involving violence.\nO2: Sexual Content.\nShould not\n- Engage in sexually explicit (i.e., erotic) conversations and should not encourage people to engage in sexual activities.\nCan\n- Discuss topics related to sexuality and sexual education.\n- Provide general information regarding sexual activities.\n- Provide guidance on topics related to sexual health.\nO3: Criminal Planning.\nShould not\n- Help people plan or engage in criminal activities like theft, kidnapping, or financial crimes, especially when the person indicates that they may act on the information provided to them.\n- Encourage people to engage in criminal activities or condone criminal behavior.\nCan\n- Help people understand how crimes are committed, provided that the response is not so detailed that it could be used to provide a roadmap for future crimes.\n- Help people understand how systems work that are used to prevent crimes, provided those descriptions do not provide detailed information on how to defeat those systems.\nO4: Guns and Illegal Weapons.\nShould not\n- Assist in the planning or execution of firearm or illegal weapons crimes, especially when the person indicates that they may act on the information provided to them.\n- Encourage people to engage in firearm or illegal weapons crimes or condone such behavior.\nCan\n- Discuss firearms and the arguments for and against firearm ownership.\nO5: Regulated or Controlled Substances.\nShould not\n- Encourage or assist people in the trafficking, consumption, or use of regulated or controlled substances, including but not limited to illegal drugs, tobacco, alcohol, and cannabis.\n- Assist or encourage people to create such substances when it is illegal to do so.\nCan\n- Discuss the use of regulated or controlled substances, and can provide general information on those substances (ex: what their chemical composition is and what their effects are).\n- Provide information on how those substances are manufactured, provided that the information is not so detailed as to provide step-by-step instructions for their creation.\nO6: Self-Harm.\nShould not\n- Encourage people to harm themselves.\n- Romanticize or condone self-harm or suicide.\n- Provide information regarding the methods of suicide or self-harm.\n- Provide any information or advice, other than information regarding appropriate health resources, to people who express or imply that they wish to harm themselves.\nCan\n- Provide general information regarding self-harm and suicide (ex: statistics, the mental health challenges faced by those who take these actions).\nShould\n- Provide information regarding appropriate health resources to people who imply or express the desire to harm themselves.\n<END UNSAFE CONTENT CATEGORIES>\n\n<BEGIN CONVERSATION>\n\n\" }}{% for message in messages %}{% if (message['role'] == 'user') != (loop.index0 % 2 == 0) %}{{ raise_exception('Conversation roles must alternate user/assistant/user/assistant/...') }}{% endif %}{% set content = message['content'] %}{% if message['role'] == 'user' %}{% set role = 'User' %}{% elif message['role'] == 'assistant' %}{% set role = 'Agent' %}{% endif %}{{ role + ': ' + content.strip() + '\n\n' }}{% endfor %}{{ \"<END CONVERSATION>\n\nProvide your safety assessment for \" + role + \" in the above conversation:\n- First line must read 'safe' or 'unsafe'.\n- If unsafe, a second line must include a comma-separated list of violated categories. [/INST]\" }}"
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 11. `multimindlab/multimind-sdk | AP1 | multimind/context_window/context_manager.py | 439 | 21`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""
+            Summarize the following content, preserving key information while reducing length.
+            Target length: {int(chunk.tokens * self.config.compression_ratio)} tokens.
+
+            Content:
+            {chunk.content}
+
+            Summary:
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 12. `khoj-ai/khoj | AP1 | src/khoj/processor/operator/grounding_agent.py | 178 | 39`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"""
+        You are a GUI agent. You are given a task and a screenshot of the web browser tab you operate. You need to decide the next action to complete the task.
+        You control a single tab in a Chromium browser. You cannot access the OS, filesystem or the application window.
+        Always use the `goto` function to navigate to a specific URL. Ctrl+t, Ctrl+w, Ctrl+q, Ctrl+Shift+T, Ctrl+Shift+W are not allowed.
+        """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 13. `HKUDS/LightRAG | AP1 | lightrag/llm/zhipu.py | 129 | 24`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"You are a helpful assistant. Note that sensitive words in the content should be replaced with ***"
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 14. `multimindlab/multimind-sdk | AP1 | multimind/memory/declarative.py | 293 | 21`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""
+            Verify this fact using multiple methods:
+
+            {fact["content"]}
+
+            Return a JSON object with:
+            1. verification_score: float (0-1)
+            2. verification_methods: list of strings
+            3. supporting_evidence: list of strings
+            4. conflicting_evidence: list of strings
+            5. confidence_level: string (high/medium/low)
+            6. verification_notes: string
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 15. `verygoodplugins/automem | AP1 | automem/analytics/runtime_helpers.py | 67 | 23`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"""
+            MATCH (m:Memory)
+            WHERE 'system' IN m.tags OR 'memory-recall' IN m.tags
+            RETURN m.id as id, m.content as content, m.tags as tags
+            LIMIT 5
+        """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 16. `ai-bot-pro/achatbot | AP1 | demo/llm_google_gemini.py | 292 | 18`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"You are a helpful lighting system bot. You can turn lights on and off, and you can set the color. Do not perform any other tasks."
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 17. `multimindlab/multimind-sdk | AP1 | multimind/memory/hybrid.py | 382 | 21`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""
+            Update memory metadata:
+
+            Current metadata:
+            {json.dumps(self.metadata_history, indent=2)}
+
+            Memory configurations:
+            {json.dumps(self.memory_configs, indent=2)}
+
+            Return a JSON object with:
+            1. metadata_updates: dict of memory_name -> metadata
+            2. update_reason: string
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 18. `multimindlab/multimind-sdk | AP1 | multimind/prompts/advanced_prompting.py | 290 | 23`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"""
+            Evaluate the following response.
+            Consider:
+            1. Answer quality
+            2. Information accuracy
+            3. Response coherence
+
+            Query: {query}
+
+            Response:
+            {response}
+
+            Context:
+            {documents}
+
+            History:
+            {history}
+
+            State:
+            {state}
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 19. `multimindlab/multimind-sdk | AP1 | multimind/prompts/advanced_prompting.py | 213 | 23`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long hardcoded prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+"""
+            Find relevant information from the following documents.
+            Consider:
+            1. Query relevance
+            2. Information value
+            3. Context coverage
+
+            Query: {query}
+
+            Documents:
+            {documents}
+
+            Conversation History:
+            {history}
+
+            System State:
+            {state}
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 20. `multimindlab/multimind-sdk | AP1 | multimind/memory/procedural.py | 275 | 21`
+
+- **Definici?n:** Cadena/f-string >=80 caracteres en funci?n con control y contexto de prompt/LLM.
+- **Por qu? se activ?:** Long f-string prompt is embedded in control logic
+- **Contexto fuente (snippet):**
+```python
+f"""
+            Adapt this procedure based on the failed execution:
+
+            Procedure: {procedure["content"]}
+            Steps:
+            {chr(10).join(f"{i + 1}. {step}" for i, step in enumerate(procedure["steps"]))}
+
+            Failed Execution:
+            Duration: {execution_record["duration"]}
+            Notes: {execution_record["notes"]}
+
+            Return adapted steps in format:
+            Steps:
+            1. <adapted step 1>
+            2. <adapted step 2>
+            ...
+            """
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 21. `run-llama/llama_index | AP3 | llama-index-integrations/llms/llama-index-llms-openai/llama_index/llms/openai/utils.py | 818 | 28`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+to_openai_responses_message_dict(
+                message,
+                drop_none=drop_none,
+                model="o3-mini",  # hardcode to ensure developer messages are used
+                store=store,
+            )
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 22. `HKUDS/LightRAG | AP3 | reproduce/Step_2.py | 77 | 13`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+openai_complete_if_cache(model="gpt-4o", prompt=prompt)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 23. `bojieli/ai-agent-book | AP3 | chapter9/browser-use-rpa/browser-use/browser_use/agent/service.py | 200 | 11`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+ChatOpenAI(model='gpt-4.1-mini')
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 24. `run-llama/llama_index | AP3 | llama-index-integrations/postprocessor/llama-index-postprocessor-rankgpt-rerank/llama_index/postprocessor/rankgpt_rerank/base.py | 59 | 27`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAI(model="gpt-3.5-turbo-16k")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 25. `headroomlabs-ai/headroom | AP3 | headroom/evals/runners/before_after.py | 430 | 37`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+create_openai_judge(model="gpt-4o-mini")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 26. `bojieli/ai-agent-book | AP3 | chapter9/browser-use-rpa/browser-use/browser_use/agent/service.py | 203 | 10`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+ChatOpenAI(model='gpt-4.1-mini')
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 27. `bojieli/ai-agent-book | AP3 | chapter2/prompt-engineering/tau_bench/model_utils/model/general_model.py | 136 | 11`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAIModel(model="gpt-4o-mini")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 28. `run-llama/llama_index | AP3 | llama-index-core/llama_index/core/program/multi_modal_llm_program.py | 64 | 34`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAIResponses(model="gpt-4.1", temperature=0)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 29. `multimindlab/multimind-sdk | AP3 | multimind/gateway/rag_api.py | 315 | 28`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAIModel(model_name="gpt-3.5-turbo", temperature=0.7)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 30. `bojieli/ai-agent-book | AP3 | chapter9/browser-use-rpa/browser-use/browser_use/cli.py | 251 | 9`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+ChatOpenAI(model='gpt-5-mini', temperature=temperature, api_key=api_key or CONFIG.OPENAI_API_KEY)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 31. `bojieli/ai-agent-book | AP3 | chapter9/browser-use-rpa/browser-use/browser_use/dom/playground/multi_act.py | 7 | 6`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+ChatAzureOpenAI(
+	model='gpt-4.1-mini',
+)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 32. `BerriAI/litellm | AP3 | litellm/llms/anthropic/messages/native/utils.py | 449 | 11`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+AnthropicMessagesResponse(
+        content=[{"text": mock_response, "type": "text"}],
+        id="msg_013Zva2CMHLNnXjNJJKqJ2EF",
+        model="claude-sonnet-4-20250514",
+        role="assistant",
+        stop_reason="end_turn",
+        stop_sequence=None,
+        type="message",
+        usage={"input_tokens": 2095, "output_tokens": 503},
+    )
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 33. `run-llama/llama_index | AP3 | llama-index-core/llama_index/core/evaluation/multi_modal/faithfulness.py | 99 | 41`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAIResponses(
+                model="gpt-4.1", max_output_tokens=1000
+            )
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 34. `run-llama/llama_index | AP3 | llama-index-core/llama_index/core/evaluation/multi_modal/relevancy.py | 78 | 41`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAIResponses(
+                model="gpt-4.1", max_output_tokens=1000
+            )
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 35. `run-llama/llama_index | AP3 | llama-index-core/llama_index/core/postprocessor/rankGPT_rerank.py | 20 | 11`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAI(model="gpt-3.5-turbo-16k")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 36. `run-llama/llama_index | AP3 | llama-index-core/llama_index/core/query_engine/multi_modal.py | 87 | 40`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+OpenAIResponses(
+                    model="gpt-4.1", max_output_tokens=1000
+                )
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 37. `bojieli/ai-agent-book | AP3 | chapter9/browser-use-rpa/browser-use/browser_use/cli.py | 253 | 9`
+
+- **Definici?n:** Literal de modelo reconocible en model/model_name o SDK directo documentado.
+- **Por qu? se activ?:** Literal model name creates provider lock-in
+- **Contexto fuente (snippet):**
+```python
+ChatAnthropic(model='claude-4-sonnet', temperature=temperature)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 38. `headroomlabs-ai/headroom | AP4 | headroom/proxy/server.py | 3535 | 0`
+
+- **Definici?n:** Funci?n de m?s de 60 l?neas con recuperaci?n y generaci?n en la misma funci?n.
+- **Por qu? se activ?:** Function combines retrieval and generation over 60 lines
+- **Contexto fuente (snippet):**
+```python
+def create_app(config: ProxyConfig | None = None) -> FastAPI:
+    """Create FastAPI application."""
+    if not FASTAPI_AVAILABLE:
+        raise ImportError("FastAPI required. Install: pip install fastapi uvicorn httpx")
+
+    from headroom.proxy.forwarded_headers import load_trusted_dashboard_client_cidrs
+
+    # Parse once at startup so invalid operator configuration fails loudly.
+    trusted_dashboard_client_cidrs = load_trusted_dashboard_client_cidrs()
+
+    from contextlib import asynccontextmanager
+
+    # Resolve config before file logging so the log can be keyed by port
+    # (below). Tradeoff: any log record emitted while ``ProxyConfig`` is
+    # constructed on the no-config path (e.g. an invalid HEADROOM_QDRANT_PORT
+    # warning) predates the file handler and so is not captured in the file log;
+    # the port must be known first, and it is always present (``port`` defaults
+    # to 8787), so this is accepted.
+    config = config or ProxyConfig()
+
+    # Every process that serves the app (each --workers N worker builds its
+    # own) keeps query values out of uvicorn's access log.
+    install_access_log_query_filter()
+
+    # Always-on file logging to ~/.headroom/logs/ for `headroom perf` analysis.
+    # Installed here (not at module import) so importing headroom.proxy.server
+    # in tests or library contexts does not silently attach a RotatingFileHandler
+    # to the user's live proxy log. Multi-worker processes add their PID so
+    # same-port workers never share a RotatingFileHandler target. Stateless
+    # mode must not create a log directory or file.
+    if not config.stateless:
+        _setup_file_logging(
+            config.port,
+            process_id=os.getpid() if config.worker_processes > 1 else None,
+        )
+
+    # Defensive re-apply of file-backed settings for embedded/non-CLI callers
+    # that construct the app without going through the `headroom` CLI entrypoint
+    # (which already applies them before Click parsing). setdefault keeps
+    # explicit env exports authoritative; fail-open so it never blocks startup.
+    # settings_store.load() already reports an unreadable or corrupt file; this
+    # catches anything else that goes wrong while applying it.
+    settings_file: object = "the saved settings file"
+    try:
+        from headroom import paths as _hr_paths
+        from headroom import settings_store
+
+        settings_file = _hr_paths.settings_path()
+        settings_store.apply_to_environ(settings_store.load())
+    except Exception as exc:  # noqa: BLE001 — settings load must never break startup
+        # Settings values can hold credentials, so the exception is described by
+        # type and code location only, never its message.
+        logger.warning(
+            "Could not apply saved settings from %s (%s); continuing with env and "
+            "defaults. Fix or remove that file and restart the proxy.",
+            settings_file,
+            describe_exception(exc),
+        )
+
+    # Air-gap master switch. Propagate config.offline to the env so the
+    # env-based egress predicates (telemetry, update check, license) all honor
+    # it, force HF/transformers offline before any model code loads, and say
+    # what is covered.
+    #
+    # The banner names the exception rather than claiming a whole-process kill
+    # switch, and the exception is permanent rather than a to-do: a proxy that
+    # refused to forward the caller's request to the caller's own upstream
+    # would not be a proxy. Every connection Headroom itself initiates IS
+    # refused; tests/test_offline_egress_chokepoint.py fails the build if a new
+    # egress path appears that is neither guarded nor one of the four written
+    # exceptions. TestDocsMatchTheGuarantee scans this file for the absolute
+    # phrasings and fails while any remain.
+    if config.offline:
+        os.environ.setdefault("HEADROOM_OFFLINE", "1")
+    if is_offline():
+        apply_offline_env()
+        logger.warning(
+            "event=proxy_offline_mode air-gap active — every connection Headroom "
+            "initiates is refused (telemetry, update check, license reporter, "
+            "model/tokenizer/binary/dataset downloads, remote Kompress, "
+            "OTLP/Langfuse export, Copilot auth, subscription polling, OpenAI "
+            "embedders, Headroom Cloud compression). Still allowed on purpose: "
+            "forwarding your requests to the upstream you configured, "
+            "operator-configured local endpoints, loopback health probes."
+        )
+
+    proxy = HeadroomProxy(config)
+
+    # cc-switch reconciler (opt-in: HEADROOM_CC_SWITCH_RECONCILE=1).
+    # Keeps Headroom in the request path while cc-switch overwrites
+    # ~/.claude/settings.json on every provider switch. See
+    # headroom/proxy/cc_switch_reconciler.py for the full rationale.
+    from headroom.proxy.cc_switch_reconciler import (
+        CCSwitchReconciler,
+        reconciler_enabled,
+    )
+
+    _cc_reconciler: CCSwitchReconciler | None = None
+    if reconciler_enabled():
+        _cc_proxy_port = config.port if hasattr(config, "port") else 8787
+
+        def _set_anthropic_upstream(url: str) -> None:
+            from headroom.providers.registry import _normalize_api_url
+
+            HeadroomProxy.ANTHROPIC_API_URL = _normalize_api_url(
+                url, default=DEFAULT_ANTHROPIC_API_URL
+            )
+
+        _cc_reconciler = CCSwitchReconciler(
+            proxy_url=f"http://127.0.0.1:{_cc_proxy_port}",
+            default_upstream=DEFAULT_ANTHROPIC_API_URL,
+            set_upstream=_set_anthropic_upstream,
+        )
+
+    # Single-worker-owner lock. With uvicorn workers > 1, each worker runs the
+    # lifespan independently. A file lock elects ONE owner worker so that
+    # single-instance background tasks (currently the cc-switch reconciler) run
+    # once across all workers instead of N times.
+    from headroom import paths as _hr_paths
+
+    _beacon_lock_path = _hr_paths.beacon_lock_path(config.port)
+    _beacon_lock_fd: list = [None]  # mutable holder for the lock file descriptor
+    _beacon_is_owner: list = [False]
+
+    def _try_acquire_beacon_lock() -> bool:
+        """Try to acquire the beacon file lock (non-blocking).
+
+        Returns True if this process is the beacon owner.
+        """
+        if not HAS_FCNTL:
+            return True
+
+        fd = None
+        try:
+            _beacon_lock_path.parent.mkdir(parents=True, exist_ok=True)
+            fd = open(_beacon_lock_path, "w")  # noqa: SIM115
+            fcntl.flock(fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            fd.write(str(os.getpid()))
+            fd.flush()
+            _beacon_lock_fd[0] = fd
+            return True
+        except OSError:
+            if fd is not None:
+                fd.close()
+            return False
+
+    def _release_beacon_lock() -> None:
+        """Release the beacon file lock."""
+        fd = _beacon_lock_fd[0]
+        if fd:
+            try:
+                if HAS_FCNTL:
+                    fcntl.flock(fd, fcntl.LOCK_UN)
+                fd.close()
+            except Exception:
+                pass
+            _beacon_lock_fd[0] = None
+        try:
+            _beacon_lock_path.unlink(missing_ok=True)
+        except Exception:
+            pass
+
+    @asynccontextmanager
+    async def lifespan(app: FastAPI):  # type: ignore[no-untyped-def]
+        # Arm the C-level liveness watchdog before anything that can touch
+        # native code: a GIL seized during startup freezes the process just as
+        # thoroughly as one seized while serving (#3178). Per worker, because
+        # the timer and the GIL are both process-local.
+        from headroom.proxy.hard_watchdog import start_hard_watchdog
+
+        start_hard_watchdog()
+
+        # Hotfix-A0: Rust core deployment smoke test. Refuse to accept
+        # traffic if the Rust extension is missing unless the operator
+        # explicitly opted out with HEADROOM_REQUIRE_RUST_CORE=false. See
+        # Finding #2 in HEADROOM_PROXY_LOG_FINDINGS_2026_05_03.md.
+        # `_check_rust_core` either returns ("loaded"|"disabled", _) or
+        # calls `sys.exit(78)` — execution past this line implies the
+        # rust_core_status is recorded.
+        _rust_core_status, _rust_core_error = _check_rust_core()
+        app.state.rust_core_status = _rust_core_status
+        app.state.rust_core_error = _rust_core_error
+
+        # Degraded mode has to mean something. Every compressor reaches
+        # `headroom._core` eventually, so leaving `optimize` on while the
+        # extension is unloadable turns each request into an ImportError
+        # instead of a proxied response. Drop to the same passthrough path
+        # `--no-optimize` uses: no savings, but the client keeps working
+        # rather than getting a connection refused (issue #2918).
+        #
+        # Safe to mutate here: `HeadroomProxy` holds this exact config
+        # object, its compressors are built lazily on first use, and
+        # `proxy.startup()` has not run yet.
+        if _rust_core_status == "disabled" and config.optimize:
+            config.optimize = False
+            logger.warning(
+                "event=proxy_optimization_disabled reason=rust_core_unavailable "
+                "detail=%r mode=passthrough; traffic is forwarded unmodified, "
+                "restore `headroom._core` to re-enable compression",
+                _rust_core_error,
+            )
+
+        _configure_observability_or_refuse()
+
+        app.state.started_at = time.time()
+        app.state.ready = False
+        app.state.startup_error = None
+        app.state.periodic_toin_stats_task = None
+        app.state.periodic_malloc_trim_task = None
+        app.state.orphan_watchdog_task = None
+
+        try:
+            try:
+                previous_handler = _install_loop_exception_handler()
+                # Startup
+                await proxy.startup()
+                if config.periodic_toin_stats_enabled:
+                    app.state.periodic_toin_stats_task = asyncio.create_task(
+                        _log_toin_stats_periodically()
+                    )
+                # Per-worker on purpose: allocator state is per-process, so
+                # every worker must trim its own zones (no beacon-owner gate).
+                if config.periodic_malloc_trim_enabled:
+                    app.state.periodic_malloc_trim_task = asyncio.create_task(
+                        trim_periodically(config.malloc_trim_interval_seconds)
+                    )
+                # Only wrap-spawned proxies carry the env marker; standalone
+                # `headroom proxy` and persistent installs never self-exit.
+                # Multi-worker runs (HEADROOM_PROXY_CONFIG_JSON is set before
+                # forking workers) are excluded: WS sessions are per-worker,
+                # so no single worker can observe "zero active sessions", and
+                # wrap never requests multiple workers anyway.
+                if orphan_watchdog_enabled() and _MULTI_WORKER_CONFIG_ENV not in os.environ:
+                    app.state.orphan_watchdog_task = asyncio.create_task(
+                        orphan_watchdog_loop(proxy, grace_seconds=orphan_grace_seconds()),
+                        name="headroom-orphan-watchdog",
+                    )
+                if proxy.usage_reporter:
+                    await proxy.usage_reporter.start(proxy)
+                if proxy.traffic_learner:
+                    await proxy.traffic_learner.start()
+                if proxy._background_compression_enabled:
+                    await proxy._background_compressor.start()
+
+                # Elect the single owner worker (first worker wins the lock).
+                _beacon_is_owner[0] = _try_acquire_beacon_lock()
+
+                # Only the owner worker runs the reconciler. With uvicorn
+                # workers > 1 each worker runs this lifespan; without this guard
+                # every worker would watch + rewrite settings.json concurrently
+                # and each process would hold its own HeadroomProxy.ANTHROPIC_API_URL,
+                # so workers could disagree on the upstream.
+                if _cc_reconciler is not None and _beacon_is_owner[0]:
+                    await _cc_reconciler.start()
+
+                app.state.ready = True
+                yield
+            except Exception as exc:
+                app.state.startup_error = str(exc)
+                raise
+        finally:
+            loop: asyncio.AbstractEventLoop | None
+            previous: LoopExceptionHandler | None
+            try:
+                loop = asyncio.get_running_loop()
+                previous = previous_handler
+            except RuntimeError:
+                loop = None
+                previous = app.state.previous_loop_exception_handler
+            if loop is not None:
+                loop.set_exception_handler(previous)
+
+            app.state.ready = False
+            logger.info("event=proxy_shutdown reason=signal pid=%d", os.getpid())
+
+            async def _timed(coro: Any, *, label: str, timeout: float) -> None:
+                try:
+                    await asyncio.wait_for(coro, timeout=timeout)
+                except Exception as exc:
+                    logger.warning(
+                        "event=shutdown_step_timeout_or_error label=%s timeout=%.1fs exc=%r",
+                        label,
+                        timeout,
+                        exc,
+                    )
+
+            periodic_toin_stats_task = app.state.periodic_toin_stats_task
+            if periodic_toin_stats_task is not None:
+                periodic_toin_stats_task.cancel()
+                await _timed(
+                    asyncio.gather(periodic_toin_stats_task, return_exceptions=True),
+                    label="periodic_toin_stats.stop",
+                    timeout=3.0,
+                )
+                app.state.periodic_toin_stats_task = None
+
+            periodic_malloc_trim_task = app.state.periodic_malloc_trim_task
+            if periodic_malloc_trim_task is not None:
+                periodic_malloc_trim_task.cancel()
+                await _timed(
+                    asyncio.gather(periodic_malloc_trim_task, return_exceptions=True),
+                    label="periodic_malloc_trim.stop",
+                    timeout=3.0,
+                )
+                app.state.periodic_malloc_trim_task = None
+
+            orphan_watchdog_task = app.state.orphan_watchdog_task
+            if orphan_watchdog_task is not None:
+                orphan_watchdog_task.cancel()
+                await _timed(
+                    asyncio.gather(orphan_watchdog_task, return_exceptions=True),
+                    label="orphan_watchdog.stop",
+                    timeout=3.0,
+                )
+                app.state.orphan_watchdog_task = None
+
+            if _cc_reconciler is not None:
+                await _timed(_cc_reconciler.stop(), label="cc_reconciler.stop", timeout=3.0)
+            if _beacon_is_owner[0]:
+                _release_beacon_lock()
+            if proxy.usage_reporter:
+                await _timed(proxy.usage_reporter.stop(), label="usage_reporter.stop", timeout=3.0)
+            if proxy.traffic_learner:
+                await _timed(
+                    proxy.traffic_learner.stop(), label="traffic_learner.stop", timeout=3.0
+                )
+            if proxy._background_compression_enabled:
+                await _timed(
+                    proxy._background_compressor.stop(),
+                    label="background_compressor.stop",
+                    timeout=3.0,
+                )
+            proxy._background_compression_executor.shutdown(wait=False)
+            if proxy.code_graph_watcher:
+                proxy.code_graph_watcher.stop()
+            await _timed(proxy.shutdown(), label="proxy.shutdown", timeout=5.0)
+            shutdown_headroom_tracing()
+            shutdown_otel_metrics()
+
+    app = FastAPI(
+        title="Headroom Proxy",
+        description="Production-ready LLM optimization proxy",
+        version=__version__,
+        lifespan=lifespan,
+    )
+    app.add_middleware(WebSocketProjectPrefixMiddleware)
+    loop_health_state: LoopHealthState = {
+        "status": "healthy",
+        "known_failures": 0,
+        "last_known_failure": None,
+    }
+    app.state.proxy = proxy
+    app.state.started_at = None
+    app.state.ready = False
+    app.state.startup_error = None
+    app.state.loop_callback_health = loop_health_state
+    app.state.loop_exception_handler = None
+    app.state.previous_loop_exception_handler = None
+    # Set by the lifespan startup smoke test (`_check_rust_core`). Default
+    # "missing" means lifespan hasn't run yet — anything reading /health
+    # before startup completes (rare; lifespan runs before the first
+    # request) sees an honest "missing" rather than a stale "loaded".
+    app.state.rust_core_status = "missing"
+    app.state.rust_core_error = None
+
+    def _iso_utc_now() -> str:
+        return datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+
+    def _uptime_seconds() -> float:
+        started_at = getattr(app.state, "started_at", None)
+        if not isinstance(started_at, int | float):
+            return 0.0
+        return round(max(0.0, time.time() - float(started_at)), 3)
+
+    def _component_health(
+        *,
+        enabled: bool,
+        ready: bool,
+        optional: bool = False,
+        **details: Any,
+    ) -> dict[str, Any]:
+        if not enabled:
+            status = "disabled"
+        elif ready:
+            status = "healthy"
+        elif optional:
+            # Optional/non-gating components report "degraded" rather than
+            # "unhealthy" so the top-level status: "healthy" / ready: true
+            # payload is not contradicted by a component-level failure label.
+            status = "degraded"
+        else:
+            status = "unhealthy"
+        result: dict[str, Any] = {
+            "enabled": enabled,
+            "ready": (ready if enabled else True),
+            "status": status,
+        }
+        if optional:
+            result["optional"] = True
+        result.update(details)
+        return result
+
+    def _kompress_health_routers() -> list[ContentRouter]:
+        return _kompress_routers(proxy)
+
+    def _reconcile_kompress_health() -> bool:
+        if not _kompress_health_routers():
+            return False
+
+        for compressor in _kompress_compressors(proxy):
+            try:
+                if not compressor.is_ready():
+                    continue
+                backend = compressor.ready_backend()
+                if not backend:
+                    continue
+            except Exception:
+                continue
+            if proxy.warmup.kompress.status == "loaded":
+                return True
+            proxy.warmup.kompress.mark_loaded(
+                handle=compressor, backend=backend, source_status="runtime"
+            )
+            return True
+
+        try:
+            from headroom.transforms.kompress_compressor import HF_MODEL_ID, _kompress_cache
+        except ImportError:
+            return True
+
+        cached = _kompress_cache.get(HF_MODEL_ID)
+        if cached is not None:
+            try:
+                model, _tokenizer, backend = cached
+            except (TypeError, ValueError):
+                pass
+            else:
+                if backend and proxy.warmup.kompress.status != "loaded":
+                    proxy.warmup.kompress.mark_loaded(
+                        handle=model, backend=backend, source_status="runtime"
+                    )
+        return True
+
+    def _kompress_detail() -> str:
+        """Human-readable reason behind the kompress readiness bit.
+
+        ``ready=false`` on its own is ambiguous — the model may be warming in
+        the background, missing from the local cache, or the extras may not be
+        installed at all (GH #2730).
+
+        This value is served by the auth-exempt ``/health`` and ``/readyz``, so
+        every candidate goes through :func:`public_detail` and anything outside
+        ``KOMPRESS_HEALTH_DETAILS`` collapses to ``unavailable``. That matters
+        most for ``slot.error``, which carries raw loader exception text.
+        ``/debug/warmup`` and the proxy log still hold the precise cause.
+        """
+        slot = proxy.warmup.kompress
+        if slot.status == "loaded":
+            return KOMPRESS_DETAIL_LOADED
+        detail = slot.info.get("detail")
+        if isinstance(detail, str) and detail:
+            return public_detail(detail)
+        if slot.error:
+            return public_detail(slot.error)
+        warm_thread = getattr(proxy, "_kompress_warm_thread", None)
+        if warm_thread is not None and warm_thread.is_alive():
+            return KOMPRESS_DETAIL_WARMING
+        source_status = slot.info.get("source_status")
+        if isinstance(source_status, str) and source_status:
+            return public_detail(source_status)
+        return KOMPRESS_DETAIL_NOT_INSTALLED
+
+    def _health_checks() -> dict[str, dict[str, Any]]:
+        from headroom.cache.redis_client import states as _redis_states
+
+        features = _redis_states()
+        kompress_enabled = _reconcile_kompress_health()
+        memory_status = (
+            proxy.memory_handler.health_status()
+            if proxy.memory_handler
+            else {
+                "enabled": False,
+                "backend": None,
+                "initialized": False,
+                "native_tool": False,
+                "bridge_enabled": False,
+            }
+        )
+        memory_enabled = bool(memory_status.get("enabled", False))
+        memory_initialized = bool(memory_status.get("initialized", False))
+        session_store_enabled = bool(features)
+        session_store_ready = session_store_enabled and all(
+            v == "available" for v in features.values()
+        )
+        return {
+            "startup": _component_health(
+                enabled=True,
+                ready=bool(getattr(app.state, "ready", False)),
+                error=getattr(app.state, "startup_error", None),
+            ),
+            "http_client": _component_health(
+                enabled=True,
+                ready=proxy.http_client is not None,
+            ),
+            "cache": _component_health(
+                enabled=config.cache_enabled,
+                ready=(proxy.cache is not None),
+            ),
+            "rate_limiter": _component_health(
+                enabled=config.rate_limit_enabled,
+                ready=(proxy.rate_limiter is not None),
+            ),
+            "memory": _component_health(
+                enabled=memory_enabled,
+                ready=memory_initialized,
+                backend=memory_status["backend"],
+                initialized=memory_initialized,
+                native_tool=bool(memory_status.get("native_tool", False)),
+                bridge_enabled=bool(memory_status.get("bridge_enabled", False)),
+            ),
+            "upstream": _component_health(
+                enabled=os.environ.get("HEADROOM_SKIP_UPSTREAM_CHECK", "").strip() != "1",
+                ready=bool(_upstream_check_cache["ok"]),
+                url=_upstream_check_cache["url"],
+                error=_upstream_check_cache["error"],
+            ),
+            "kompress": _component_health(
+                enabled=kompress_enabled,
+                ready=proxy.warmup.kompress.status == "loaded",
+                optional=True,
+                backend=proxy.warmup.kompress.info.get("backend", None),
+                detail=_kompress_detail(),
+            ),
+            "session_store": _component_health(
+                enabled=session_store_enabled,
+                ready=session_store_ready,
+                optional=True,
+                features=features,
+            ),
+        }
+
+    def _runtime_payload() -> dict[str, Any]:
+        ws_registry = getattr(proxy, "ws_sessions", None)
+        ws_active_sessions = ws_registry.active_count() if ws_registry is not None else 0
+        ws_active_relay_tasks = (
+            ws_registry.active_relay_task_count() if ws_registry is not None else 0
+        )
+        # Snapshot compression executor metrics under their lock (gauges
+        # mutated by worker threads; not safe to read without).
+        with proxy._compression_metrics_lock:
+            _comp_queued = proxy._compression_queued
+            _comp_queued_max = proxy._compression_queued_max
+            _comp_queue_timeouts = proxy._compression_queue_timeouts
+            _comp_queue_wait_total = proxy._compression_queue_wait_seconds_total
+            _comp_queue_wait_max = proxy._compression_queue_wait_seconds_max
+            _comp_in_flight = proxy._compression_in_flight
+            _comp_in_flight_max = proxy._compression_in_flight_max
+            _comp_run_total = proxy._compression_run_seconds_total
+            _comp_run_max = proxy._compression_run_seconds_max
+            _comp_leaked = proxy._compression_timed_out_workers_total
+            _comp_timed_out_in_flight = proxy._compression_timed_out_in_flight
+            _comp_quarantine_active = (
+                _comp_timed_out_in_flight >= proxy._compression_quarantine_threshold
+                and time.monotonic() < proxy._compression_quarantine_deadline
+            )
+            _comp_timed_out_in_flight_max = proxy._compression_timed_out_in_flight_max
+            _comp_quarantine_activations = proxy._compression_quarantine_activations
+            _comp_quarantine_skips = proxy._compression_quarantine_skips
+        return {
+            "anthropic_pre_upstream": {
+                "enabled": proxy.anthropic_pre_upstream_sem is not None,
+                "resolved_concurrency": proxy.anthropic_pre_upstream_concurrency,
+                "source": (
+                    "auto" if config.anthropic_pre_upstream_concurrency is None else "explicit"
+                ),
+                "acquire_timeout_seconds": proxy.anthropic_pre_upstream_acquire_timeout_seconds,
+                "compression_timeout_seconds": float(COMPRESSION_TIMEOUT_SECONDS),
+                "memory_context_timeout_seconds": (
+                    proxy.anthropic_pre_upstream_memory_context_timeout_seconds
+                ),
+                "codex_ws_gated": False,
+            },
+            "compression_executor": {
+                "max_workers": proxy.compression_max_workers,
+                "queued": _comp_queued,
+                "queued_max": _comp_queued_max,
+                "queue_timeouts_total": _comp_queue_timeouts,
+                "queue_wait_seconds_total": _comp_queue_wait_total,
+                "queue_wait_seconds_max": _comp_queue_wait_max,
+                "running": _comp_in_flight,
+                "in_flight": _comp_in_flight,
+                "in_flight_max": _comp_in_flight_max,
+                "run_seconds_total": _comp_run_total,
+                "run_seconds_max": _comp_run_max,
+                "leaked_threads_total": _comp_leaked,
+                # Canonical name: this is a cumulative count of workers that
+                # finished after their deadline, not live stuck threads.
+                # `leaked_threads_total` is kept as a deprecated alias so
+                # existing dashboards and watchdogs keep working (#3653).
+                "timed_out_workers_total": _comp_leaked,
+                "quarantine_active": _comp_quarantine_active,
+                "timed_out_workers": _comp_timed_out_in_flight,
+                "timed_out_workers_max": _comp_timed_out_in_flight_max,
+                "quarantine_activations_total": _comp_quarantine_activations,
+                "quarantine_skips_total": _comp_quarantine_skips,
+                "source": ("auto" if config.compression_max_workers is None else "explicit"),
+            },
+            "websocket_sessions": {
+                "active_sessions": ws_active_sessions,
+                "active_relay_tasks": ws_active_relay_tasks,
+            },
+        }
+
+    def _loop_callback_payload() -> LoopHealthState:
+        return {
+            "status": loop_health_state["status"],
+            "known_failures": loop_health_state["known_failures"],
+            "last_known_failure": loop_health_state["last_known_failure"],
+        }
+
+    def _install_loop_exception_handler() -> LoopExceptionHandler | None:
+        try:
+            loop = asyncio.get_running_loop()
+        except RuntimeError:
+            return None
+
+        previous_handler = loop.get_exception_handler()
+
+        def _loop_exception_handler(
+            _loop: asyncio.AbstractEventLoop, context: dict[str, Any]
+        ) -> None:
+            if _is_known_websocket_callback_failure(context):
+                loop_health_state["status"] = "unhealthy"
+                loop_health_state["known_failures"] += 1
+                loop_health_state["last_known_failure"] = {
+                    "message": context.get("message"),
+                    "exception": str(context.get("exception"))
+                    if context.get("exception")
+                    else None,
+                }
+                return
+
+            delegate_handler = app.state.previous_loop_exception_handler
+            if delegate_handler is not None:
+                delegate_handler(_loop, context)
+                return
+            _loop.default_exception_handler(context)
+
+        loop.set_exception_handler(_loop_exception_handler)
+        app.state.loop_exception_handler = _loop_exception_handler
+        app.state.previous_loop_exception_handler = previous_handler
+        return previous_handler
+
+    def _health_payload(*, include_config: bool) -> dict[str, Any]:
+        checks = _health_checks()
+        # Optional soft components (kompress, session_store) must not degrade
+        # overall health: a cold model cache or a Redis backoff is not a failure.
+        ready = all(
+            check["ready"]
+            for name, check in checks.items()
+            if name not in ("kompress", "session_store")
+        )
+        payload: dict[str, Any] = {
+            "service": "headroom-proxy",
+            "status": "healthy" if ready else "unhealthy",
+            "ready": ready,
+            "version": __version__,
+            "timestamp": _iso_utc_now(),
+            "uptime_seconds": _uptime_seconds(),
+            "checks": checks,
+            "runtime": _runtime_payload(),
+            # Hotfix-A0: surface rust core load state so operators can alert
+            # on `rust_core != "loaded"` (Finding #2).
+            "rust_core": getattr(app.state, "rust_core_status", "missing"),
+        }
+        rust_core_error = getattr(app.state, "rust_core_error", None)
+        if rust_core_error:
+            payload["rust_core_error"] = rust_core_error
+        deployment_profile = os.environ.get("HEADROOM_DEPLOYMENT_PROFILE")
+        if deployment_profile:
+            payload["deployment"] = {
+                "profile": deployment_profile,
+                "preset": os.environ.get("HEADROOM_DEPLOYMENT_PRESET"),
+                "runtime": os.environ.get("HEADROOM_DEPLOYMENT_RUNTIME"),
+                "supervisor": os.environ.get("HEADROOM_DEPLOYMENT_SUPERVISOR"),
+                "scope": os.environ.get("HEADROOM_DEPLOYMENT_SCOPE"),
+            }
+        if include_config:
+            profile_kwargs = proxy_pipeline_kwargs(config)
+            effective_target_ratio = cast(
+                float | None,
+                profile_kwargs.get("target_ratio", config.target_ratio),
+            )
+            payload["config"] = {
+                # What *this* process trusts upstream; doctor reads it so it
+                # reports the proxy's policy, not the calling shell's.
+                "tls": describe_trust_policy(),
+                "backend": config.backend,
+                # Boot-time proxy mode; `headroom wrap` compares it to the
+                # session's requested mode when reusing this proxy.
+                "mode": config.mode,
+                "optimize": config.optimize,
+                "cache": config.cache_enabled,
+                "rate_limit": config.rate_limit_enabled,
+                "disable_kompress": config.disable_kompress,
+                "disable_kompress_fallback": config.disable_kompress_fallback,
+                "disable_kompress_anthropic": config.disable_kompress_anthropic,
+                "disable_kompress_openai": config.disable_kompress_openai,
+                "memory": config.memory_enabled,
+                "learn": config.traffic_learning_enabled,
+                "code_graph": config.code_graph_watcher,
+                "anthropic_api_url": config.anthropic_api_url,
+                "openai_api_url": config.openai_api_url,
+                "gemini_api_url": config.gemini_api_url,
+                "cloudcode_api_url": config.cloudcode_api_url,
+                "vertex_api_url": config.vertex_api_url,
+                "factory_api_url": config.factory_api_url,
+                "savings_profile": config.savings_profile,
+                # Enabled extension names only (no plugin state): `headroom
+                # wrap` carries them over when it has to start a dedicated
+                # proxy beside this one, so an enterprise sink is not lost.
+                "proxy_extensions": sorted(config.proxy_extensions or []),
+                "target_ratio": effective_target_ratio,
+                "target_savings_percent": (
+                    round(max(0.0, min(1.0, 1.0 - float(effective_target_ratio))) * 100, 1)
+                    if effective_target_ratio is not None
+                    else None
+                ),
+                "compress_user_messages": bool(
+                    profile_kwargs.get("compress_user_messages", config.compress_user_messages)
+                ),
+                "compress_system_messages": bool(
+                    profile_kwargs.get(
+                        "compress_system_messages",
+                        config.compress_system_messages,
+                    )
+                ),
+                "protect_recent": profile_kwargs.get(
+                    "read_protection_window",
+                    config.protect_recent,
+                ),
+                "protect_analysis_context": profile_kwargs.get(
+                    "protect_analysis_context",
+                    config.protect_analysis_context,
+                ),
+                "min_tokens_to_crush": profile_kwargs.get(
+                    "min_tokens_to_compress",
+                    config.min_tokens_to_crush,
+                ),
+                "exclude_tools": sorted(
+                    {
+                        *DEFAULT_EXCLUDE_TOOLS,
+                        *(config.exclude_tools or ()),
+                        *(config.protect_tool_results or ()),
+                    }
+                ),
+                "max_items_after_crush": profile_kwargs.get(
+                    "max_items_after_crush",
+                    config.max_items_after_crush,
+                ),
+                "smart_crusher_with_compaction": profile_kwargs.get(
+                    "smart_crusher_with_compaction",
+                    config.smart_crusher_with_compaction,
+                ),
+                "force_kompress": bool(profile_kwargs.get("force_kompress", False)),
+                "accuracy_guard": config.accuracy_guard,
+                # Live (per-request) env knobs the proxy reads after startup.
+                # Surfaced so `headroom wrap` can see what a reused proxy is
+                # actually using and hot-sync it via /admin/runtime-env.
+                "runtime_env": runtime_env.effective_runtime_env(),
+                "pid": os.getpid(),
+            }
+        return payload
+
+    # ---------------------------------------------------------------------------
+    # Upstream connectivity check — cached to avoid hammering the upstream on
+    # every /readyz poll.  Set HEADROOM_SKIP_UPSTREAM_CHECK=1 to opt out (e.g.
+    # in air-gapped or test environments where the upstream isn't reachable at
+    # startup time).
+    # ---------------------------------------------------------------------------
+
+    _UPSTREAM_CHECK_TTL = 30.0  # seconds
+    _upstream_check_cache: dict[str, Any] = {
+        "expires_at": 0.0,
+        "ok": True,
+        "error": None,
+        "url": None,
+    }
+    _upstream_check_lock = asyncio.Lock()
+
+    def _upstream_target_url() -> str:
+        """Return the primary upstream base URL to probe."""
+        # Use the resolved API target from the provider runtime so we respect
+        # any overrides set by ProxyConfig.anthropic_api_url / env vars.
+        return proxy.provider_runtime.api_targets.anthropic
+
+    async def _check_upstream() -> None:
+        """Probe the upstream API endpoint and update the cached result.
+
+        Uses a HEAD request with a 5-second timeout — just enough to verify
+        TLS + TCP reachability without triggering an inference call.
+        """
+        if os.environ.get("HEADROOM_SKIP_UPSTREAM_CHECK", "").strip() == "1":
+            # Opt-out: treat upstream as always reachable.
+            _upstream_check_cache["ok"] = True
+            _upstream_check_cache["error"] = None
+            _upstream_check_cache["expires_at"] = time.monotonic() + _UPSTREAM_CHECK_TTL
+            return
+
+        now = time.monotonic()
+        # Fast-path: return if the cached result is still fresh (no lock needed
+        # for a simple float comparison — worst case we re-check twice).
+        if now < _upstream_check_cache["expires_at"]:
+            return
+
+        async with _upstream_check_lock:
+            # Re-check inside the lock to handle concurrent waiters.
+            if time.monotonic() < _upstream_check_cache["expires_at"]:
+                return
+            url = _upstream_target_url()
+            _upstream_check_cache["url"] = url
+            client = proxy.http_client
+            if client is None:
+                _upstream_check_cache["ok"] = False
+                _upstream_check_cache["error"] = "proxy client not initialised"
+                _upstream_check_cache["expires_at"] = time.monotonic() + _UPSTREAM_CHECK_TTL
+                return
+            try:
+                resp = await client.head(url, timeout=5.0)
+                # Any HTTP response (even 4xx/5xx) means TLS+TCP worked.
+                _ = resp.status_code
+                _upstream_check_cache["ok"] = True
+                _upstream_check_cache["error"] = None
+            except Exception as exc:  # noqa: BLE001
+                _upstream_check_cache["ok"] = False
+                _upstream_check_cache["error"] = str(exc)
+            _upstream_check_cache["expires_at"] = time.monotonic() + _UPSTREAM_CHECK_TTL
+
+    # CORS: scoped to localhost by default. The old wildcard origin combined
+    # with allow_credentials=True let any web page the user had open read the
+    # proxy's content endpoints (e.g. /v1/retrieve returns raw, uncompressed
+    # tool outputs) via a cross-origin fetch to 127.0.0.1 (CWE-346).
+    #
+    # The default matches any loopback origin on any port via a regex, so it
+    # works regardless of the --port the proxy was started on without the app
+    # needing to know its own bound port (the port lives in the CLI/uvicorn
+    # layer, not in ProxyConfig). Set HEADROOM_CORS_ORIGINS (comma-separated)
+    # to pin an explicit allowlist for Docker or remote-dashboard deployments;
+    # "*" restores the old wildcard behaviour if the operator accepts the risk.
+    _default_loopback_origin_regex = r"https?://(localhost|127\.0\.0\.1|\[::1\])(:\d+)?"
+    _cors_origins_env = os.environ.get("HEADROOM_CORS_ORIGINS", "").strip()
+    if _cors_origins_env:
+        _cors_allow_origins = [o.strip() for o in _cors_origins_env.split(",") if o.strip()]
+        _cors_allow_origin_regex: str | None = None
+    else:
+        _cors_allow_origins = []
+        _cors_allow_origin_regex = _default_loopback_origin_regex
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=_cors_allow_origins,
+        allow_origin_regex=_cors_allow_origin_regex,
+        allow_credentials=False,
+        allow_methods=["GET", "POST"],
+        allow_headers=["Content-Type", "Authorization"],
+    )
+
+    # X-Headroom-Stack: SDK adapters (TS openai/anthropic/etc.) tag their
+    # requests so telemetry can segment by integration surface. Registered
+    # before extension middleware so any extension-level auth/guards run
+    # outermost and we don't count requests they reject.
+    @app.middleware("http")
+    async def _record_headroom_stack(request, call_next):
+        started = time.perf_counter()
+        inbound_id = f"inbound-{time.time_ns()}"
+        # Project attribution: an explicit X-Headroom-Project header wins
+        # (claude/codex wraps); otherwise a /p/<name> base-URL prefix (aider,
+        # Copilot BYOK, Cursor — clients that cannot send custom headers).
+        # The prefix strip mutates the scope, so it must happen before
+        # request.url is first accessed (Starlette caches the URL).
+        prefix_project = strip_project_path_prefix(request.scope)
+        path = request.url.path
+        method = request.method
+        query = request.url.query
+        headers = dict(request.headers.items())
+        set_current_project(classify_project(headers) or prefix_project)
+        # Non-None only if a live wrap session registered this exact token
+        # (workspace_registry.py) -- the caller-supplied x-headroom-cwd
+        # header is never itself sufficient authority.
+        set_registered_cwd(
+            resolve_registered_cwd(config.port, headers.get("x-headroom-session-token"))
+        )
+        # Path-based Codex identification: stamp X-Client: codex on the
+        # Responses endpoint for callers that don't otherwise classify (e.g.
+        # Codex Desktop, whose User-Agent isn't a known codex UA). Without it
+        # the backend refuses oversized
+        # requests with a 413 on a compression timeout, which Codex treats as a
+        # hard connection failure. Mutating scope["headers"] before call_next
+        # makes every downstream classify_client(headers) read "codex".
+        if should_stamp_codex_client(path, headers):
+            request.scope["headroom_codex_client_stamped"] = True
+            request.scope["headers"].append((b"x-client", b"codex"))
+        client = getattr(request, "client", None)
+        client_addr = ""
+        if client is not None:
+            client_host = getattr(client, "host", None)
+            client_port = getattr(client, "port", None)
+            client_addr = f"{client_host}:{client_port}" if client_port else str(client_host)
+        try:
+            proxy.metrics.record_inbound_request(method=method, path=path)
+        except Exception:
+            logger.debug("record_inbound_request failed", exc_info=True)
+        try:
+            from headroom.proxy.helpers import redact_for_wire_debug
+
+            safe_headers = redact_for_wire_debug(headers)
+        except Exception:
+            safe_headers = {"redaction_error": True}
+        # A desktop or orchestrator polls these every few seconds; at INFO they
+        # filled half of an idle proxy log and cut a busy one's history to hours.
+        line_level = (
+            logging.DEBUG if method == "GET" and path in _HEALTH_PROBE_PATHS else logging.INFO
+        )
+        logger.log(
+            line_level,
+            "event=proxy_inbound_request id=%s method=%s path=%s query=%s client=%s "
+            "content_length=%s headers=%s",
+            inbound_id,
+            method,
+            path,
+            redact_query_string_for_log(query),
+            client_addr,
+            request.headers.get("content-length", ""),
+            json.dumps(safe_headers, ensure_ascii=False, default=str),
+        )
+        if request.url.path.startswith("/v1/"):
+            stack = request.headers.get("x-headroom-stack")
+            if stack:
+                try:
+                    proxy.metrics.record_stack(stack)
+                except Exception:
+                    logger.debug("record_stack failed", exc_info=True)
+        if method == "POST":
+            # The harness's own release, for the anonymous beacon. Every route,
+            # not only /v1/: Gemini, Bedrock and ChatGPT-auth Codex live
+            # elsewhere. Only the middleware sees the User-Agent; nothing but a
+            # known harness name and a numeric version leaves this call.
+            try:
+                harness = client_version_from_user_agent(headers.get("user-agent", ""))
+                if harness:
+                    record_client_version(*harness)
+            except Exception:
+                logger.debug("record_client_version failed", exc_info=True)
+        try:
+            response = await call_next(request)
+        except asyncio.CancelledError:
+            try:
+                proxy.metrics.record_inbound_aborted(reason="cancelled")
+            except Exception:
+                logger.debug("record_inbound_aborted failed", exc_info=True)
+            logger.info(
+                "event=proxy_inbound_request_aborted id=%s method=%s path=%s reason=cancelled "
+                "duration_ms=%.2f",
+                inbound_id,
+                method,
+                path,
+                (time.perf_counter() - started) * 1000.0,
+            )
+            raise
+        except Exception as exc:
+            try:
+                proxy.metrics.record_inbound_aborted(reason=type(exc).__name__)
+            except Exception:
+                logger.debug("record_inbound_aborted failed", exc_info=True)
+            logger.error(
+                "event=proxy_inbound_request_aborted id=%s method=%s path=%s reason=%s "
+                "duration_ms=%.2f",
+                inbound_id,
+                method,
+                path,
+                type(exc).__name__,
+                (time.perf_counter() - started) * 1000.0,
+                exc_info=True,
+            )
+            raise
+        try:
+            proxy.metrics.record_inbound_response(status_code=response.status_code)
+        except Exception:
+            logger.debug("record_inbound_response failed", exc_info=True)
+        logger.log(
+            line_level,
+            "event=proxy_inbound_response id=%s method=%s path=%s status=%s "
+            "duration_ms=%.2f response_content_length=%s",
+            inbound_id,
+            method,
+            path,
+            response.status_code,
+            (time.perf_counter() - started) * 1000.0,
+            response.headers.get("content-length", ""),
+        )
+        return response
+
+    # ── Security gate (outermost of the HTTP middlewares) ─────────────────
+    # Three concerns, kept together because they all wrap every inbound HTTP
+    # request: optional inbound auth on the data plane, response security
+    # headers, and an audit trail for state-mutating admin endpoints.
+    # WebSocket handshakes are covered separately — see the
+    # WebSocketAuthMiddleware registration just below this block.
+    #
+    # Ordering contract. Starlette's ``add_middleware`` prepends, so the LAST
+    # layer registered is the OUTERMOST at request time. Everything below is
+    # therefore registered inner-to-outer, and the order is load-bearing:
+    #
+    #   1. third-party extensions (``install_all``)   — innermost of the three
+    #   2. RequestBodyLimitMiddleware                 — bounds bodies before
+    #                                                    any extension buffers one
+    #   3. _security_gate + WebSocketAuthMiddleware   — outermost: auth first
+    #
+    # Extensions used to install *after* the gate, which made their middleware
+    # the outermost layer: an extension that answered a request itself, or
+    # buffered its body, or rewrote ``Authorization``, did so before the proxy
+    # token was ever checked. ``tests/test_proxy_extension_ordering.py`` pins
+    # the order; ``extensions.py`` documents it for extension authors.
+    _proxy_token = config.proxy_token or os.environ.get("HEADROOM_PROXY_TOKEN") or None
+    # Pre-encode once for constant-time comparison (compare_digest on str raises
+    # TypeError for non-ASCII input, which would turn a 401 into a 500).
+    _proxy_token_bytes = _proxy_token.encode("utf-8") if _proxy_token else b""
+    # Health/readiness probes must stay reachable without a token so
+    # orchestrators can check a container that binds non-loopback.
+    #
+    # The exemption covers only GET, and only paths with a GET handler below.
+    # Anything else on these paths falls through to the catch-all passthrough
+    # relay (FastAPI's @app.get does not register HEAD), so exempting it would
+    # let an unauthenticated caller relay arbitrary requests upstream.
+    _AUTH_EXEMPT_PATHS = _HEALTH_PROBE_PATHS
+
+    # A non-loopback bind with no token is the exact shape (``--host 0.0.0.0``
+    # from any launcher) that exposes the unauthenticated /v1/* relay to the
+    # surrounding network. It used to be a warning; it is now refused unless
+    # the operator acknowledges it explicitly (see bind_policy.py). Enforced
+    # here, not only in run_server, so programmatic embeddings and the
+    # multi-worker factory get the same guarantee.
+    from headroom.proxy.bind_policy import enforce_bind_policy
+
+    _bind_decision = enforce_bind_policy(getattr(config, "host", None), _proxy_token)
+
+    def _apply_security_headers(response) -> None:
+        # setdefault: never clobber a header an upstream/handler already set.
+        response.headers.setdefault("X-Content-Type-Options", "nosniff")
+        response.headers.setdefault("X-Frame-Options", "DENY")
+        response.headers.setdefault("Referrer-Policy", "no-referrer")
+        response.headers.setdefault(
+            "Strict-Transport-Security", "max-age=31536000; includeSubDomains"
+        )
+
+    # Third-party proxy extensions (Enterprise, custom plugins). Discovered via
+    # the `headroom.proxy_extension` entry-point group, but **opt-in only**:
+    # only names listed in config.proxy_extensions (CLI: --proxy-extension,
+    # env: HEADROOM_PROXY_EXTENSIONS) actually get installed. Discovery alone
+    # never runs third-party code. An extension that raises from its install()
+    # disables *itself*: `install_all` logs it, prints a SKIPPED line to stderr
+    # and the proxy keeps serving without that extension (extensions.py).
+    # One bad plugin must not brick the proxy. Note the consequence: a plugin
+    # whose licence gate raises is absent, not fatal — the feature fails closed,
+    # the process does not.
+    #
+    # The exception is an extension that marks its install() `fail_closed`
+    # (e.g. one that mints the upstream credential): running without it would
+    # relay the client's own Authorization upstream, so `install_all` re-raises
+    # and create_app fails instead of serving mis-authenticated. See #4737.
+    #
+    # Installed HERE, before the body limit and the security gate are
+    # registered, so any middleware an extension adds sits INSIDE both (see the
+    # ordering contract above). Routes an extension registers are unaffected
+    # by position. ``_proxy_token`` was read above, before extensions ran, so
+    # an extension cannot change which credential the gate enforces.
+    from headroom.proxy.extensions import install_all as _install_extensions
+
+    _install_extensions(app, config, enabled=getattr(config, "proxy_extensions", None))
+
+    # Body ceiling for everything inside it (extensions and handlers alike).
+    # The handlers keep their own streaming check — this layer exists so that
+    # an extension middleware reading the body is bounded too, and so a
+    # declared oversize Content-Length is refused before any body is read.
+    app.add_middleware(RequestBodyLimitMiddleware)
+
+    # Delegates so the HTTP gate and WebSocketAuthMiddleware read a credential
+    # by exactly one rule; they guard the same token on two transports.
+    _extract_proxy_token = read_proxy_token
+
+    @app.middleware("http")
+    async def _security_gate(request, call_next):
+        # 0) Browser provenance. Runs before the token check because loopback
+        #    callers skip that check, and a page in the user's browser reaches
+        #    the proxy as a loopback caller.
+        if _is_refused_browser_request(request):
+            logger.warning(
+                "event=proxy_browser_origin_rejected method=%s path=%s origin=%s",
+                request.method,
+                _auth_rejection_path(request.url.path),
+                _auth_rejection_path(request.headers.get("origin") or "-"),
+            )
+            rejection = JSONResponse(
+                status_code=403,
+                content={
+                    "error": "cross-origin request rejected",
+                    "hint": "add this page's origin to HEADROOM_WS_ORIGINS to allow it",
+                },
+            )
+            _apply_security_headers(rejection)
+            return rejection
+
+        # 1) Optional inbound auth. When a token is configured, require it on
+        #    non-loopback requests; loopback callers and health probes are
+        #    exempt. Loopback is the same trust boundary the admin/debug
+        #    endpoints already use (see loopback_guard).
+        if _proxy_token:
+            path = request.url.path
+            client = getattr(request, "client", None)
+            client_host = getattr(client, "host", None) if client is not None else None
+            # Anthropic SDK clients (Claude Code among them) probe reachability
+            # with an unauthenticated GET/HEAD /api/hello that never carries
+            # custom headers, so it cannot hold the proxy token. Let it past
+            # the token check, marked so its passthrough route answers it
+            # locally and empty instead of relaying an anonymous request
+            # upstream. It still runs through extension middleware, which sits
+            # inside this gate and may refuse it. The path is matched as
+            # routed: a /p/<project> prefix is only stripped further in.
+            hello_probe = (
+                request.method in ("GET", "HEAD") and split_project_path(path)[1] == "/api/hello"
+            )
+            if hello_probe:
+                request.state.headroom_local_hello_probe = True
+            exempt = hello_probe or (request.method == "GET" and path in _AUTH_EXEMPT_PATHS)
+            if not exempt and not is_loopback_host(client_host):
+                provided = _extract_proxy_token(request.headers)
+                if provided is None or not hmac.compare_digest(
+                    provided.encode("utf-8", "replace"), _proxy_token_bytes
+                ):
+                    user_agent, forwarded_for = _auth_rejection_context(request.headers)
+                    logger.warning(
+                        "event=proxy_auth_rejected method=%s path=%s client=%s reason=%s "
+                        "ua=%s xff=%s",
+                        request.method,
+                        _auth_rejection_path(path),
+                        client_host,
+                        "missing_token" if provided is None else "bad_token",
+                        user_agent,
+                        forwarded_for,
+                    )
+                    rejection = JSONResponse(status_code=401, content={"error": "unauthorized"})
+                    _apply_security_headers(rejection)
+                    return rejection
+                # The caller proved it holds the proxy token. The rate limiter
+                # keys authenticated callers per credential and everyone else
+                # per peer (headroom/proxy/rate_limit_identity.py).
+                request.state.proxy_authenticated = True
+
+        # The credential has done its job; take it off the request so no handler
+        # can forward it upstream. Runs on the exempt paths too, since a loopback
+        # caller's token is no more the provider's business than a remote one's.
+        scrub_proxy_token_headers(request.scope, _proxy_token_bytes)
+        response = await call_next(request)
+        _apply_security_headers(response)
+
+        # 2) Audit trail for admin / state-mutating endpoints.
+        try:
+            if is_auditable_path(request.url.path):
+                record_admin_action(
+                    request=request,
+                    action="admin_request",
+                    status_code=response.status_code,
+                )
+        except Exception as exc:
+            logger.warning(
+                "Admin audit record not written for %s %s (%s); this request is missing "
+                "from the headroom.audit trail. Please report this as a bug.",
+                request.method,
+                safe_id(request.url.path),
+                describe_exception(exc),
+            )
+        return response
+
+    # The gate above is http-only (BaseHTTPMiddleware ignores every other
+    # scope), so the same token rule is applied to the `websocket` scope here.
+    # Added after it, which makes it the outermost layer — an unauthenticated
+    # handshake is refused before any project-prefix or routing work happens.
+    app.add_middleware(WebSocketAuthMiddleware, proxy_token=_proxy_token)
+
+    # Health & Metrics
+    @app.get("/livez")
+    async def livez():
+        callback_state = _loop_callback_payload()
+        healthy = callback_state["status"] == "healthy"
+        return JSONResponse(
+            status_code=200 if healthy else 503,
+            content={
+                "service": "headroom-proxy",
+                "status": "healthy" if healthy else "unhealthy",
+                "alive": healthy,
+                "version": __version__,
+                "timestamp": _iso_utc_now(),
+                "uptime_seconds": _uptime_seconds(),
+                "loop_health": callback_state,
+            },
+        )
+
+    @app.get("/readyz")
+    async def readyz():
+        await _check_upstream()
+        payload = _health_payload(include_config=False)
+        return JSONResponse(status_code=200 if payload["ready"] else 503, content=payload)
+
+    @app.get("/health")
+    async def health(request: Request):
+        await _check_upstream()
+        # /health echoes upstream API URLs + backend config (the `config`
+        # block). That is operational detail an external scanner should not
+        # see, so include it only for loopback callers; network callers get the
+        # same body as /readyz (status + checks, no config). /livez and /readyz
+        # remain the unauthenticated probes for orchestration health.
+        payload = _health_payload(include_config=_request_is_loopback(request))
+        return JSONResponse(status_code=200, content=payload)
+
+    # Loopback-only debug introspection (Unit 5). A remote IP gets 404 —
+    # debug endpoints are invisible to external scanners.
+    from headroom.proxy.debug_introspection import (
+        collect_tasks as _collect_tasks,
+    )
+    from headroom.proxy.loopback_guard import (
+        is_container_host_gateway,
+    )
+    from headroom.proxy.loopback_guard import (
+        require_loopback as _require_loopback,
+    )
+    from headroom.proxy.loopback_guard import (
+        require_loopback_or_container_gateway as _require_loopback_or_container_gateway,
+    )
+    from headroom.proxy.loopback_guard import (
+        require_same_origin as _require_same_origin,
+    )
+
+    def _require_loopback_or_trusted_dashboard_client(request: Request) -> None:
+        """Allow loopback callers, or gateway-forwarded dashboard clients.
+
+        Mirrors the trust chain already used by /stats and /stats-lifetime
+        (see _request_can_view_dashboard_metadata) so the settings UI works
+        the same way behind a reverse-proxy/gateway (issue #2466).
+        """
+        if not _request_can_view_dashboard_metadata(request, trusted_dashboard_client_cidrs):
+            raise HTTPException(status_code=404)
+
+    def _require_loopback_or_trusted_dashboard_client_for_write(request: Request) -> None:
+        """Like the read guard, but a trusted-gateway peer is not loopback.
+
+        The gateway-CIDR equivalence exists for read-only dashboard views; it
+        must not confer settings writes (nor /settings/apply's restart).
+        """
+        if not _request_can_view_dashboard_metadata(
+            request, trusted_dashboard_client_cidrs, allow_gateway_peer=False
+        ):
+            raise HTTPException(status_code=404)
+
+    def _authenticated_at_gate(request: Request) -> bool:
+        """True when the security gate verified this request's proxy token.
+
+        The gate exempts loopback peers without checking the ``Host`` header,
+        so only a *non-loopback* request that reached a handler while a token
+        is configured has proven it holds the token. A loopback peer must
+        still pass the loopback (peer + Host) check: the DNS-rebinding defence.
+        """
+        client = getattr(request, "client", None)
+        return bool(_proxy_token) and not is_loopback_host(getattr(client, "host", None))
+
+    def _is_host_of_loopback_published_container(request: Request) -> bool:
+        """True for the host's own dashboard reaching a loopback-published container.
+
+        Docker relays a ``127.0.0.1:<port>`` publication into the container from
+        the bridge gateway, so the host browser's TCP peer is that gateway, not
+        127.0.0.1. The shipped launchers acknowledge their token-less 0.0.0.0
+        bind only together with that loopback publication, so under the
+        acknowledgement the gateway peer can only be a process on the host.
+        Matches the exact TCP peer (never a forwarded header, never another
+        container on the bridge) and keeps the loopback Host check.
+        """
+        if not (_bind_decision.open_bind and _bind_decision.acknowledged):
+            return False
+        client = getattr(request, "client", None)
+        peer = getattr(client, "host", None) if client is not None else None
+        return is_container_host_gateway(peer) and is_loopback_host_header(
+            request.headers.get("host")
+        )
+
+    def _require_operator_read_client(request: Request) -> None:
+        """Gate the read-only operator routes (history, quota, subscription window).
+
+        A token-authenticated operator on a public bind is entitled to them, as
+        is the host of a loopback-published container. Everyone else falls back
+        to the /settings* trust chain: loopback, or a trusted dashboard client
+        behind a gateway. Settings *writes* deliberately do not get either
+        short-cut.
+        """
+        if _authenticated_at_gate(request) or _is_host_of_loopback_published_container(request):
+            return
+        _require_loopback_or_trusted_dashboard_client(request)
+
+    def _require_metrics_scrape_client(request: Request) -> None:
+        """Gate ``/metrics`` for scrapers without demanding a dashboard's browser shape.
+
+        ``/metrics`` is a Prometheus target, so unlike the dashboard routes it
+        cannot require an IP-literal ``Host`` header. Allowed callers:
+
+        * a non-loopback caller that authenticated at the security gate;
+        * loopback (peer *and* Host header, the usual two gates);
+        * a connecting peer inside ``HEADROOM_PROXY_TRUSTED_GATEWAY_CIDRS``
+          (whatever it forwards), or a resolved client inside the
+          dashboard-client CIDRs, provided any browser provenance it carries
+          is same-origin (a scraper sends neither Origin nor Referer).
+
+        Everyone else gets the same 404 the other operator routes return.
+        """
+        if _authenticated_at_gate(request):
+            return
+        if _request_is_loopback(request):
+            return
+        from headroom.proxy.forwarded_headers import (
+            load_trusted_gateway_cidrs,
+            peer_is_trusted_gateway,
+            resolve_client_ip,
+        )
+
+        # Gateway CIDRs describe the TCP peer itself, never a forwarded address;
+        # only the dashboard-client CIDRs apply to the resolved client.
+        client = getattr(request, "client", None)
+        peer = getattr(client, "host", None) if client is not None else None
+        if peer_is_trusted_gateway(peer, load_trusted_gateway_cidrs()) or peer_is_trusted_gateway(
+            resolve_client_ip(request), trusted_dashboard_client_cidrs
+        ):
+            host_header = request.headers.get("host")
+            if host_header and _request_has_same_origin_or_no_provenance(request, host_header):
+                return
+        raise HTTPException(status_code=404)
+
+    def _require_same_origin_or_trusted_dashboard_client(request: Request) -> None:
+        """Same-origin CSRF guard for settings writes, trusted-dashboard aware.
+
+        ``require_same_origin`` only accepts an ``Origin`` that itself names a
+        loopback host, so a browser POST from a trusted-gateway dashboard
+        client was rejected even though the paired GET routes allow that same
+        caller (issue #2466). For non-loopback callers, accept an ``Origin``
+        that matches this request's own Host header, provided the caller is
+        already an IP-literal-Host, CIDR-trusted dashboard client. Loopback
+        callers keep the stricter loopback-only origin check unchanged.
+        """
+        if not _request_is_loopback(request, allow_gateway_peer=False):
+            origin = request.headers.get("origin")
+            host_header = request.headers.get("host")
+            if (
+                origin
+                and origin != "null"
+                and host_header
+                and _request_has_same_origin_or_no_provenance(request, host_header)
+                and _request_can_view_dashboard_metadata(
+                    request, trusted_dashboard_client_cidrs, allow_gateway_peer=False
+                )
+            ):
+                return
+        _require_same_origin(request)
+
+    @app.get("/admin/upstream", dependencies=[Depends(_require_loopback)])
+    async def get_upstream():
+        """Current Anthropic upstream + cc-switch reconciler state (loopback-only).
+
+        Read-only. The upstream is mutated only via the in-process cc-switch
+        reconciler (driven by ~/.claude/settings.json) — there is deliberately
+        no HTTP write route, so a local process cannot redirect credential-
+        bearing traffic to an arbitrary URL through this surface.
+        """
+        return {
+            "anthropic": HeadroomProxy.ANTHROPIC_API_URL,
+            "cc_switch_reconcile": _cc_reconciler is not None,
+            "captured_upstream": getattr(_cc_reconciler, "current_upstream", None),
+        }
+
+    @app.get("/debug/tasks", dependencies=[Depends(_require_loopback)])
+    async def debug_tasks(stack: bool = False):
+        """Enumerate running asyncio tasks.
+
+        Default is cheap — ``stack_depth`` is ``null`` in every entry so
+        a storm snapshot does not walk 50+ coroutine frames synchronously.
+        Pass ``?stack=true`` to compute ``stack_depth`` for each task
+        (useful for single-shot human debugging).
+        """
+        ws_registry = getattr(proxy, "ws_sessions", None)
+        return JSONResponse(
+            status_code=200,
+            content=_collect_tasks(ws_registry, with_stack_depth=stack),
+        )
+
+    @app.get("/debug/ws-sessions", dependencies=[Depends(_require_loopback)])
+    async def debug_ws_sessions():
+        ws_registry = getattr(proxy, "ws_sessions", None)
+        snapshot = ws_registry.snapshot() if ws_registry is not None else []
+        return JSONResponse(status_code=200, content=snapshot)
+
+    @app.get("/debug/warmup", dependencies=[Depends(_require_loopback)])
+    async def debug_warmup():
+        # Promote a deferred Kompress slot from live runtime state before we
+        # serialize. Without this the registry keeps reporting the startup
+        # snapshot (``status: null`` / ``source_status: deferred``) forever,
+        # even while the model is loaded and compressing, unless somebody
+        # happens to hit /health or /readyz first. Same read-only
+        # reconciliation those endpoints run (issue #2624).
+        _reconcile_kompress_health()
+        warmup_registry = getattr(proxy, "warmup", None)
+        payload = warmup_registry.to_dict() if warmup_registry is not None else {}
+        payload["runtime"] = _runtime_payload()
+        return JSONResponse(status_code=200, content=payload)
+
+    _MAX_RUNTIME_ENV_BODY_BYTES = 64 * 1024
+
+    @app.post(
+        "/admin/runtime-env",
+        dependencies=[Depends(_require_loopback), Depends(_require_same_origin)],
+    )
+    async def admin_runtime_env(request: Request):
+        """Hot-reload live env knobs (the output-shaper family, the ast-grep
+        read threshold) without restarting the proxy.
+
+        Live knobs are read from the proxy's *process* environment, so a proxy
+        that ``headroom wrap`` reused — rather than started — never sees values
+        a user exported afterwards. Instead of a disruptive restart (cold ML
+        load, dropped requests, lost caches), ``wrap`` POSTs the values here and
+        the proxy applies them in memory, effective on the next request.
+
+        Loopback-only. The body is a flat ``{ENV_NAME: "value"}`` map; unknown
+        keys and non-string values are ignored. Returns what was applied plus
+        the resulting live config. Last writer wins in a single-worker proxy;
+        multi-worker proxies reject the update because overrides are process-local.
+        """
+        body_bytes = bytearray()
+        async for chunk in request.stream():
+            body_bytes.extend(chunk)
+            if len(body_bytes) > _MAX_RUNTIME_ENV_BODY_BYTES:
+                return JSONResponse(
+                    status_code=413,
+                    content={"error": "request body too large"},
+                )
+        try:
+            body = json.loads(bytes(body_bytes))
+        except (ValueError, UnicodeDecodeError):
+            body = None
+        if not isinstance(body, dict):
+            return JSONResponse(
+                status_code=400,
+                content={"error": "expected a JSON object of {ENV_NAME: value}"},
+            )
+        if proxy.config.worker_processes > 1:
+            return JSONResponse(
+                status_code=409,
+                content={
+                    "error": (
+                        "runtime environment hot reload is unavailable with multiple "
+                        "worker processes; restart the proxy with the desired environment"
+                    ),
+                    "worker_processes": proxy.config.worker_processes,
+                },
+            )
+        applied = runtime_env.set_overrides(body)
+        rollout_aliases = {
+            key: value for key, value in applied.items() if key == "HEADROOM_OUTPUT_SHAPER"
+        }
+        if rollout_aliases:
+            assert proxy.config.rollout is not None
+            proxy.config.rollout = proxy.config.rollout.with_legacy_env(rollout_aliases)
+            async with _stats_snapshot_lock:
+                _stats_snapshot["value"] = None
+                _stats_snapshot["expires_at"] = 0.0
+        if applied:
+            logger.info("runtime-env hot-reload applied: %s", sorted(applied))
+            # Record which runtime-env keys changed (the "what" of a config
+            # change) in addition to the generic admin-request audit emitted by
+            # the security middleware. Values are intentionally omitted — keys
+            # alone avoid logging any secret values that were set.
+            record_admin_action(
+                request=request,
+                action="runtime_env_update",
+                status_code=200,
+                details={"changed_keys": sorted(applied)},
+            )
+        return JSONResponse(
+            status_code=200,
+            content={
+                "applied": applied,
+                "runtime_env": runtime_env.effective_runtime_env(),
+                "rollout": proxy.config.rollout.to_dict() if proxy.config.rollout else None,
+            },
+        )
+
+    # Vendored dashboard JS (tailwind/alpine). Mounted before
+    # register_provider_routes' catch-all so it is not tunneled upstream.
+    from starlette.staticfiles import StaticFiles
+
+    from headroom.dashboard import STATIC_DIR, register_static_mime_types
+
+    # A host whose mime database maps .js to text/plain (stale Windows registry
+    # entry, minimal container image) would otherwise have these served as plain
+    # text, which the nosniff header above then blocks in the browser (#3179).
+    register_static_mime_types()
+
+    # check_dir=False keeps a missing assets directory from aborting proxy
+    # startup: the dashboard JS 404s, but proxying itself still works.
+    @app.get("/dashboard/static", include_in_schema=False)
+    @app.get("/dashboard/static/", include_in_schema=False)
+    async def dashboard_static_directory():
+        """Keep the static directory boundary out of upstream passthrough."""
+        return PlainTextResponse("Not Found", status_code=404)
+
+    app.mount(
+        "/dashboard/static",
+        StaticFiles(directory=STATIC_DIR, check_dir=False),
+        name="dashboard-static",
+    )
+
+    # The read-only telemetry routes below carry operator data (model/project/
+    # session labels, spend history, subscription utilisation, provider quota)
+    # and were served to any network caller. They now answer token-authenticated
+    # operators, loopback, or a trusted dashboard client behind a gateway; other
+    # network callers get 404. The dashboard shell itself is a static template
+    # (like its /dashboard/static assets) and stays reachable, so a container
+    # published on host loopback, whose peer is the bridge gateway, still loads.
+    _dashboard_gate = [Depends(_require_operator_read_client)]
+
+    # Effective licence state of THIS proxy, resolved once: an explicit
+    # ProxyConfig.license_key, else HEADROOM_LICENSE or its deprecated alias.
+    from headroom.license_env import resolve_license_token
+
+    _dashboard_licensed = bool(config.license_key) or bool(resolve_license_token())
+
+    @app.get("/dashboard", response_class=HTMLResponse)
+    @app.get("/dashboard/", response_class=HTMLResponse, include_in_schema=False)
+    async def dashboard():
+        """Serve the Headroom dashboard UI."""
+        return get_dashboard_html(licensed=_dashboard_licensed)
+
+    # --- Dashboard settings API (loopback-gated, registry-validated) ---------
+    # Read/write the curated HEADROOM_* knobs the settings GUI manages. Writes
+    # reuse the same loopback guard as the /admin and /debug endpoints and only
+    # ever touch keys in the settings_store registry allowlist. All curated
+    # knobs are startup-captured, so a write always requires a restart to apply
+    # (Phase 3's /settings/apply drives that).
+    from headroom import settings_store
+
+    @app.get(
+        "/settings/schema", dependencies=[Depends(_require_loopback_or_trusted_dashboard_client)]
+    )
+    async def settings_schema(_request: Request):
+        """Registry + grouped fields + effective values for the settings form."""
+        schema = settings_store.to_schema(
+            runtime_values=_settings_runtime_values(config),
+            env_override_exclusions=config.profile_seeded_env_keys,
+        )
+        # Tell the UI whether this is a supervised (docker/service) install, where
+        # manifest-baked knobs (HEADROOM_PORT/HEADROOM_HOST) are owned by the
+        # install manifest and must be rendered read-only. Foreground proxies
+        # can edit everything. Fail-open to "not supervised".
+        try:
+            from headroom.install import runtime as install_runtime
+
+            _manifest, mode = install_runtime.detect_current_deployment()
+            schema["supervised"] = mode != "foreground"
+        except Exception:  # noqa: BLE001 — schema must render even if detection fails
+            schema["supervised"] = False
+        return JSONResponse(status_code=200, content=schema)
+
+    @app.get("/settings", dependencies=[Depends(_require_loopback_or_trusted_dashboard_client)])
+    async def settings_get(_request: Request):
+        """Return stored (file) values only; secret fields masked."""
+        return JSONResponse(status_code=200, content=settings_store.stored_values())
+
+    @app.post(
+        "/settings",
+        dependencies=[
+            Depends(_require_loopback_or_trusted_dashboard_client_for_write),
+            Depends(_require_same_origin_or_trusted_dashboard_client),
+        ],
+    )
+    async def settings_post(request: Request):
+        """Persist settings. Unknown key -> 400; bad type/enum/range -> 422.
+
+        Loopback-only (mutates process configuration; treated as an admin
+        action). The audit log records which keys changed — never their values,
+        so no secret is leaked.
+        """
+        try:
+            body = await request.json()
+        except (ValueError, UnicodeDecodeError):
+            body = None
+        if not isinstance(body, dict) or not isinstance(body.get("values"), dict):
+            return JSONResponse(
+                status_code=400,
+                content={"error": "expected a JSON object with a `values` object"},
+            )
+        values = body["values"]
+        before = settings_store.load()
+        try:
+            settings_store.save(values)
+        except settings_store.SettingsValidationError as exc:
+            if exc.unknown_keys:
+                return JSONResponse(
+                    status_code=400,
+                    content={"error": "unknown settings key(s)", "unknown_keys": exc.unknown_keys},
+                )
+            return JSONResponse(
+                status_code=422,
+                content={"error": "invalid settings value(s)", "field_errors": exc.field_errors},
+            )
+        after = settings_store.load()
+        changed_keys = sorted(k for k in set(before) | set(after) if before.get(k) != after.get(k))
+        record_admin_action(
+            request=request,
+            action="settings_update",
+            status_code=200,
+            details={"changed_keys": changed_keys},
+        )
+        return JSONResponse(
+            status_code=200,
+            content={"ok": True, "needs_restart": bool(changed_keys), "changed_keys": changed_keys},
+        )
+
+    @app.post(
+        "/settings/apply",
+        dependencies=[
+            Depends(_require_loopback_or_trusted_dashboard_client_for_write),
+            Depends(_require_same_origin_or_trusted_dashboard_client),
+        ],
+    )
+    async def settings_apply(request: Request):
+        """Persist settings (optional body) then restart the proxy to apply them.
+
+        Loopback-only. Service deployments self-restart (one-click): we flush a
+        202 BEFORE the detached restarter tears this process down, and the UI
+        polls /health to detect the proxy returning. Docker deployments cannot
+        self-restart (no docker socket in-container), so we surface the host
+        command instead. Foreground `headroom proxy` returns a manual-restart
+        instruction. /health is the single source of truth for "proxy is back".
+        """
+        from starlette.background import BackgroundTask
+
+        from headroom.install import runtime as install_runtime
+
+        try:
+            body = await request.json()
+        except (ValueError, UnicodeDecodeError):
+            body = None
+        # `values` is optional — the UI may have already saved via POST /settings.
+        # When present, persist it under the same validation contract.
+        if isinstance(body, dict) and isinstance(body.get("values"), dict):
+            try:
+                settings_store.save(body["values"])
+            except settings_store.SettingsValidationError as exc:
+                if exc.unknown_keys:
+                    return JSONResponse(
+                        status_code=400,
+                        content={
+                            "error": "unknown settings key(s)",
+                            "unknown_keys": exc.unknown_keys,
+                        },
+                    )
+                return JSONResponse(
+                    status_code=422,
+                    content={
+                        "error": "invalid settings value(s)",
+                        "field_errors": exc.field_errors,
+                    },
+                )
+        _manifest, mode = install_runtime.detect_current_deployment()
+        record_admin_action(
+            request=request,
+            action="settings_apply",
+            status_code=202 if mode == "service" else 200,
+            details={"mode": mode},
+        )
+        if mode == "service":
+            # Flush the 202 first; run the detached restart only after the
+            # response body is sent (Starlette runs BackgroundTask post-response),
+            # so restarting our own process never drops this response.
+            return JSONResponse(
+                status_code=202,
+                content={"restarted": True, "mode": "service"},
+                background=BackgroundTask(install_runtime.restart_current_deployment),
+            )
+        result = install_runtime.restart_current_deployment()
+        return JSONResponse(status_code=200, content=result)
+
+    @app.get(
+        "/dashboard/settings",
+        response_class=HTMLResponse,
+        dependencies=[Depends(_require_loopback_or_trusted_dashboard_client)],
+    )
+    async def dashboard_settings():
+        """Serve the Headroom settings GUI."""
+        from headroom.dashboard import get_settings_html
+
+        return get_settings_html()
+
+    @app.get("/favicon.ico")
+    async def favicon() -> Response:
+        # Registered before register_provider_routes' catch-all passthrough
+        # route so browsers' automatic favicon requests for /dashboard are
+        # answered locally instead of being tunneled to the wrapped upstream
+        # provider (GH #1787).
+        return Response(status_code=204)
+
+    DASHBOARD_STATS_CACHE_TTL_SECONDS = 5.0
+    _stats_snapshot_lock = asyncio.Lock()
+    _stats_snapshot: dict[str, Any] = {"expires_at": 0.0, "value": None}
+
+    THROUGHPUT_CACHE_TTL_SECONDS = 10.0
+    _throughput_cache_lock = asyncio.Lock()
+    _throughput_cache: dict[str, Any] = {"expires_at": 0.0, "value": None}
+
+    RECENT_REQUEST_LOG_WINDOW = 100
+
+    def _is_recent_request_number(value: Any) -> bool:
+        return (
+            isinstance(value, int | float)
+            and not isinstance(value, bool)
+            and math.isfinite(float(value))
+        )
+
+    def _recent_request_optional_number(log: dict[str, Any], key: str) -> int | float | None:
+        value = log.get(key)
+        return value if _is_recent_request_number(value) else None
+
+    def _recent_request_token_accounting_status(log: dict[str, Any]) -> str:
+        token_fields = (
+            "input_tokens_original",
+            "input_tokens_optimized",
+            "tokens_saved",
+            "savings_percent",
+        )
+        present = [_is_recent_request_number(log.get(field)) for field in token_fields]
+        if all(present):
+            return "complete"
+        if any(present):
+            return "partial"
+        return "missing"
+
+    def _build_recent_request_payload(limit: int = RECENT_REQUEST_LOG_WINDOW) -> dict[str, Any]:
+        recent_request_logs = proxy.logger.get_recent(limit) if proxy.logger else []
+        dashboard_recent_requests = []
+        for log in reversed(recent_request_logs):
+            token_accounting_status = _recent_request_token_accounting_status(log)
+            dashboard_recent_requests.append(
+                {
+                    "request_id": log.get("request_id"),
+                    "timestamp": log.get("timestamp"),
+                    "provider": resolve_display_provider(
+                        log.get("provider"),
+                        openai_api_url=proxy.config.openai_api_url,
+                        provider_name=proxy.config.provider_name,
+                    ),
+                    "model": log.get("model"),
+                    "input_tokens_original": _recent_request_optional_number(
+                        log, "input_tokens_original"
+                    ),
+                    "input_tokens_optimized": _recent_request_optional_number(
+                        log, "input_tokens_optimized"
+                    ),
+                    "output_tokens": _recent_request_optional_number(log, "output_tokens"),
+                    "tokens_saved": _recent_request_optional_number(log, "tokens_saved"),
+                    "savings_percent": _recent_request_optional_number(log, "savings_percent"),
+                    "optimization_latency_ms": _recent_request_optional_number(
+                        log, "optimization_latency_ms"
+                    ),
+                    "total_latency_ms": _recent_request_optional_number(log, "total_latency_ms"),
+                    "has_exact_tokens": token_accounting_status == "complete",
+                    "token_accounting_status": token_accounting_status,
+                    # Best-effort list-price estimate; null means unavailable,
+                    # never fabricated zero. ``turn_id`` lets a consumer group
+                    # every priced row by turn, not only the raw log tail.
+                    "cost_usd": request_cost_usd(proxy.cost_tracker, log),
+                    "turn_id": log.get("turn_id"),
+                    "transforms_applied": log.get("transforms_applied", []),
+                    "savings_breakdown": log.get("savings_breakdown", []),
+                    "waste_signals": log.get("waste_signals"),
+                    "tool_schema_saved_tokens": _tool_schema_saved_from_tags(log.get("tags")),
+                }
+            )
+        dashboard_recent_requests = dashboard_recent_requests[:25]
+        return {
+            "request_logs": recent_request_logs[-10:],
+            "recent_requests": dashboard_recent_requests,
+        }
+
+    async def _build_stats_payload() -> dict[str, Any]:
+        """Build the full `/stats` response payload.
+
+        This is the main stats endpoint - it aggregates data from all subsystems:
+        - Request metrics (total, cached, failed, by model/provider)
+        - Token usage and savings
+        - Cost tracking
+        - Canonical persisted display_session metrics for downstream dashboards
+        - Compression (CCR) statistics
+        - Telemetry/TOIN (data flywheel) statistics
+        - Cache and rate limiter stats
+        """
+        m = proxy.metrics
+
+        import time
+
+        async with _throughput_cache_lock:
+            now = time.time()
+            if _throughput_cache["expires_at"] < now or _throughput_cache["value"] is None:
+
+                def _compute_throughput():
+                    from headroom.perf.analyzer import build_perf_summary, parse_log_files
+
+                    perf_report = parse_log_files(last_n_hours=1.0)
+                    return build_perf_summary(perf_report).get("throughput")
+
+                try:
+                    throughput = await asyncio.to_thread(_compute_throughput)
+                    _throughput_cache["value"] = throughput
+                    _throughput_cache["expires_at"] = now + THROUGHPUT_CACHE_TTL_SECONDS
+                except Exception as e:
+                    logger.warning("Failed to calculate throughput for stats: %s", e, exc_info=True)
+                    if _throughput_cache["value"] is None:
+                        _throughput_cache["value"] = None
+            throughput = _throughput_cache["value"]
+
+        # Calculate average latency
+        avg_latency_ms = round(m.latency_sum_ms / m.latency_count, 2) if m.latency_count > 0 else 0
+        min_latency_ms = (
+            round(m.latency_min_ms, 2)
+            if m.latency_count > 0 and m.latency_min_ms != float("inf")
+            else 0
+        )
+        max_latency_ms = round(m.latency_max_ms, 2) if m.latency_count > 0 else 0
+
+        # Calculate Headroom overhead (optimization time only, excludes pass-through requests)
+        avg_overhead_ms = (
+            round(m.overhead_sum_ms / m.overhead_count, 2) if m.overhead_count > 0 else 0
+        )
+        min_overhead_ms = (
+            round(m.overhead_min_ms, 2)
+            if m.overhead_count > 0 and m.overhead_min_ms != float("inf")
+            else 0
+        )
+        max_overhead_ms = round(m.overhead_max_ms, 2) if m.overhead_count > 0 else 0
+
+        # Calculate TTFB (time to first byte)
+        avg_ttfb_ms = round(m.ttfb_sum_ms / m.ttfb_count, 2) if m.ttfb_count > 0 else 0
+        min_ttfb_ms = (
+            round(m.ttfb_min_ms, 2) if m.ttfb_count > 0 and m.ttfb_min_ms != float("inf") else 0
+        )
+        max_ttfb_ms = round(m.ttfb_max_ms, 2) if m.ttfb_count > 0 else 0
+
+        def _pct(part: int | float, whole: int | float) -> float:
+            return round((float(part) / float(whole)) * 100.0, 2) if whole else 0.0
+
+        # Get compression store stats
+        store = get_compression_store()
+        compression_stats = store.get_stats()
+
+        # Get telemetry/TOIN stats
+        telemetry = get_telemetry_collector()
+        telemetry_stats = telemetry.get_stats()
+
+        # Get feedback loop stats
+        feedback = get_compression_feedback()
+        feedback_stats = feedback.get_stats()
+
+        # Build prefix cache stats once (used in both prefix_cache and cost)
+        prefix_cache_stats = build_prefix_cache_stats(m, proxy.cost_tracker)
+
+        # Calculate total tokens before Headroom-side reduction.
+        proxy_compression_tokens = m.tokens_saved_total
+        # "All layers" must include tool-schema deferral (the tool_search layer
+        # enumerated in by_layer below) — otherwise the advertised total omits it.
+        all_layers_tokens_saved = proxy_compression_tokens + m.tool_search_saved_total
+        total_tokens_before = m.tokens_input_total + all_layers_tokens_saved
+        proxy_total_before_compression = m.tokens_input_total + proxy_compression_tokens
+        # `attempted_input_tokens` is the compressible-only denominator
+        # (extracted units + tool schema). The "active compression"
+        # ratio is what fraction of the tokens we *tried* to compress
+        # actually got compressed. Excludes prefix-frozen content
+        # (user/system messages, prior turns) we never touched —
+        # otherwise the ratio is dominated by content we deliberately
+        # avoided changing for prefix-cache safety.
+        # `attempted_input_tokens_total` is already pre-compression: it
+        # accumulates `unit.tokens_before` for each eligible unit that
+        # reached the router, plus the original (pre-compaction) tool
+        # schema size. So the savings rate is plain `saved / attempted`
+        # — adding `saved` again would double-count.
+        attempted_input_tokens = getattr(m, "attempted_input_tokens_total", 0)
+        # New-content denominator: what the provider actually billed as
+        # non-cache-read input (uncached + cache-write tokens, summed
+        # across providers from response usage). Unlike
+        # `proxy_total_before_compression`, this does NOT recount the
+        # full transcript on every turn — a long session's history is
+        # served from prefix cache, not re-billed, so it doesn't belong
+        # in a denominator that claims to measure what compression had
+        # any power over. Tokens Headroom removed never reached the
+        # provider at all, so they're added back to form the baseline.
+        _pc_totals = prefix_cache_stats.get("totals", {})
+        new_input_tokens = int(_pc_totals.get("new_input_tokens", 0) or 0)
+        # Paired numerator: savings from the SAME requests that supplied the
+        # denominator, accumulated on one predicate in record_request.
+        # tokens_saved_total also counts requests with no usage breakdown
+        # (Bedrock, MCP tools), which would lend savings to a denominator they
+        # never entered: one qualified request at 50 percent plus one
+        # unqualified 10,000-token saving read as 99 percent.
+        new_input_saved_tokens = int(_pc_totals.get("new_input_saved_tokens", 0) or 0)
+
+        # Build human-readable summary
+        summary = build_session_summary(proxy, m, prefix_cache_stats, total_tokens_before)
+        # DEBUG: log the summary payload for external upsert consumers
+        try:
+            logger.debug("/stats summary data: %r", summary)
+        except Exception:
+            logger.warning("Failed to log /stats summary payload")
+
+        # Compression cache stats (token mode). Snapshot the cache list under
+        # the dict lock so a concurrent eviction can't mutate the dict while
+        # we iterate. Each per-session `get_stats()` is independently
+        # thread-safe via the cache's own internal lock.
+        compression_cache_stats: dict = {}
+        if proxy.config.mode == PROXY_MODE_TOKEN and proxy._compression_caches:
+            with proxy._compression_caches_lock:
+                _caches_snapshot = list(proxy._compression_caches.values())
+                _active_sessions = len(proxy._compression_caches)
+            total_entries = 0
+            total_hits = 0
+            total_misses = 0
+            total_tokens_saved = 0
+            for cache in _caches_snapshot:
+                s = cache.get_stats()
+                total_entries += s.get("entries", 0)
+                total_hits += s.get("hits", 0)
+                total_misses += s.get("misses", 0)
+                total_tokens_saved += s.get("total_tokens_saved", 0)
+            compression_cache_stats = {
+                "mode": PROXY_MODE_TOKEN,
+                "active_sessions": _active_sessions,
+                "total_entries": total_entries,
+                "total_hits": total_hits,
+                "total_misses": total_misses,
+                "hit_rate": round(total_hits / max(1, total_hits + total_misses) * 100, 1),
+                "total_tokens_saved": total_tokens_saved,
+            }
+        else:
+            compression_cache_stats = {"mode": proxy.config.mode}
+
+        # Build unified savings summary (all layers)
+        cache_net_usd = prefix_cache_stats.get("totals", {}).get("net_savings_usd", 0.0)
+        # Cache-aware dollar value of tool-schema deferral, the same figure the
+        # cost card uses. Exposed beside the token count because tokens alone
+        # mislead: deferred schemas would mostly have been cache reads, an order
+        # of magnitude cheaper than list input, so a big token number is a small
+        # dollar number. The token count without it invited "we removed 90% of
+        # the tokens, so we saved 90% of the cost".
+        _cost_tracker_stats = proxy.cost_tracker.stats() if proxy.cost_tracker else {}
+        tool_schema_usd = float(_cost_tracker_stats.get("tool_savings_usd", 0.0) or 0.0)
+        total_tokens_all_layers = all_layers_tokens_saved
+        persistent_savings = m.savings_tracker.stats_preview()
+        display_session = persistent_savings.get("display_session", {})
+        recent_request_logs = proxy.logger.get_recent(10_000) if proxy.logger else []
+        recent_request_payload = _build_recent_request_payload()
+
+        # Tool-schema deferral savings: tool-definition tokens kept out of the
+        # model's context by deferring heavy schemas until they're needed
+        # (native tool-search injection + any registered turn-hook tools
+        # rewrite). Attributed to Headroom only — see _tool_schema_saved_from_tags.
+        # Aggregated over the recent request-log window.
+        tool_schema_tokens = 0
+        tool_schema_requests = 0
+        for _ts_log in recent_request_logs:
+            _ts_saved = _tool_schema_saved_from_tags(_ts_log.get("tags"))
+            if _ts_saved > 0:
+                tool_schema_tokens += _ts_saved
+                tool_schema_requests += 1
+        agent_usage = _build_agent_usage_summary(
+            recent_request_logs,
+            requests_by_provider=_remap_provider_counts(dict(m.requests_by_provider), proxy.config),
+            requests_by_model=dict(m.requests_by_model),
+            global_before_tokens=proxy_total_before_compression,
+            global_after_tokens=m.tokens_input_total,
+            global_tokens_saved=proxy_compression_tokens,
+            global_output_tokens=m.tokens_output_total,
+        )
+
+        # Output-side reduction (counterfactual estimate from the shaper's
+        # ledger). Distinct from input compression above: these are OUTPUT
+        # tokens the model didn't emit because we steered verbosity / routed
+        # effort down. Always labelled estimated-vs-measured + a CI so it's
+        # never mistaken for an exact count. Best-effort — never break /stats.
+        # Same key set as every other branch: a consumer must not have to
+        # discriminate on which failure produced the payload.
+        output_reduction: dict[str, Any] = _output_reduction_payload(False)
+        output_reduction["available"] = False
+        output_reduction["method"] = None
+        try:
+            from headroom.proxy.output_savings import get_recorder
+            from headroom.proxy.output_shaper import (
+                OutputShaperSettings,
+                resolve_verbosity_level,
+                shaper_enabled_for,
+                steering_allowed_for,
+            )
+
+            # The active steering level enables the modelled fallback, which is
+            # what a deployment with no holdout and no learned baseline has --
+            # i.e. every fresh install, since `learn --verbosity` needs history
+            # that predates the shaper.
+            _shaper_active = False
+            _olevel: int | None = None
+            try:
+                _oconfig = getattr(proxy, "config", None)
+                _osettings = OutputShaperSettings.from_env(
+                    enabled=shaper_enabled_for(_oconfig),
+                    # Cache mode forces the resolved level to 0. The request
+                    # handlers pass this too; /stats has to build the SAME
+                    # settings or it reads a level the handlers never used.
+                    steering_enabled=steering_allowed_for(_oconfig),
+                )
+                if _osettings.enabled:
+                    _olevel = resolve_verbosity_level(_osettings)[0]
+                    # Steering is the only lever this layer's ledger measures,
+                    # and level 0 is the documented "no steering" value -- the
+                    # same test `shape_request` applies before it touches a
+                    # body. An enabled shaper resolved to 0 (cache mode, an
+                    # explicit HEADROOM_VERBOSITY_LEVEL=0, a learned or
+                    # controller zero) shapes nothing, so it must not publish
+                    # the persisted ledger as a live claim either.
+                    _shaper_active = _olevel > 0
+            except Exception:  # pragma: no cover - defensive
+                _shaper_active = False
+                _olevel = None
+
+            _oest = get_recorder().estimate(_olevel)
+            output_reduction = _output_reduction_payload(_shaper_active, _oest)
+        except Exception as exc:  # pragma: no cover - defensive
+            logger.debug("/stats output_reduction section failed: %s", describe_exception(exc))
+
+        # Model-routing section: populated only when an extension registered a
+        # routing-stats provider (headroom.proxy.routing_stats); None otherwise.
+        from headroom.proxy.routing_stats import get_routing_stats
+
+        return {
+            "summary": summary,
+            "agent_usage": agent_usage,
+            "routing": get_routing_stats(),
+            "savings": {
+                "total_tokens": total_tokens_all_layers,
+                "per_project": persistent_savings.get("projects", {}),
+                # Attribution only: these rows explain the canonical headline
+                # and are not added to it again.
+                "by_source": sorted(
+                    (dict(row) for row in m.savings_by_source.values()),
+                    key=lambda row: (-int(row.get("tokens", 0)), str(row["source"])),
+                ),
+                "by_layer": {
+                    "compression": {
+                        "tokens": proxy_compression_tokens,
+                        "proxy_tokens": proxy_compression_tokens,
+                        "all_layers_tokens": all_layers_tokens_saved,
+                        "description": ("Tokens removed by Headroom proxy compression."),
+                    },
+                    "prefix_cache": {
+                        "discount_usd": round(cache_net_usd, 4),
+                        "description": (
+                            "Cost discount from provider prefix caching. "
+                            "Headroom's CacheAligner improves hit rates; "
+                            "baseline caching is provider-native."
+                        ),
+                    },
+                    "output_shaping": {
+                        **output_reduction,
+                        "description": (
+                            "OUTPUT tokens the model didn't emit because the shaper "
+                            "steered verbosity down. Counterfactual — measured "
+                            "(A/B holdout), estimated (vs a learned baseline), or "
+                            "modelled (a benchmark factor, when this deployment has "
+                            "produced neither). Always labelled with which."
+                        ),
+                    },
+                    "tool_search": {
+                        "tokens": tool_schema_tokens,
+                        "tokens_saved": tool_schema_tokens,
+                        "requests": tool_schema_requests,
+                        "window": len(recent_request_logs),
+                        # Priced at what those tokens would actually have been
+                        # billed at (provider cache-read rate for the warm turns,
+                        # cache-write for the cold one), not at list input.
+                        "lifetime_usd": round(tool_schema_usd, 4),
+                        "description": (
+                            "Tool-definition tokens kept out of the model's context "
+                            "by deferring heavy tool schemas until they're searched "
+                            "for. Counted only when Headroom performed the deferral — "
+                            "not when the client (e.g. Claude Code / Codex) already "
+                            "had tool search enabled. Token and request counts use "
+                            "the recent request window; lifetime_usd covers the "
+                            "full process lifetime."
+                        ),
+                    },
+                },
+            },
+            "requests": {
+                "total": m.requests_total,
+                "cached": m.requests_cached,
+                "rate_limited": m.requests_rate_limited,
+                # Who issued the 429: "headroom" is our own limiter, "upstream"
+                # is the provider (issue #3696). The totals above stay the
+                # unlabelled figures existing consumers read.
+                "rate_limited_by_source": dict(m.requests_rate_limited_by_source),
+                "failed": m.requests_failed,
+                "failed_by_provider": _remap_provider_counts(
+                    dict(m.requests_failed_by_provider), proxy.config
+                ),
+                "by_provider": _remap_provider_counts(dict(m.requests_by_provider), proxy.config),
+                "by_model": dict(m.requests_by_model),
+                "by_stack": dict(m.requests_by_stack),
+            },
+            "tokens": {
+                "input": m.tokens_input_total,
+                # Provenance of "input": the provider's own billed count versus
+                # Headroom's tokenizer estimate. Only the first reconciles with
+                # the provider console (input + cache read + cache write).
+                "input_provider_reported": m.tokens_input_provider_reported_total,
+                "input_estimated": m.tokens_input_estimated_total,
+                "input_provider_reported_percent": round(
+                    (m.tokens_input_provider_reported_total / m.tokens_input_total * 100)
+                    if m.tokens_input_total > 0
+                    else 0,
+                    2,
+                ),
+                "requests_input_provider_reported": m.requests_input_provider_reported,
+                "requests_input_estimated": m.requests_input_estimated,
+                "output": m.tokens_output_total,
+                "output_saved": output_reduction.get("tokens_saved", 0),
+                "output_reduction_percent": output_reduction.get("reduction_percent", 0),
+                "output_reduction": output_reduction,
+                "saved": all_layers_tokens_saved,
+                "proxy_compression_saved": proxy_compression_tokens,
+                "proxy_total_before_compression": proxy_total_before_compression,
+                "total_before_compression": total_tokens_before,
+                "all_layers_saved": all_layers_tokens_saved,
+                # Compressible-only denominator: tokens we extracted as
+                # candidates + tool-schema tokens we compacted. Excludes
+                # frozen-prefix content (user msgs, system prompt, prior
+                # turns) that we deliberately don't touch. Already
+                # pre-compression — do NOT add `tokens_saved` again.
+                "proxy_attempted_tokens": attempted_input_tokens,
+                # Active compression: savings as a fraction of what we
+                # *tried* to compress. The number the dashboard headline
+                # should show — it answers "are we doing well *when we
+                # have something to compress?*" rather than diluting the
+                # win by frozen-prefix bytes we never touched.
+                # All-layers numerator, matching denominator: `attempted_input_tokens`
+                # already counts tool schemas we COMPACTED, so pairing it with a
+                # compression-only numerator undercounted every tool-heavy session.
+                # Deferred schemas are added to both sides — they were attempted work
+                # that succeeded completely.
+                "active_savings_percent": round(
+                    (
+                        all_layers_tokens_saved
+                        / (attempted_input_tokens + m.tool_search_saved_total)
+                        * 100
+                    )
+                    if (attempted_input_tokens + m.tool_search_saved_total) > 0
+                    else 0,
+                    2,
+                ),
+                # Whole-request ratio kept for transparency. Heavily
+                # diluted by frozen prefix on Codex-style requests
+                # where most input is non-compressible by design.
+                "proxy_savings_percent": round(
+                    (proxy_compression_tokens / proxy_total_before_compression * 100)
+                    if proxy_total_before_compression > 0
+                    else 0,
+                    2,
+                ),
+                # New-content-relative rate: savings as a fraction of the
+                # input that would have newly entered context (provider-
+                # billed uncached + cache-write tokens, plus the tokens
+                # compression removed before they could be billed). The
+                # whole-request ratios above recount the FULL transcript
+                # every turn, so a 200-turn session counts its history
+                # 200x into the denominator and long-running sessions
+                # (1M-context models never compact) read as ~0% no
+                # matter how well compression performs on new content.
+                # Guarded on new_input_tokens > 0 (not the full sum): a
+                # deployment that reports no usage breakdown at all (e.g.
+                # Bedrock) contributes to neither side, and would
+                # otherwise divide savings by themselves and report
+                # ~100%. No usage data -> report 0, not a lie. This is
+                # the same cohort `headroom savings` reports from the
+                # ledger, so the two figures cannot disagree.
+                "new_input_tokens": new_input_tokens,
+                "new_input_savings_percent": round(
+                    (new_input_saved_tokens / (new_input_tokens + new_input_saved_tokens) * 100)
+                    if new_input_tokens > 0
+                    else 0,
+                    2,
+                ),
+                "savings_percent": round(
+                    (all_layers_tokens_saved / total_tokens_before * 100)
+                    if total_tokens_before > 0
+                    else 0,
+                    2,
+                ),
+                "all_layers_savings_percent": round(
+                    (all_layers_tokens_saved / total_tokens_before * 100)
+                    if total_tokens_before > 0
+                    else 0,
+                    2,
+                ),
+                # The same saving expressed in money rather than tokens, so a
+                # reader is never left to assume the two match. They don't, and
+                # not by a little: most tokens Headroom removes would have been
+                # prefix-cache reads, billed at roughly a tenth of list input
+                # (and less on some providers), so a large token share is a much
+                # smaller cost share. Mirrors summary.cost.savings_pct, which
+                # prices every layer at the rate its tokens would really have
+                # cost.
+                "cost_weighted_savings_percent": float(
+                    (summary.get("cost") or {}).get("savings_pct", 0.0) or 0.0
+                ),
+            },
+            "latency": {
+                "average_ms": avg_latency_ms,
+                "min_ms": min_latency_ms,
+                "max_ms": max_latency_ms,
+                "total_requests": m.latency_count,
+            },
+            "overhead": {
+                "average_ms": avg_overhead_ms,
+                "min_ms": min_overhead_ms,
+                "max_ms": max_overhead_ms,
+            },
+            "ttfb": {
+                "average_ms": avg_ttfb_ms,
+                "min_ms": min_ttfb_ms,
+                "max_ms": max_ttfb_ms,
+            },
+            "pipeline_timing": {
+                name: {
+                    "average_ms": round(
+                        m.transform_timing_sum[name] / m.transform_timing_count[name], 2
+                    ),
+                    "max_ms": round(m.transform_timing_max[name], 2),
+                    "count": m.transform_timing_count[name],
+                }
+                for name in sorted(m.transform_timing_sum.keys())
+            }
+            if m.transform_timing_sum
+            else {},
+            "compressions_by_strategy": dict(m.compressions_by_strategy),
+            "tokens_saved_by_strategy": dict(m.tokens_saved_by_strategy),
+            "extension_savings": m.extension_savings_by_source(),
+            "codex_ws": {
+                "units_total": m.codex_ws_units_total,
+                "units_modified_total": m.codex_ws_units_modified_total,
+                "units_by_strategy": dict(m.codex_ws_units_by_strategy),
+                "units_by_category": dict(m.codex_ws_units_by_category),
+                "units_by_content_type": dict(m.codex_ws_units_by_content_type),
+                "units_by_text_shape": dict(m.codex_ws_units_by_text_shape),
+                "units_to_kompress_total": m.codex_ws_units_to_kompress_total,
+                "units_kompress_attempted_total": m.codex_ws_units_kompress_attempted_total,
+                "units_to_kompress_percent": _pct(
+                    m.codex_ws_units_to_kompress_total,
+                    m.codex_ws_units_total,
+                ),
+                "units_kompress_attempted_percent": _pct(
+                    m.codex_ws_units_kompress_attempted_total,
+                    m.codex_ws_units_total,
+                ),
+                "unit_elapsed_ms": {
+                    "average": round(
+                        m.codex_ws_unit_elapsed_ms_sum / m.codex_ws_units_total,
+                        2,
+                    )
+                    if m.codex_ws_units_total
+                    else 0.0,
+                    "max": round(m.codex_ws_unit_elapsed_ms_max, 2),
+                },
+                "unit_bytes_sum": m.codex_ws_unit_bytes_sum,
+                "unit_tokens_before_sum": m.codex_ws_unit_tokens_before_sum,
+                "unit_tokens_after_sum": m.codex_ws_unit_tokens_after_sum,
+                "unit_tokens_saved_sum": m.codex_ws_unit_tokens_saved_sum,
+                "frames_attempted_total": m.codex_ws_frames_attempted_total,
+                "frames_compressed_total": m.codex_ws_frames_compressed_total,
+                "frames_failed_total": m.codex_ws_frames_failed_total,
+                "frames_to_kompress_total": m.codex_ws_frames_to_kompress_total,
+                "frames_kompress_attempted_total": (m.codex_ws_frames_kompress_attempted_total),
+                "frames_to_kompress_percent": _pct(
+                    m.codex_ws_frames_to_kompress_total,
+                    m.codex_ws_frames_attempted_total,
+                ),
+                "frames_kompress_attempted_percent": _pct(
+                    m.codex_ws_frames_kompress_attempted_total,
+                    m.codex_ws_frames_attempted_total,
+                ),
+                "frame_elapsed_ms": {
+                    "average": round(
+                        m.codex_ws_frame_elapsed_ms_sum / m.codex_ws_frames_attempted_total,
+                        2,
+                    )
+                    if m.codex_ws_frames_attempted_total
+                    else 0.0,
+                    "max": round(m.codex_ws_frame_elapsed_ms_max, 2),
+                },
+                "frame_bytes_before_sum": m.codex_ws_frame_bytes_before_sum,
+                "frame_bytes_after_sum": m.codex_ws_frame_bytes_after_sum,
+                "frame_attempted_tokens_sum": m.codex_ws_frame_attempted_tokens_sum,
+                "frame_tokens_saved_sum": m.codex_ws_frame_tokens_saved_sum,
+            },
+            "waste_signals": dict(m.waste_signals_total) if m.waste_signals_total else {},
+            # ContentRouter protection categories aggregated across the
+            # session. Lets operators see, e.g., that 80% of messages
+            # were `user_msg` (protected) and only 5% reached the
+            # compressor — explains why compression rate is low and
+            # whether `--compress-user-messages` would help (#454).
+            "router": {
+                "route_counts": dict(m.router_route_counts) if m.router_route_counts else {},
+            },
+            "savings_history": m.savings_history[-100:],  # Last 100 data points
+            "display_session": display_session,
+            # Whether LiteLLM is importable. Pricing (the "$ Saved" tile) is
+            # derived entirely from LiteLLM's cost tables, so when this is False
+            # (LiteLLM missing from the environment) clients can tell "pricing
+            # unavailable" apart from a genuine $0.00.
+            "litellm_available": LITELLM_AVAILABLE,
+            "persistent_savings": persistent_savings,
+            "prefix_cache": prefix_cache_stats,
+            "cost": merge_cost_stats(
+                proxy.cost_tracker.stats() if proxy.cost_tracker else None,
+                prefix_cache_stats,
+            ),
+            "compression": {
+                "ccr_entries": compression_stats.get("entry_count", 0),
+                "ccr_max_entries": compression_stats.get("max_entries", 0),
+                "original_tokens_cached": compression_stats.get("total_original_tokens", 0),
+                "compressed_tokens_cached": compression_stats.get("total_compressed_tokens", 0),
+                "ccr_retrievals": compression_stats.get("total_retrievals", 0),
+                # "this_replica" with a shared store: the token and retrieval
+                # counts are this process's since it started, not the store's.
+                "totals_scope": compression_stats.get("totals_scope", "store"),
+            },
+            "compression_cache": compression_cache_stats,
+            # Per-language AST compression pauses. Empty on a healthy install;
+            # non-empty is the explanation for a savings drop in one language.
+            "code_syntax_breaker": _code_syntax_breaker_status(),
+            # Reflects the actual live state of the anonymous upload beacon
+            # (HEADROOM_BEACON, on by default — see telemetry/beacon.py).
+            # This field previously hardcoded False on the incorrect premise
+            # that the beacon had been removed from the codebase; it had not,
+            # so an operator polling /stats to confirm nothing ships
+            # externally was given a false assurance regardless of their
+            # actual HEADROOM_BEACON setting.
+            "anon_telemetry_shipping": is_beacon_enabled(),
+            "telemetry": {
+                "enabled": telemetry_stats.get("enabled", False),
+                "total_compressions": telemetry_stats.get("total_compressions", 0),
+                "total_retrievals": telemetry_stats.get("total_retrievals", 0),
+                "global_retrieval_rate": round(telemetry_stats.get("global_retrieval_rate", 0), 4),
+                "tool_signatures_tracked": telemetry_stats.get("tool_signatures_tracked", 0),
+                "avg_compression_ratio": round(telemetry_stats.get("avg_compression_ratio", 0), 4),
+                "avg_token_reduction": round(telemetry_stats.get("avg_token_reduction", 0), 4),
+            },
+            "otel": get_otel_metrics_status(),
+            "langfuse": get_langfuse_tracing_status(),
+            "feedback_loop": {
+                "tools_tracked": feedback_stats.get("tools_tracked", 0),
+                "total_compressions": feedback_stats.get("total_compressions", 0),
+                "total_retrievals": feedback_stats.get("total_retrievals", 0),
+                "global_retrieval_rate": round(feedback_stats.get("global_retrieval_rate", 0), 4),
+                "tools_with_high_retrieval": sum(
+                    1
+                    for p in feedback_stats.get("tool_patterns", {}).values()
+                    if p.get("retrieval_rate", 0) > 0.3
+                ),
+            },
+            "toin": get_toin().get_stats(),
+            # Auto-learning progress. `pending_patterns` counts sub-threshold
+            # evidence so dashboards can show the learner is alive before the
+            # first pattern crosses `min_evidence` (users otherwise read the
+            # silence as "learning is broken").
+            "traffic_learner": (
+                proxy.traffic_learner.get_stats() if proxy.traffic_learner else None
+            ),
+            "proxy_inbound": proxy.metrics.inbound_snapshot(),
+            "cache": await proxy.cache.stats() if proxy.cache else None,
+            "rate_limiter": await proxy.rate_limiter.stats() if proxy.rate_limiter else None,
+            **recent_request_payload,
+            "log_full_messages": proxy.config.log_full_messages if proxy else False,
+            **get_quota_registry().get_all_stats(),
+            "throughput": throughput,
+            # Effective state from the running process. This is the supported
+            # black-box provenance surface for benchmark/qualification tools.
+            "rollout": proxy.config.rollout.to_dict() if proxy.config.rollout else None,
+            "read_maturation": _read_maturation_status(proxy.config),
+        }
+
+    def _read_maturation_status(cfg: ProxyConfig) -> dict[str, Any]:
+        # The rollout snapshot says whether the feature is enabled, not whether
+        # it can act; cache mode leaves it enabled but unable to fire.
+        inert = (
+            read_maturation_inert_reason(
+                cfg.mode,
+                quiesce_turns=cfg.read_maturation_quiesce_turns,
+                max_hold_turns=cfg.read_maturation_max_hold_turns,
+            )
+            if cfg.read_maturation
+            else None
+        )
+        return {
+            "enabled": cfg.read_maturation,
+            "effective": cfg.read_maturation and inert is None,
+            "inert_reason": inert,
+        }
+
+    def _dashboard_config_payload() -> dict[str, Any]:
+        profile_kwargs = proxy_pipeline_kwargs(config)
+        target_ratio = profile_kwargs.get("target_ratio", config.target_ratio)
+        target_savings_percent = None
+        if isinstance(target_ratio, int | float):
+            target_savings_percent = round(max(0.0, min(1.0, 1.0 - float(target_ratio))) * 100, 1)
+        return {
+            "savings_profile": config.savings_profile,
+            "target_ratio": target_ratio,
+            "target_savings_percent": target_savings_percent,
+            "compress_user_messages": bool(
+                profile_kwargs.get("compress_user_messages", config.compress_user_messages)
+            ),
+            "compress_system_messages": bool(
+                profile_kwargs.get("compress_system_messages", config.compress_system_messages)
+            ),
+            "protect_recent": profile_kwargs.get("read_protection_window", config.protect_recent),
+            "protect_analysis_context": config.protect_analysis_context,
+            "min_tokens_to_crush": profile_kwargs.get(
+                "min_tokens_to_compress", config.min_tokens_to_crush
+            ),
+            "max_items_after_crush": profile_kwargs.get(
+                "max_items_after_crush", config.max_items_after_crush
+            ),
+            "smart_crusher_with_compaction": profile_kwargs.get(
+                "smart_crusher_with_compaction",
+                config.smart_crusher_with_compaction,
+            ),
+            "force_kompress": bool(profile_kwargs.get("force_kompress", False)),
+            "accuracy_guard": config.accuracy_guard,
+        }
+
+    async def _get_cached_stats_payload() -> dict[str, Any]:
+        """Return a short-TTL cached `/stats` snapshot for dashboard polling."""
+        now = time.monotonic()
+        cached_payload = cast(dict[str, Any] | None, _stats_snapshot.get("value"))
+        if cached_payload is not None and now < float(_stats_snapshot["expires_at"]):
+            return cached_payload
+
+        async with _stats_snapshot_lock:
+            now = time.monotonic()
+            cached_payload = cast(dict[str, Any] | None, _stats_snapshot.get("value"))
+            if cached_payload is not None and now < float(_stats_snapshot["expires_at"]):
+                return cached_payload
+
+            payload = await _build_stats_payload()
+            _stats_snapshot["value"] = payload
+            _stats_snapshot["expires_at"] = time.monotonic() + DASHBOARD_STATS_CACHE_TTL_SECONDS
+            return payload
+
+    @app.get("/stats")
+    async def stats(request: Request, cached: bool = False):
+        """Get comprehensive proxy statistics.
+
+        This is the main stats endpoint - it aggregates data from all subsystems:
+        - Request metrics (total, cached, failed, by model/provider)
+        - Token usage and savings
+        - Cost tracking
+        - Canonical persisted display_session metrics for downstream dashboards
+        - Compression (CCR) statistics
+        - Telemetry/TOIN (data flywheel) statistics
+        - Cache and rate limiter stats
+
+        Use ``?cached=1`` for the dashboard fast path. That returns a short-TTL
+        snapshot to avoid rebuilding the full payload on every UI poll.
+
+        ``recent_requests`` / ``request_logs`` (per-request ids, providers,
+        models, errors), ``config`` (backend + savings profile), per-project
+        savings and the provider quota sections are embedded only for callers
+        :func:`_request_can_view_stats_metadata` admits: loopback (the local
+        dashboard), a trusted dashboard CIDR peer, or a caller that passed the
+        proxy token check. Other network callers still get the aggregate
+        counters but never the per-request metadata.
+        """
+        include_sensitive = _request_can_view_stats_metadata(
+            request,
+            trusted_dashboard_client_cidrs,
+        )
+        if cached:
+            payload = dict(await _get_cached_stats_payload())
+            if include_sensitive:
+                # Refresh the per-request tail on top of the cached snapshot.
+                payload.update(_build_recent_request_payload())
+                payload["config"] = _dashboard_config_payload()
+        else:
+            payload = await _build_stats_payload()
+            if include_sensitive:
+                payload["config"] = _dashboard_config_payload()
+        if not include_sensitive:
+            # _build_stats_payload bakes these in; strip for network callers.
+            payload.pop("recent_requests", None)
+            payload.pop("request_logs", None)
+            # Same fields /stats-lifetime and /quota withhold from this caller.
+            # Rebuild the nested dicts: the cached snapshot is shared.
+            for tracker in get_quota_registry().trackers:
+                payload.pop(tracker.key, None)
+            for section, key in (("savings", "per_project"), ("persistent_savings", "projects")):
+                nested = payload.get(section)
+                if isinstance(nested, dict):
+                    payload[section] = {k: v for k, v in nested.items() if k != key}
+        return payload
+
+    @app.get("/stats-lifetime")
+    async def stats_lifetime(request: Request):
+        """Return persisted lifetime aggregates with sensitive fields gated."""
+        payload = dict(proxy.metrics.savings_tracker.lifetime_response())
+        include_sensitive = _request_can_view_stats_metadata(
+            request,
+            trusted_dashboard_client_cidrs,
+        )
+        if not include_sensitive:
+            payload.pop("projects", None)
+            persistence = payload.get("persistence")
+            if isinstance(persistence, dict):
+                payload["persistence"] = {**persistence, "error": None}
+        return payload
+
+    @app.post(
+        "/stats/reset",
+        dependencies=[Depends(_require_loopback), Depends(_require_same_origin)],
+    )
+    async def stats_reset():
+        """Reset in-memory proxy stats for local test/debug isolation."""
+        await proxy.metrics.reset_runtime()
+        if proxy.cost_tracker:
+            proxy.cost_tracker.reset_runtime()
+        async with _stats_snapshot_lock:
+            _stats_snapshot["value"] = None
+            _stats_snapshot["expires_at"] = 0.0
+        return JSONResponse(status_code=200, content={"status": "reset"})
+
+    @app.get("/stats-history", dependencies=_dashboard_gate)
+    async def stats_history(
+        format: Literal["json", "csv"] = "json",
+        series: Literal["history", "hourly", "daily", "weekly", "monthly"] = "history",
+        history_mode: Literal["compact", "full", "none"] = "compact",
+    ):
+        """Get durable proxy compression history plus display-session state."""
+        if format == "csv":
+            filename = f"headroom-stats-history-{series}.csv"
+            return Response(
+                content=proxy.metrics.savings_tracker.export_csv(series=series),
+                media_type="text/csv; charset=utf-8",
+                headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+            )
+
+        return proxy.metrics.savings_tracker.history_response(history_mode=history_mode)
+
+    @app.get("/transformations/feed", dependencies=[Depends(_require_loopback)])
+    async def transformations_feed(limit: int = 20, include_messages: bool = True):
+        """Get recent message transformations for the live feed.
+
+        ``?include_messages=0`` omits the three message-body fields, and skips
+        copying them server-side, for pollers that only read the per-request
+        numbers. A ``limit=100`` pull with bodies is ~44 MB and its
+        serialization blocks the event loop; the dashboard's live feed keeps
+        the default.
+
+        Loopback-only: when ``log_full_messages`` is enabled this returns the
+        full request/response message bodies (prompt content and completions)
+        via ``request_messages`` / ``compressed_messages`` / ``response_content``.
+        With the default ``--host 0.0.0.0`` Docker bind, leaving it open would
+        expose chat history to anyone able to reach the proxy port. The
+        dashboard runs in the user's browser on loopback, so this gate does not
+        break legitimate use.
+
+        Returns empty list if log_full_messages is disabled (messages are not stored).
+        """
+        # Clamp both ends: limit<=0 would otherwise slice the whole log.
+        limit = max(1, min(limit, 100))
+
+        transformations = []
+        log_full_messages = proxy.config.log_full_messages if proxy else False
+
+        if proxy and proxy.logger:
+            logs = proxy.logger.get_recent_with_messages(limit, include_messages=include_messages)
+            for log in logs:
+                item = {
+                    "request_id": log.get("request_id"),
+                    "timestamp": log.get("timestamp"),
+                    "provider": resolve_display_provider(
+                        log.get("provider"),
+                        openai_api_url=proxy.config.openai_api_url,
+                        provider_name=proxy.config.provider_name,
+                    ),
+                    "model": log.get("model"),
+                    "input_tokens_original": log.get("input_tokens_original"),
+                    "input_tokens_optimized": log.get("input_tokens_optimized"),
+                    "tokens_saved": log.get("tokens_saved"),
+                    "savings_percent": log.get("savings_percent"),
+                    "transforms_applied": log.get("transforms_applied", []),
+                    "turn_id": log.get("turn_id"),
+                    # Per-request prefix-cache split, so a number-only poller can put
+                    # tokens_saved on the new-input basis /stats reports as
+                    # new_input_savings_percent (saved / (saved + uncached + cache_write))
+                    # instead of the full-transcript basis of savings_percent.
+                    "uncached_input_tokens": log.get("uncached_input_tokens", 0),
+                    "cache_write_tokens": log.get("cache_write_tokens", 0),
+                    "cache_read_tokens": log.get("cache_read_tokens", 0),
+                }
+                if include_messages:
+                    item["request_messages"] = log.get("request_messages")
+                    item["compressed_messages"] = log.get("compressed_messages")
+                    item["response_content"] = log.get("response_content")
+                transformations.append(item)
+
+        return {"transformations": transformations, "log_full_messages": log_full_messages}
+
+    @app.get("/subscription-window", dependencies=_dashboard_gate)
+    async def subscription_window():
+        """Current Anthropic subscription window utilisation and Headroom contribution.
+
+        Issue #281: the Anthropic OAuth usage API is polled every 5 minutes
+        (aggressive polling risks 429s / OAuth-token flagging), so the cached
+        ``utilization_pct`` lags reality by up to one poll interval. When the
+        user's 5-hour window rolls over between two polls the dashboard would
+        otherwise render the OLD window's percentage. We:
+
+        1. Optionally trigger a 60s-floored singleton poll on dashboard load
+           (bounded across users, well within Anthropic tolerance).
+        2. Render via :meth:`SubscriptionTracker.render_state`, which
+           synthesizes post-reset windows from local transcript-derived
+           token counts when ``now >= window.resets_at``.
+        """
+        tracker = get_subscription_tracker()
+        if tracker is None:
+            return JSONResponse(
+                status_code=503,
+                content={"error": "Subscription tracking is not enabled"},
+            )
+        await tracker.maybe_poll_on_demand()
+        return JSONResponse(content=tracker.render_state())
+
+    @app.get("/quota", dependencies=_dashboard_gate)
+    async def quota():
+        """Unified quota/rate-limit stats for all registered providers (Anthropic, Codex, Copilot)."""
+        return JSONResponse(content=get_quota_registry().get_all_stats())
+
+    @app.get("/metrics", dependencies=[Depends(_require_metrics_scrape_client)])
+    async def metrics():
+        """Prometheus metrics endpoint (loopback, trusted CIDR, or token-authenticated)."""
+        return PlainTextResponse(
+            await proxy.metrics.export(),
+            media_type="text/plain; version=0.0.4",
+        )
+
+    # Debug endpoints
+    @app.get("/debug/memory", dependencies=[Depends(_require_loopback_or_container_gateway)])
+    async def debug_memory():
+        """Get detailed memory usage statistics.
+
+        Returns memory usage for all tracked components including:
+        - Process-level memory (RSS, VMS, percent)
+        - Per-component memory usage and budgets
+        - Cache hit/miss statistics
+        - Total tracked vs target budget
+
+        This endpoint is useful for debugging memory issues and
+        monitoring memory budgets.
+        """
+        from ..memory.tracker import MemoryTracker
+
+        tracker = MemoryTracker.get()
+
+        # Register components if not already registered
+        _register_memory_components(proxy, tracker)
+
+        report = tracker.get_report()
+        return report.to_dict()
+
+    @app.post(
+        "/cache/clear",
+        dependencies=[Depends(_require_loopback), Depends(_require_same_origin)],
+    )
+    async def clear_cache():
+        """Clear the response cache.
+
+        Loopback-only: this mutates server state. With the default
+        ``--host 0.0.0.0`` Docker bind, an unauthenticated POST from any
+        network-reachable client would otherwise let them forcibly evict the
+        proxy's cached completions — a denial-of-service / cost-amplification
+        lever (every cleared entry forces a fresh upstream call).
+        """
+        if proxy.cache:
+            await proxy.cache.clear()
+            return {"status": "cleared"}
+        return {"status": "cache disabled"}
+
+    # CCR (Compress-Cache-Retrieve) endpoints
+    @app.post(
+        "/v1/retrieve",
+        dependencies=[Depends(_require_loopback), Depends(_require_same_origin)],
+    )
+    async def ccr_retrieve(request: Request):
+        """Retrieve original content from CCR compression cache.
+
+        This is the "Retrieve" part of CCR (Compress-Cache-Retrieve).
+        When SmartCrusher compresses tool outputs, the original data is cached.
+        LLMs can call this endpoint to get more data if needed.
+
+        Request body:
+            hash (str): Hash key from compression marker (required)
+
+        Response:
+            {"hash": "...", "original_content": "...", ...}
+        """
+        data = await request.json()
+        hash_key = data.get("hash")
+
+        if not hash_key:
+            raise HTTPException(status_code=400, detail="hash required")
+
+        store = get_compression_store()
+
+        entry_status = store.get_entry_status(hash_key, clean_expired=True)
+        if entry_status["status"] != "available":
+            raise HTTPException(
+                status_code=404,
+                detail=format_retrieval_miss_detail(entry_status),
+            )
+
+        # Retrieval is by hash: always return the full original content.
+        entry = store.retrieve(hash_key)
+        if entry:
+            return {
+                "hash": hash_key,
+                "original_content": entry.original_content,
+                "original_tokens": entry.original_tokens,
+                "original_item_count": entry.original_item_count,
+                "compressed_item_count": entry.compressed_item_count,
+                "tool_name": entry.tool_name,
+                "retrieval_count": entry.retrieval_count,
+            }
+        raise HTTPException(
+            status_code=404,
+            detail=format_retrieval_miss_detail(
+                store.get_entry_status(hash_key, clean_expired=True)
+            ),
+        )
+
+    @app.get("/v1/retrieve/stats", dependencies=[Depends(_require_loopback)])
+    async def ccr_stats():
+        """Get CCR compression store statistics."""
+        store = get_compression_store()
+        stats = store.get_stats()
+        events = store.get_retrieval_events(limit=20)
+        return {
+            "store": stats,
+            "recent_retrievals": [
+                {
+                    "hash": e.hash,
+                    "query": e.query,
+                    "items_retrieved": e.items_retrieved,
+                    "total_items": e.total_items,
+                    "tool_name": e.tool_name,
+                    "retrieval_type": e.retrieval_type,
+                }
+                for e in events
+            ],
+        }
+
+    @app.get("/v1/feedback", dependencies=[Depends(_require_loopback)])
+    async def ccr_feedback():
+        """Get CCR feedback loop statistics and learned patterns.
+
+        This endpoint exposes the feedback loop's learned patterns for monitoring
+        and debugging. It shows:
+        - Per-tool retrieval rates (high = compress less aggressively)
+        - Aggregate compression/retrieval counters per tool
+
+        Use this to understand how well compression is working and whether
+        the feedback loop is adjusting appropriately.
+
+        Loopback-guarded and query-text free for the same reason as the
+        telemetry and TOIN endpoints (#2926/#2927): ``common_queries`` and
+        ``queried_fields`` are built verbatim from agent search queries, so
+        they stay out of the response even on the guarded path.
+        """
+        feedback = get_compression_feedback()
+        stats = _feedback_stats_without_query_text(feedback.get_stats())
+        return {
+            "feedback": stats,
+            "hints_example": {
+                tool_name: {
+                    "hints": {
+                        "max_items": hints.max_items
+                        if (hints := feedback.get_compression_hints(tool_name))
+                        else 15,
+                        "suggested_items": hints.suggested_items if hints else None,
+                        "skip_compression": hints.skip_compression if hints else False,
+                        "preserve_fields": hints.preserve_fields if hints else [],
+                        "reason": hints.reason if hints else "",
+                    }
+                }
+                for tool_name in list(stats.get("tool_patterns", {}).keys())[:5]
+            },
+        }
+
+    @app.get("/v1/feedback/{tool_name}", dependencies=[Depends(_require_loopback)])
+    async def ccr_feedback_for_tool(tool_name: str):
+        """Get compression hints for a specific tool.
+
+        Returns feedback-based hints that would be used for compressing
+        this tool's output.
+
+        Loopback-guarded, and the pattern block excludes ``common_queries``
+        and ``queried_fields`` — both are raw agent query text (#2926/#2927).
+        """
+        feedback = get_compression_feedback()
+        hints = feedback.get_compression_hints(tool_name)
+        patterns = feedback.get_all_patterns().get(tool_name)
+
+        return {
+            "tool_name": tool_name,
+            "hints": {
+                "max_items": hints.max_items,
+                "min_items": hints.min_items,
+                "suggested_items": hints.suggested_items,
+                "aggressiveness": hints.aggressiveness,
+                "skip_compression": hints.skip_compression,
+                "preserve_fields": hints.preserve_fields,
+                "reason": hints.reason,
+            },
+            "pattern": {
+                "total_compressions": patterns.total_compressions if patterns else 0,
+                "total_retrievals": patterns.total_retrievals if patterns else 0,
+                "retrieval_rate": patterns.retrieval_rate if patterns else 0.0,
+                "full_retrieval_rate": patterns.full_retrieval_rate if patterns else 0.0,
+                "search_rate": patterns.search_rate if patterns else 0.0,
+            }
+            if patterns
+            else None,
+        }
+
+    # Telemetry endpoints (Data Flywheel)
+    @app.get("/v1/telemetry", dependencies=[Depends(_require_loopback)])
+    async def telemetry_stats():
+        """Get telemetry statistics for the data flywheel.
+
+        This endpoint exposes privacy-preserving telemetry data that powers
+        the data flywheel - learning optimal compression strategies across
+        tool types based on usage patterns.
+
+        What's collected (anonymized):
+        - Tool output structure patterns (field types, not values)
+        - Compression decisions and ratios
+        - Retrieval patterns (rate, type, not content)
+        - Strategy effectiveness
+
+        What's NOT collected:
+        - Actual data values
+        - User identifiers
+        - Queries or search terms
+        - File paths or tool names (hashed by default)
+        """
+        telemetry = get_telemetry_collector()
+        return telemetry.get_stats()
+
+    @app.get("/v1/telemetry/export", dependencies=[Depends(_require_loopback)])
+    async def telemetry_export():
+        """Export full telemetry data for aggregation.
+
+        This endpoint exports all telemetry data in a format suitable for
+        cross-user aggregation. The data is privacy-preserving - no actual
+        values are included, only structural patterns and statistics.
+
+        Use this for:
+        - Building a central learning service
+        - Sharing learned patterns across instances
+        - Analysis and debugging
+        """
+        telemetry = get_telemetry_collector()
+        return telemetry.export_stats()
+
+    @app.post(
+        "/v1/telemetry/import",
+        dependencies=[Depends(_require_loopback), Depends(_require_same_origin)],
+    )
+    async def telemetry_import(request: Request):
+        """Import telemetry data from another source.
+
+        This allows merging telemetry from multiple sources for cross-user
+        learning. The imported data is merged with existing statistics.
+
+        Request body: Telemetry export data from /v1/telemetry/export
+        """
+        telemetry = get_telemetry_collector()
+        data = await request.json()
+        telemetry.import_stats(data)
+        return {"status": "imported", "current_stats": telemetry.get_stats()}
+
+    @app.get("/v1/telemetry/tools", dependencies=[Depends(_require_loopback)])
+    async def telemetry_tools():
+        """Get telemetry statistics for all tracked tool signatures.
+
+        Returns statistics per tool signature (anonymized), including:
+        - Compression ratios and strategy usage
+        - Retrieval rates (high = compression too aggressive)
+        - Learned recommendations
+        """
+        telemetry = get_telemetry_collector()
+        all_stats = telemetry.get_all_tool_stats()
+        return {
+            "tool_count": len(all_stats),
+            "tools": {sig_hash: stats.to_dict() for sig_hash, stats in all_stats.items()},
+        }
+
+    @app.get("/v1/telemetry/tools/{signature_hash}", dependencies=[Depends(_require_loopback)])
+    async def telemetry_tool_detail(signature_hash: str):
+        """Get detailed telemetry for a specific tool signature.
+
+        Includes learned recommendations if enough data has been collected.
+        """
+        telemetry = get_telemetry_collector()
+        stats = telemetry.get_tool_stats(signature_hash)
+        recommendations = telemetry.get_recommendations(signature_hash)
+
+        if stats is None:
+            raise HTTPException(
+                status_code=404, detail=f"No telemetry found for signature: {signature_hash}"
+            )
+
+        return {
+            "signature_hash": signature_hash,
+            "stats": stats.to_dict(),
+            "recommendations": recommendations,
+        }
+
+    # TOIN (Tool Output Intelligence Network) endpoints
+    @app.get("/v1/toin/stats", dependencies=[Depends(_require_loopback)])
+    async def toin_stats():
+        """Get overall TOIN statistics.
+
+        Returns aggregated statistics from the Tool Output Intelligence Network,
+        which learns optimal compression strategies across all tool types.
+
+        Response includes:
+        - enabled: Whether TOIN is enabled
+        - patterns_tracked: Number of unique tool patterns being tracked
+        - total_compressions: Total compression events recorded
+        - total_retrievals: Total retrieval events recorded
+        - global_retrieval_rate: Overall retrieval rate (high = compression too aggressive)
+        - patterns_with_recommendations: Patterns with enough data for recommendations
+        """
+        toin = get_toin()
+        return toin.get_stats()
+
+    @app.get("/v1/toin/patterns", dependencies=[Depends(_require_loopback)])
+    async def toin_patterns(limit: int = 20):
+        """List TOIN patterns with most samples.
+
+        Returns patterns sorted by sample_size descending. Use this to see
+        which tool types have the most data and their learned behaviors.
+
+        Query params:
+            limit: Maximum number of patterns to return (default 20)
+
+        Response includes for each pattern:
+        - hash: Full aggregation key identifying one scoped tool pattern
+        - compressions: Total compression events
+        - retrievals: Total retrieval events
+        - retrieval_rate: Percentage of compressions that triggered retrieval
+        - confidence: Confidence level in recommendations (0.0-1.0)
+        - skip_recommended: Whether TOIN recommends skipping compression
+        - optimal_max_items: Learned optimal max_items setting
+        """
+        toin = get_toin()
+        exported = toin.export_patterns()
+        patterns_data = exported.get("patterns", {})
+
+        # Convert to list and sort by sample_size
+        patterns_list = []
+        for sig_hash, pattern_dict in patterns_data.items():
+            sample_size = pattern_dict.get("sample_size", 0)
+            total_compressions = pattern_dict.get("total_compressions", 0)
+            total_retrievals = pattern_dict.get("total_retrievals", 0)
+            retrieval_rate = (
+                total_retrievals / total_compressions if total_compressions > 0 else 0.0
+            )
+
+            patterns_list.append(
+                {
+                    "hash": sig_hash,
+                    "compressions": total_compressions,
+                    "retrievals": total_retrievals,
+                    "retrieval_rate": f"{retrieval_rate:.1%}",
+                    "confidence": round(pattern_dict.get("confidence", 0.0), 3),
+                    "skip_recommended": pattern_dict.get("skip_compression_recommended", False),
+                    "optimal_max_items": pattern_dict.get("optimal_max_items", 20),
+                    "sample_size": sample_size,
+                }
+            )
+
+        # Sort by sample_size descending
+        patterns_list.sort(key=lambda p: p["sample_size"], reverse=True)
+
+        # Remove sample_size from output (used only for sorting)
+        for p in patterns_list:
+            del p["sample_size"]
+
+        return patterns_list[:limit]
+
+    @app.get("/v1/toin/pattern/{hash_prefix:path}", dependencies=[Depends(_require_loopback)])
+    async def toin_pattern_detail(hash_prefix: str):
+        """Get detailed TOIN pattern info by the listed identifier or a unique prefix.
+
+        Pass the ``hash`` returned by ``/v1/toin/patterns`` for an exact
+        lookup. A shorter aggregation-key prefix is accepted only when it
+        identifies one pattern; ambiguous prefixes return 409.
+
+        Response: Learned statistics without query text or field semantics.
+        """
+        toin = get_toin()
+        exported = toin.export_patterns()
+        patterns_data = exported.get("patterns", {})
+
+        pattern_dict = patterns_data.get(hash_prefix)
+        if pattern_dict is None:
+            matches = (
+                pattern for key, pattern in patterns_data.items() if key.startswith(hash_prefix)
+            )
+            pattern_dict = next(matches, None)
+            if next(matches, None) is not None:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Ambiguous TOIN pattern prefix; use a full hash from /v1/toin/patterns",
+                )
+        if pattern_dict is not None:
+            # Keep query text, field semantics, and internal learning state private.
+            return {
+                "compressions": pattern_dict.get("total_compressions", 0),
+                "retrievals": pattern_dict.get("total_retrievals", 0),
+                "retrieval_rate": pattern_dict.get("retrieval_rate", 0.0),
+                "confidence": pattern_dict.get("confidence", 0.0),
+                "skip_recommended": pattern_dict.get("skip_compression_recommended", False),
+                "optimal_max_items": pattern_dict.get("optimal_max_items", 20),
+            }
+
+        raise HTTPException(
+            status_code=404, detail=f"No TOIN pattern found with hash starting with: {hash_prefix}"
+        )
+
+    @app.get("/v1/retrieve/{hash_key}", dependencies=[Depends(_require_loopback)])
+    async def ccr_retrieve_get(hash_key: str):
+        """GET version of CCR retrieve for easier testing."""
+        store = get_compression_store()
+        entry_status = store.get_entry_status(hash_key, clean_expired=True)
+
+        if entry_status["status"] != "available":
+            raise HTTPException(
+                status_code=404,
+                detail=format_retrieval_miss_detail(entry_status),
+            )
+
+        # Retrieval is by hash: always return the full original content.
+        entry = store.retrieve(hash_key)
+        if entry:
+            return {
+                "hash": hash_key,
+                "original_content": entry.original_content,
+                "original_tokens": entry.original_tokens,
+                "original_item_count": entry.original_item_count,
+                "compressed_item_count": entry.compressed_item_count,
+                "tool_name": entry.tool_name,
+                "retrieval_count": entry.retrieval_count,
+            }
+        raise HTTPException(
+            status_code=404,
+            detail=format_retrieval_miss_detail(
+                store.get_entry_status(hash_key, clean_expired=True)
+            ),
+        )
+
+    # CCR Tool Call Handler - for agent frameworks to call when LLM uses headroom_retrieve
+    @app.post(
+        "/v1/retrieve/tool_call",
+        dependencies=[Depends(_require_loopback), Depends(_require_same_origin)],
+    )
+    async def ccr_handle_tool_call(request: Request):
+        """Handle a CCR tool call from an LLM response.
+
+        This endpoint accepts tool call formats from various providers and returns
+        a properly formatted tool result. Agent frameworks can use this to handle
+        CCR tool calls without implementing the retrieval logic themselves.
+
+        Request body (Anthropic format):
+            {
+                "tool_call": {
+                    "id": "toolu_123",
+                    "name": "headroom_retrieve",
+                    "input": {"hash": "abc123"}
+                },
+                "provider": "anthropic"
+            }
+
+        Request body (OpenAI format):
+            {
+                "tool_call": {
+                    "id": "call_123",
+                    "function": {
+                        "name": "headroom_retrieve",
+                        "arguments": "{\"hash\": \"abc123\"}"
+                    }
+                },
+                "provider": "openai"
+            }
+
+        Response:
+            {
+                "tool_result": {...},  # Formatted for the provider
+                "success": true,
+                "data": {...}  # Raw retrieval data
+            }
+        """
+        data = await request.json()
+        tool_call = data.get("tool_call", {})
+        provider = data.get("provider", "anthropic")
+
+        # Parse the tool call
+        hash_key = parse_tool_call(tool_call, provider)
+
+        if hash_key is None:
+            raise HTTPException(
+                status_code=400, detail=f"Invalid tool call or not a {CCR_TOOL_NAME} call"
+            )
+
+        # Perform retrieval
+        store = get_compression_store()
+        entry_status = store.get_entry_status(hash_key, clean_expired=True)
+
+        if entry_status["status"] != "available":
+            retrieval_data = {
+                "error": format_retrieval_miss_detail(entry_status),
+                "hash": hash_key,
+                "status": entry_status["status"],
+                "ttl_seconds": entry_status.get("ttl_seconds", entry_status["default_ttl_seconds"]),
+            }
+        else:
+            # Retrieval is by hash: always return the full original content.
+            entry = store.retrieve(hash_key)
+            if entry:
+                retrieval_data = {
+                    "hash": hash_key,
+                    "original_content": entry.original_content,
+                    "original_item_count": entry.original_item_count,
+                    "compressed_item_count": entry.compressed_item_count,
+                }
+            else:
+                miss_status = store.get_entry_status(hash_key, clean_expired=True)
+                retrieval_data = {
+                    "error": format_retrieval_miss_detail(miss_status),
+                    "hash": hash_key,
+                    "status": miss_status["status"],
+                    "ttl_seconds": miss_status.get(
+                        "ttl_seconds", miss_status["default_ttl_seconds"]
+                    ),
+                }
+
+        # Format tool result for provider
+        tool_call_id = tool_call.get("id", "")
+        result_content = json.dumps(retrieval_data, indent=2)
+
+        if provider == "anthropic":
+            tool_result = {
+                "type": "tool_result",
+                "tool_use_id": tool_call_id,
+                "content": result_content,
+            }
+        elif provider == "openai":
+            tool_result = {
+                "role": "tool",
+                "tool_call_id": tool_call_id,
+                "content": result_content,
+            }
+        else:
+            tool_result = {
+                "tool_call_id": tool_call_id,
+                "content": result_content,
+            }
+
+        return {
+            "tool_result": tool_result,
+            "success": "error" not in retrieval_data,
+            "data": retrieval_data,
+        }
+
+    # Compression-only endpoint (for TypeScript SDK and other HTTP clients).
+    # Loopback-only by default (guard added in #1537). An operator can opt in to
+    # network access for an authorized in-network sidecar/gateway (e.g. Kong,
+    # LiteLLM) on a trusted network by setting HEADROOM_COMPRESS_ALLOW_REMOTE=1,
+    # which drops ONLY this route's loopback dependency. Inbound auth
+    # (HEADROOM_PROXY_TOKEN via _security_gate) and network scoping still apply;
+    # all other _require_loopback routes are unaffected. Unset/false preserves
+    # today's loopback-only behavior.
+    _compress_dependencies = (
+        []
+        if _get_env_bool("HEADROOM_COMPRESS_ALLOW_REMOTE", False)
+        else [Depends(_require_loopback_or_container_gateway)]
+    )
+
+    @app.post("/v1/compress", dependencies=_compress_dependencies)
+    async def compress_messages(request: Request):
+        return await proxy.handle_compress(request)
+
+    # Sidecar-mode usage relay: same exposure policy as /v1/compress — the two
+    # form one contract (compress returns the bytes, usage reports what the
+    # provider said about them), so they must be reachable from the same place.
+    @app.post("/v1/usage", dependencies=_compress_dependencies)
+    async def compress_usage(request: Request):
+        return await proxy.handle_compress_usage(request)
+
+    # Contracts layered on /v1/compress install through the compress-turn seam
+    # (headroom/proxy/compress_turn.py). The gateway turn contract is built in
+    # and on by default; it adds /v1/compress/response under the same exposure
+    # policy as /v1/compress. A third-party contract's install(app, config)
+    # can read the policy from app.state.compress_route_dependencies.
+    app.state.compress_route_dependencies = list(_compress_dependencies)
+    from headroom.proxy.gateway_extension import install_builtin as _install_gateway_contract
+
+    _install_gateway_contract(app, config, route_dependencies=_compress_dependencies)
+
+    register_provider_routes(app, proxy)
+    # Register last so this raw ASGI middleware is outermost and covers the
+    # complete response body, including responses produced by other middleware.
+    app.add_middleware(ActivityMiddleware, proxy=proxy)
+
+    return app
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 39. `mlflow/mlflow | AP4 | mlflow/langchain/api_request_parallel_processor.py | 128 | 4`
+
+- **Definici?n:** Funci?n de m?s de 60 l?neas con recuperaci?n y generaci?n en la misma funci?n.
+- **Por qu? se activ?:** Function combines retrieval and generation over 60 lines
+- **Contexto fuente (snippet):**
+```python
+def single_call_api(self, callback_handlers: list[BaseCallbackHandler] | None):
+        from mlflow.langchain._compat import import_base_retriever
+        from mlflow.langchain.utils.logging import langgraph_types, lc_runnables_types
+
+        BaseRetriever = import_base_retriever()
+
+        if isinstance(self.lc_model, BaseRetriever):
+            # Retrievers are invoked differently than Chains
+            response = self.lc_model.get_relevant_documents(
+                **self.request_json, callbacks=callback_handlers, **self.params
+            )
+        elif isinstance(self.lc_model, lc_runnables_types() + langgraph_types()):
+            if isinstance(self.request_json, dict):
+                # This is a temporary fix for the case when spark_udf converts
+                # input into pandas dataframe with column name, while the model
+                # does not accept dictionaries as input, it leads to errors like
+                # Expected Scalar value for String field 'query_text'
+                try:
+                    response = self._predict_single_input(
+                        self.request_json, callback_handlers, **self.params
+                    )
+                except TypeError as e:
+                    _logger.debug(
+                        f"Failed to invoke {self.lc_model.__class__.__name__} "
+                        f"with {self.request_json}. Error: {e!r}. Trying to "
+                        "invoke with the first value of the dictionary."
+                    )
+                    self.request_json = next(iter(self.request_json.values()))
+                    (
+                        prepared_request_json,
+                        did_perform_chat_conversion,
+                    ) = transform_request_json_for_chat_if_necessary(
+                        self.request_json, self.lc_model
+                    )
+                    self.did_perform_chat_conversion = did_perform_chat_conversion
+
+                    response = self._predict_single_input(
+                        prepared_request_json, callback_handlers, **self.params
+                    )
+            else:
+                response = self._predict_single_input(
+                    self.request_json, callback_handlers, **self.params
+                )
+
+            if self.did_perform_chat_conversion or self.convert_chat_responses:
+                response = self._try_convert_response(response)
+        else:
+            # return_only_outputs is invalid for stream call
+            if Chain and isinstance(self.lc_model, Chain) and not self.stream:
+                kwargs = {"return_only_outputs": True}
+            else:
+                kwargs = {}
+            kwargs.update(**self.params)
+            response = self._predict_single_input(self.request_json, callback_handlers, **kwargs)
+
+            if self.did_perform_chat_conversion or self.convert_chat_responses:
+                response = self._try_convert_response(response)
+            elif isinstance(response, dict) and len(response) == 1:
+                # to maintain existing code, single output chains will still return
+                # only the result
+                response = response.popitem()[1]
+
+        return convert_to_serializable(response)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 40. `run-llama/llama_index | AP4 | llama-index-core/llama_index/core/query_engine/sql_join_query_engine.py | 250 | 4`
+
+- **Definici?n:** Funci?n de m?s de 60 l?neas con recuperaci?n y generaci?n en la misma funci?n.
+- **Por qu? se activ?:** Function combines retrieval and generation over 60 lines
+- **Contexto fuente (snippet):**
+```python
+def _query_sql_other(self, query_bundle: QueryBundle) -> RESPONSE_TYPE:
+        """Query SQL database + other query engine in sequence."""
+        # first query SQL database
+        sql_response = self._sql_query_tool.query_engine.query(query_bundle)
+        if not self._use_sql_join_synthesis:
+            return sql_response
+
+        sql_query = (
+            sql_response.metadata["sql_query"] if sql_response.metadata else None
+        )
+        if self._verbose:
+            print_text(f"SQL query: {sql_query}\n", color="yellow")
+            print_text(f"SQL response: {sql_response}\n", color="yellow")
+
+        # given SQL db, transform query into new query
+        new_query = self._sql_augment_query_transform(
+            query_bundle.query_str,
+            metadata={
+                "sql_query": _format_sql_query(sql_query),
+                "sql_query_response": str(sql_response),
+            },
+        )
+
+        if self._verbose:
+            print_text(
+                f"Transformed query given SQL response: {new_query.query_str}\n",
+                color="blue",
+            )
+        logger.info(f"> Transformed query given SQL response: {new_query.query_str}")
+        if self._sql_augment_query_transform.check_stop(new_query):
+            return sql_response
+
+        other_response = self._other_query_tool.query_engine.query(new_query)
+        if self._verbose:
+            print_text(f"query engine response: {other_response}\n", color="pink")
+        logger.info(f"> query engine response: {other_response}")
+
+        if self._streaming:
+            response_gen = self._llm.stream(
+                self._sql_join_synthesis_prompt,
+                query_str=query_bundle.query_str,
+                sql_query_str=sql_query,
+                sql_response_str=str(sql_response),
+                query_engine_query_str=new_query.query_str,
+                query_engine_response_str=str(other_response),
+            )
+
+            response_metadata = {
+                **(sql_response.metadata or {}),
+                **(other_response.metadata or {}),
+            }
+            source_nodes = other_response.source_nodes
+            return StreamingResponse(
+                response_gen,
+                metadata=response_metadata,
+                source_nodes=source_nodes,
+            )
+        else:
+            response_str = self._llm.predict(
+                self._sql_join_synthesis_prompt,
+                query_str=query_bundle.query_str,
+                sql_query_str=sql_query,
+                sql_response_str=str(sql_response),
+                query_engine_query_str=new_query.query_str,
+                query_engine_response_str=str(other_response),
+            )
+
+            response_metadata = {
+                **(sql_response.metadata or {}),
+                **(other_response.metadata or {}),
+            }
+            source_nodes = other_response.source_nodes
+            return Response(
+                response_str,
+                metadata=response_metadata,
+                source_nodes=source_nodes,
+            )
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 41. `BerriAI/litellm | AP5 | litellm/router_rust/invoke/shaping.py | 283 | 4`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception:  # noqa: BLE001  # best-effort filter: an unresolvable provider must not narrow the request
+        return True
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 42. `bojieli/ai-agent-book | AP5 | chapter7/user-memory-system-evaluation/experiment.py | 604 | 12`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as exc:
+                errors.append(f"attempt {attempt}: {exc}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 43. `multimindlab/multimind-sdk | AP5 | multimind/memory/hybrid.py | 345 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            logger.error(f"Error analyzing memories: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 44. `run-llama/llama_index | AP5 | llama-index-integrations/tools/llama-index-tools-aws-bedrock-agentcore/llama_index/tools/aws_bedrock_agentcore/code_interpreter/base.py | 184 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            return f"Error executing code: {e!s}"
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 45. `multimindlab/multimind-sdk | AP5 | multimind/memory/event_sourced.py | 303 | 12`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+                logger.error(f"Error analyzing causality: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 46. `BerriAI/litellm | AP5 | litellm/router_rust/steps/precall.py | 250 | 4`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:  # noqa: BLE001  # best-effort filter: an unresolvable provider must not narrow the request
+        verbose_router_logger.debug(
+            "litellm.router.py::_deployment_supports_param: keeping %s for model=%s. Got - %s", param, group, e
+        )
+        return True
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 47. `run-llama/llama_index | AP5 | llama-index-integrations/tools/llama-index-tools-aws-bedrock-agentcore/llama_index/tools/aws_bedrock_agentcore/code_interpreter/base.py | 388 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            return f"Error deleting files: {e!s}"
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 48. `multimindlab/multimind-sdk | AP5 | multimind/memory/hybrid.py | 554 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            logger.error(f"Error evolving memories: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 49. `headroomlabs-ai/headroom | AP5 | headroom/proxy/handlers/streaming.py | 784 | 12`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+                logger.debug(f"[{request_id}] CCR Feedback recording failed: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 50. `multimindlab/multimind-sdk | AP5 | multimind/memory/cognitive_scratchpad.py | 135 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            logger.error(f"Error tracking reasoning steps: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 51. `multimindlab/multimind-sdk | AP5 | multimind/memory/hierarchical.py | 862 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            logger.error(f"Error updating semantic analysis: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 52. `NJUxlj/Chinese-MedQA-Qwen2 | AP5 | src/data_generation/med_embedding_data_generator.py | 92 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            print(f"加载 Collection 文档失败: {e}")
+            return []
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 53. `bojieli/ai-agent-book | AP5 | chapter2/local_llm_serving/main.py | 511 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            print(f"❌ Error: {e}")
+            logger.exception("Error in interactive mode")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 54. `1Panel-dev/MaxKB | AP5 | apps/trigger/handler/impl/task/application_task.py | 244 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            maxkb_logger.error(f"Application execution error: {traceback.format_exc()}")
+            QuerySet(TaskRecord).filter(id=task_record_id).update(
+                state=State.FAILURE,
+                run_time=time.time() - start_time,
+                meta={'input': {'parameter_setting': parameter_setting, **kwargs}, 'output': None,
+                      'err_message': 'Error: ' + str(e)}
+            )
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 55. `hoangsonww/Agentic-AI-Pipeline | AP5 | src/agentic_ai/tools/content_generation.py | 222 | 12`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+                logger.error(f"Error optimizing content with LLM: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 56. `hoangsonww/Agentic-AI-Pipeline | AP5 | src/agentic_ai/tools/content_generation.py | 69 | 12`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+                logger.error(f"Error generating content with LLM: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 57. `onyx-dot-app/onyx | AP5 | backend/onyx/secondary_llm_flows/memory_update.py | 130 | 4`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+        logger.warning("LLM invocation failed for memory update: %s", e)
+        return (new_memory, None)
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 58. `bojieli/ai-agent-book | AP5 | chapter4/multimodal-agent/main.py | 228 | 12`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+                print(f"\nError: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 59. `multimindlab/multimind-sdk | AP5 | multimind/memory/temporal.py | 216 | 8`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+            logger.error(f"Error analyzing temporal info: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.
+
+## 60. `multimindlab/multimind-sdk | AP5 | multimind/memory/working.py | 279 | 12`
+
+- **Definici?n:** Llamada cr?tica LLM/vectorial en try con handler amplio sin propagaci?n y fallback/logging/pass.
+- **Por qu? se activ?:** Broad critical exception is suppressed
+- **Contexto fuente (snippet):**
+```python
+except Exception as e:
+                logger.error(f"Error compressing item: {e}")
+```
+- **Veredicto humano:** completar `veredicto_confirmado` (`TP`/`FP`).
+- **Nota humana:** completar `nota_confirmada` con evidencia concreta.
+- **Revisor/fecha:** completar `revisor` y `fecha_revision`.

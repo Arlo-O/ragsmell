@@ -1,0 +1,10 @@
+file,sloc,cc_media,cc_max,mi,cbo_mod
+ap1_negative_module.py,1,0.0,0,100.0,0
+ap1_negative_short.py,4,2,2,100.0,0
+ap1_positive_context.py,4,2,2,100.0,0
+ap3_negative_config.py,2,0.0,0,100.0,1
+ap3_positive_literal.py,2,0.0,0,100.0,1
+ap4_negative_short.py,3,1,1,100.0,0
+ap4_positive_long.py,64,1,1,100.0,0
+ap5_negative_raise.py,6,2,2,100.0,0
+ap5_positive_fallback.py,5,2,2,100.0,0
